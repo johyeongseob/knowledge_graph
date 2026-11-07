@@ -1,0 +1,1270 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>지식그래프 발표자료</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F5F0; --card:#FFFFFF; --ink:#1C2430; --muted:#5B6573; --line:#DDD8CC;
+  --accent:#0E6B5C; --accent-soft:#E2EFEA; --accent-ink:#0A4F44;
+  --warm:#B4562B; --warm-soft:#F6E7DE;
+  --dark:#13202B; --dark-2:#1C2D3B; --dark-accent:#62C7B1;
+  --code-bg:#16212B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:#0d141b;overflow:hidden}
+body{font-family:"Pretendard",-apple-system,"Malgun Gothic",sans-serif;color:var(--ink);word-break:keep-all;-webkit-font-smoothing:antialiased}
+#stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;transform-origin:center center}
+.slide{position:absolute;inset:0;background:var(--bg);padding:56px 72px 64px;display:none;flex-direction:column;overflow:hidden}
+.slide.active{display:flex}
+.slide>header{margin-bottom:26px}
+.slide>header .sec{display:inline-block;font-size:15px;font-weight:700;color:var(--accent);letter-spacing:.04em;margin-bottom:6px}
+.slide>header h2{font-size:36px;font-weight:800;letter-spacing:-.02em;line-height:1.25}
+.slide>header p.sub{font-size:18px;color:var(--muted);margin-top:8px;line-height:1.5}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;gap:18px}
+.foot{position:absolute;left:72px;right:72px;bottom:24px;display:flex;justify-content:space-between;font-size:13px;color:#8A919B}
+.foot .pg{font-variant-numeric:tabular-nums}
+
+/* building blocks */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.g-7-5{display:grid;grid-template-columns:7fr 5fr;gap:24px}
+.g-5-7{display:grid;grid-template-columns:5fr 7fr;gap:24px}
+.fill{flex:1;min-height:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px}
+.card h3{font-size:19px;font-weight:700;margin-bottom:8px;line-height:1.35}
+.card h3 small{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-top:2px;letter-spacing:0}
+.card p,.card li{font-size:16px;line-height:1.6;color:#36404D}
+.card ul{padding-left:18px}
+.card li+li{margin-top:4px}
+.card.accent{background:var(--accent-soft);border-color:#C3DDD5}
+.card.warm{background:var(--warm-soft);border-color:#EBCDBD}
+.card.tight{padding:16px 18px}
+.tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:3px 10px;margin-bottom:10px}
+.tag.warm{color:var(--warm);background:var(--warm-soft)}
+.lead{font-size:21px;line-height:1.6;color:#2B3542}
+.lead b,.card b{color:var(--accent-ink)}
+.callout{border-left:4px solid var(--accent);background:var(--card);padding:14px 20px;border-radius:0 12px 12px 0;font-size:17px;line-height:1.6}
+.callout.warm{border-color:var(--warm)}
+.callout b{color:var(--accent-ink)}
+.pills{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.pill{font-size:15px;font-weight:600;padding:6px 14px;border-radius:999px;background:var(--card);border:1px solid var(--line)}
+.pill.warm{background:var(--warm-soft);border-color:#EBCDBD;color:#7A3518}
+.pill.acc{background:var(--accent-soft);border-color:#C3DDD5;color:var(--accent-ink)}
+.label{font-size:14px;font-weight:700;color:var(--muted);margin-right:4px}
+.num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-size:14px;font-weight:700;flex:none}
+
+/* horizontal flow */
+.flow{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:28px}
+.flow .step{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px}
+.flow .step:not(:last-child)::after{content:"";position:absolute;right:-22px;top:50%;width:14px;height:14px;border-top:3px solid var(--accent);border-right:3px solid var(--accent);transform:translateY(-50%) rotate(45deg)}
+.flow .step .num{margin-bottom:10px}
+.flow .step h4{font-size:17px;font-weight:700;margin-bottom:6px;line-height:1.35}
+.flow .step p{font-size:14.5px;line-height:1.55;color:#4A5461}
+
+/* vertical list */
+.vlist{display:flex;flex-direction:column;gap:12px}
+.vlist .it{display:flex;gap:14px;align-items:flex-start}
+.vlist .it h4{font-size:17px;font-weight:700;margin-bottom:2px}
+.vlist .it p{font-size:15px;line-height:1.55;color:#4A5461}
+
+/* table */
+table.tbl{width:100%;border-collapse:separate;border-spacing:0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:16px}
+.tbl th,.tbl td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);line-height:1.5;vertical-align:top}
+.tbl th{background:#EFEBE2;font-weight:700;font-size:15px}
+.tbl tr:last-child td{border-bottom:none}
+.tbl td:first-child{font-weight:700;color:var(--accent-ink);white-space:nowrap}
+
+/* code */
+pre.code{background:var(--code-bg);color:#DCE6EE;border-radius:12px;padding:18px 20px;font-family:"JetBrains Mono",Consolas,monospace;font-size:14.5px;line-height:1.65;overflow:hidden;white-space:pre}
+pre.code .k{color:#7FD1BE;font-weight:600}
+pre.code .s{color:#F2B98F}
+pre.code .c{color:#7D8B97}
+.code-cap{font-size:13px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.04em}
+
+/* divider slides */
+.slide.divider{background:var(--dark);color:#fff;padding:80px 96px;justify-content:center}
+.divider .chno{font-size:120px;font-weight:800;line-height:1;color:var(--dark-accent);letter-spacing:-.04em}
+.divider h1{font-size:52px;font-weight:800;letter-spacing:-.02em;margin-top:18px;line-height:1.2}
+.divider p.intro{font-size:21px;line-height:1.65;color:#B8C6D1;margin-top:20px;max-width:900px}
+.divider .toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
+.divider .toc span{font-size:15px;font-weight:600;padding:8px 16px;border-radius:999px;border:1px solid #33495A;color:#D5E0E8}
+.divider .toc span b{color:var(--dark-accent);margin-right:6px}
+.divider .net{position:absolute;right:-40px;top:40px;width:520px;opacity:.5}
+.slide.divider .foot{color:#5E7383}
+
+/* cover */
+.slide.cover{background:var(--dark);color:#fff;padding:90px 96px;justify-content:center}
+.cover .kicker{font-size:18px;font-weight:600;color:var(--dark-accent);letter-spacing:.08em}
+.cover h1{font-size:96px;font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-top:16px}
+.cover h2{font-size:32px;font-weight:600;color:#D5E0E8;margin-top:14px}
+.cover .meta{margin-top:56px;font-size:18px;color:#93A6B4;line-height:1.7}
+.cover .net{position:absolute;right:20px;top:60px;width:600px;opacity:.85}
+
+/* timeline */
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;padding-top:26px}
+.timeline::before{content:"";position:absolute;left:12px;right:12px;top:9px;height:3px;background:linear-gradient(90deg,#C9D3CF,var(--accent))}
+.timeline .era{position:relative}
+.timeline .era::before{content:"";position:absolute;top:-24px;left:0;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.timeline .era.now::before{background:var(--accent)}
+
+/* knowledge panel mock */
+.kpanel{background:#fff;border:1px solid #DADCE0;border-radius:12px;padding:20px 22px;font-family:Arial,"Pretendard",sans-serif}
+.kpanel .t{font-size:24px;font-weight:700}
+.kpanel .st{font-size:14px;color:#70757A;margin:2px 0 12px}
+.kpanel .row{font-size:14.5px;line-height:1.9;color:#202124;border-top:1px solid #EEE;padding-top:4px}
+.kpanel .row b{font-weight:700}
+.kpanel .rel{display:flex;gap:8px;margin-top:12px}
+.kpanel .rel span{flex:1;background:#F1F3F4;border-radius:8px;padding:8px;font-size:12.5px;text-align:center}
+
+/* tree */
+.tree{font-family:"JetBrains Mono",Consolas,monospace;font-size:14.5px;line-height:1.75;color:#2B3542;white-space:pre}
+.tree .cl{color:var(--accent-ink);font-weight:600}
+.tree .dim{color:#9AA2AC}
+
+/* easy 3-standards slide */
+.card.easy{display:flex;flex-direction:column;gap:7px;min-height:0;padding:18px 20px}
+.trow{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.yr{font-size:12.5px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.card.easy .tag{margin:0}
+.card.easy h3{font-size:24px;margin:0}
+.card.easy h3 small{display:block;font-size:13px;font-weight:500;color:var(--muted);margin-top:2px}
+.card.easy .meta{font-size:17px;font-weight:700;color:var(--accent-ink)}
+.card.easy>p{font-size:15.5px;line-height:1.55}
+.iri{border-left:3px solid var(--accent);padding:2px 0 2px 10px;display:flex;flex-direction:column;gap:3px}
+.iri-k{font-size:11.5px;font-weight:800;color:var(--accent);letter-spacing:.06em}
+.iri p{font-size:13.5px;line-height:1.45;color:#4A5461}
+.iri code{font-family:"JetBrains Mono",Consolas,monospace;font-size:12px;color:var(--accent-ink)}
+.eg{margin-top:auto;background:#F4F1EA;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.eg-l{font-size:11.5px;font-weight:700;color:var(--warm);letter-spacing:.04em}
+.trip{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.trip .nd{background:#fff;border:2px solid var(--accent);border-radius:999px;padding:5px 12px;font-weight:700;font-size:15px}
+.trip .rel{font-size:14px;font-weight:700;color:var(--accent)}
+.eg-n{font-size:13.5px;color:var(--muted);line-height:1.5}
+.rule{font-size:15px;background:#fff;border-radius:8px;padding:6px 10px;line-height:1.45}
+.qa{font-size:15.5px;line-height:1.45}
+.qa b{display:inline-block;width:22px;color:var(--warm)}
+.qa.ans{font-weight:700;color:var(--accent-ink)}
+.qa.ans b{color:var(--accent)}
+
+/* timeline milestones */
+.timeline .card{display:flex;flex-direction:column}
+.timeline .card .tag{align-self:flex-start}
+.ms{margin-top:auto;padding-top:12px;border-top:1px dashed #CFC9BC;display:flex;flex-direction:column;gap:2px}
+.card .ms{margin-top:auto}
+.ms b{font-size:24px;font-weight:800;color:var(--accent);letter-spacing:-.02em;line-height:1.1}
+.ms span{font-size:15px;font-weight:700;color:var(--ink);line-height:1.4}
+.ms small{font-size:12.5px;color:var(--muted);line-height:1.45}
+.timeline .card>p:last-of-type{margin-bottom:14px}
+
+/* preprocessing examples */
+.ex-card{display:flex;flex-direction:column}
+.ex{margin-top:auto;background:#F4F1EA;border-radius:10px;padding:12px 12px 14px}
+.ex-l{display:inline-block;font-size:11.5px;font-weight:700;color:var(--warm);letter-spacing:.06em;margin-bottom:6px}
+.ex-b{font-size:14px;line-height:1.5;color:#4A5461}
+.ex-ar{font-size:14px;color:var(--accent);font-weight:700;margin:2px 0}
+.ex-a{font-size:14.5px;line-height:1.5;font-weight:700;color:var(--accent-ink)}
+
+/* chapter progress (top-right) */
+.chnav{position:absolute;top:16px;right:72px;display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-size:12.5px;z-index:2}
+.chnav ol{list-style:none;display:flex;align-items:center;gap:2px}
+.chnav li{padding:4px 10px;border-radius:999px;color:#A3AAB3;font-weight:600;white-space:nowrap}
+.chnav li b{font-weight:800;margin-right:4px}
+.chnav li{cursor:pointer;transition:background .15s,color .15s}
+.chnav li:not(.cur):hover{background:var(--accent-soft);color:var(--accent-ink)}
+.divider .chnav li:not(.cur):hover{background:#1F3A3A;color:var(--dark-accent)}
+.chnav li.done{color:var(--accent)}
+.chnav li.cur{background:var(--accent);color:#fff}
+.chnav .chpg{font-weight:700;color:var(--ink);padding-right:10px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.chnav .chpg small{font-weight:500;color:var(--muted);margin-right:6px;font-size:12px}
+.divider .chnav li{color:#5E7383}
+.divider .chnav li.done{color:var(--dark-accent)}
+.divider .chnav li.cur{background:var(--dark-accent);color:var(--dark)}
+.divider .chnav .chpg{color:#fff;border-color:#33495A}
+.divider .chnav .chpg small{color:#93A6B4}
+
+/* chapter goals / recap */
+.qbox{display:flex;flex-direction:column;justify-content:center;padding:30px 32px}
+.qbox .q{font-size:30px;font-weight:800;line-height:1.4;color:var(--accent-ink);letter-spacing:-.02em}
+.qbox .qs{font-size:16.5px;line-height:1.6;color:#3F4A57;margin-top:16px}
+.goals{display:flex;flex-direction:column;gap:12px;justify-content:center}
+.goal{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.goal h4{font-size:18px;font-weight:700;line-height:1.4}
+.goal p{font-size:14.5px;color:#4A5461;line-height:1.5;margin-top:2px}
+.goal>div{flex:1}
+.goal .ref{font-size:12.5px;font-weight:700;color:var(--muted);background:#EFEBE2;border-radius:999px;padding:3px 10px;white-space:nowrap;margin-top:2px}
+.rclist{display:flex;flex-direction:column;gap:10px}
+.rc{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 18px}
+.rc .ck{flex:none;width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+.rc p{font-size:17px;line-height:1.5;color:#2B3542}
+.rc p b{color:var(--accent-ink)}
+
+@media print{
+  html,body{background:none;overflow:visible;height:auto}
+  #stage{position:static;transform:none!important;width:auto;height:auto}
+  .slide{display:flex!important;position:relative;width:1280px;height:720px;page-break-after:always;break-after:page}
+  #hud{display:none}
+  @page{size:1280px 720px;margin:0}
+}
+#hud{position:fixed;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.08);z-index:5}
+#hud i{display:block;height:100%;background:var(--dark-accent);width:0;transition:width .25s}
+#help{position:fixed;right:14px;bottom:12px;font:12px "Pretendard",sans-serif;color:#6E8090;z-index:5;opacity:.8}
+</style>
+</head>
+<body>
+<div id="stage">
+
+<!-- 1. 표지 -->
+<section class="slide cover" data-ch="">
+  <svg class="net" viewBox="0 0 600 460" fill="none" aria-hidden="true">
+    <g stroke="#2E4657" stroke-width="2">
+      <line x1="120" y1="110" x2="300" y2="70"/><line x1="300" y1="70" x2="470" y2="150"/><line x1="120" y1="110" x2="210" y2="260"/>
+      <line x1="210" y1="260" x2="380" y2="290"/><line x1="470" y1="150" x2="380" y2="290"/><line x1="300" y1="70" x2="380" y2="290"/>
+      <line x1="380" y1="290" x2="520" y2="380"/><line x1="210" y1="260" x2="150" y2="400"/><line x1="380" y1="290" x2="300" y2="420"/>
+    </g>
+    <g fill="#13202B" stroke-width="3">
+      <circle cx="120" cy="110" r="16" stroke="#62C7B1"/><circle cx="300" cy="70" r="22" stroke="#62C7B1" fill="#1D3A3A"/>
+      <circle cx="470" cy="150" r="16" stroke="#62C7B1"/><circle cx="210" cy="260" r="18" stroke="#62C7B1"/>
+      <circle cx="380" cy="290" r="26" stroke="#E39A72" fill="#3A2A22"/><circle cx="520" cy="380" r="12" stroke="#62C7B1"/>
+      <circle cx="150" cy="400" r="12" stroke="#62C7B1"/><circle cx="300" cy="420" r="12" stroke="#62C7B1"/>
+    </g>
+  </svg>
+  <div class="kicker">KNOWLEDGE GRAPH · 1–6장 정리</div>
+  <h1>지식그래프</h1>
+  <h2>AI와 온톨로지로 여는 지식혁명</h2>
+  <div class="meta">이강배 외 3인 지음<br>독서 정리 발표</div>
+</section>
+
+<!-- 2. 목차 -->
+<section class="slide" data-ch="목차">
+  <header><span class="sec">CONTENTS</span><h2>발표 순서</h2></header>
+  <div class="body">
+    <div class="g3 fill" style="grid-template-rows:1fr 1fr">
+      <div class="card"><span class="tag" data-toc="1">01</span><h3>지식그래프에 대하여</h3><p>지식그래프의 정의, AI의 역사 속 위치, LLM과의 결합</p></div>
+      <div class="card"><span class="tag" data-toc="2">02</span><h3>지식그래프의 활용</h3><p>Google, Amazon, Intuit, 팔란티어의 실제 사례</p></div>
+      <div class="card"><span class="tag" data-toc="3">03</span><h3>온톨로지: 지식그래프의 청사진</h3><p>온톨로지의 개념과 구축 8단계, 공연/전시 예시</p></div>
+      <div class="card"><span class="tag" data-toc="4">04</span><h3>지식그래프 생명주기</h3><p>구축 → 저장 → 관리 → 활용·추론의 전 과정</p></div>
+      <div class="card"><span class="tag" data-toc="5">05</span><h3>시스템 아키텍처</h3><p>검색엔진, RAG, 추천시스템의 동작 흐름</p></div>
+      <div class="card"><span class="tag" data-toc="6">06</span><h3>지식그래프의 가치</h3><p>주목받는 이유, 산업 확산, LLM과의 상호보완</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 1장 ================= -->
+<section class="slide divider" data-ch="1장 · 지식그래프에 대하여">
+  <div class="chno">01</div>
+  <h1>지식그래프에 대하여</h1>
+  <p class="intro">방대한 데이터 속에서 어떻게 ‘가치’를 찾아낼까?<br>지식그래프는 지식을 통합·구조화하고 새로운 지식을 추론해 <b style="color:#fff">비즈니스 가치</b>로 연결한다.</p>
+  <div class="toc"><span><b>1.1</b>지식그래프란?</span><span><b>1.2</b>AI와 지식그래프의 역사</span><span><b>1.3</b>거대언어모델과 지식그래프</span></div>
+</section>
+
+<section class="slide" data-ch="1장 · 지식그래프에 대하여">
+  <header><span class="sec">CHAPTER 01 · 학습 목표</span><h2>이번 장에서 배울 것</h2></header>
+  <div class="body">
+    <div class="g-5-7 fill">
+      <div class="card accent qbox"><span class="tag">핵심 질문</span><p class="q">쏟아지는 데이터 속에서<br>어떻게 ‘가치’를<br>찾아낼 수 있을까?</p><p class="qs">데이터를 의미 기반으로 조직하고 연결해, 지식 기반의 의사결정으로 잇는 도구 — 지식그래프에서 답을 찾는다.</p></div>
+      <div class="goals">
+        <div class="goal"><span class="num">1</span><div><h4>지식그래프의 정의와 구성 요소</h4><p>개체·관계·삼중항, 그리고 노드·엣지·속성·라벨</p></div><span class="ref">1.1</span></div>
+        <div class="goal"><span class="num">2</span><div><h4>AI 역사 속 지식그래프의 흐름</h4><p>기호 기반 → 기계학습 → 시맨틱 웹 → LLM 융합, 그리고 RDF·OWL·SPARQL</p></div><span class="ref">1.2</span></div>
+        <div class="goal"><span class="num">3</span><div><h4>LLM의 한계와 지식그래프의 보완</h4><p>왜 LLM 혼자로는 부족하고, 어떻게 결합하는가</p></div><span class="ref">1.3 – 1.3.1</span></div>
+        <div class="goal"><span class="num">4</span><div><h4>LLM으로 지식그래프 만들고 관리하기</h4><p>추출·분류·연결·통합, 그리고 완성·업데이트·품질 관리</p></div><span class="ref">1.3.2 – 1.3.3</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="1장 · 지식그래프에 대하여">
+  <header><span class="sec">1.1</span><h2>지식그래프란 무엇일까?</h2>
+    <p class="sub">데이터를 <b>개체(entity)</b> 단위로 분해하고, 개체 사이의 <b>관계(relation)</b>를 그래프 구조로 표현한 것</p></header>
+  <div class="body">
+    <div class="g-7-5 fill">
+      <div class="card" style="display:flex;flex-direction:column">
+        <span class="tag">삼중항(Triple) = 주체 – 관계 – 객체</span>
+        <svg viewBox="0 0 620 250" style="width:100%;flex:1" font-family="Pretendard">
+          <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#0E6B5C"/></marker></defs>
+          <line x1="175" y1="110" x2="432" y2="110" stroke="#0E6B5C" stroke-width="3" marker-end="url(#ar)"/>
+          <rect x="248" y="88" width="110" height="34" rx="17" fill="#E2EFEA"/>
+          <text x="303" y="111" text-anchor="middle" font-size="17" font-weight="700" fill="#0A4F44">출연했다</text>
+          <text x="303" y="146" text-anchor="middle" font-size="13" fill="#5B6573">엣지 (관계)</text>
+          <circle cx="110" cy="110" r="64" fill="#fff" stroke="#0E6B5C" stroke-width="3"/>
+          <text x="110" y="106" text-anchor="middle" font-size="19" font-weight="700" fill="#1C2430">톰 행크스</text>
+          <text x="110" y="128" text-anchor="middle" font-size="13" fill="#B4562B" font-weight="700">:Person</text>
+          <circle cx="500" cy="110" r="64" fill="#fff" stroke="#0E6B5C" stroke-width="3"/>
+          <text x="500" y="106" text-anchor="middle" font-size="19" font-weight="700" fill="#1C2430">포레스트 검프</text>
+          <text x="500" y="128" text-anchor="middle" font-size="13" fill="#B4562B" font-weight="700">:Movie</text>
+          <line x1="500" y1="174" x2="500" y2="200" stroke="#B9C2C9" stroke-width="2" stroke-dasharray="4 4"/>
+          <rect x="420" y="200" width="160" height="34" rx="8" fill="#F6E7DE"/>
+          <text x="500" y="222" text-anchor="middle" font-size="14" fill="#7A3518">개봉연도 = 1994</text>
+          <text x="110" y="34" text-anchor="middle" font-size="13" fill="#5B6573">노드 (개체)</text>
+          <line x1="110" y1="136" x2="110" y2="204" stroke="#E3B79F" stroke-width="2" stroke-dasharray="4 4"/>
+          <text x="110" y="222" text-anchor="middle" font-size="14" font-weight="700" fill="#B4562B">라벨 (유형)</text>
+          <text x="110" y="242" text-anchor="middle" font-size="12" fill="#5B6573">:Person, :Movie</text>
+          <text x="500" y="250" text-anchor="middle" font-size="12" fill="#5B6573">속성 (키–값)</text>
+        </svg>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="g2">
+          <div class="card tight"><h3>노드</h3><p>개체 (사람, 영화…)</p></div>
+          <div class="card tight"><h3>엣지</h3><p>개체 간 관계</p></div>
+          <div class="card tight"><h3>속성</h3><p>개체의 추가 정보</p></div>
+          <div class="card tight"><h3>라벨</h3><p>개체의 유형·범주</p></div>
+        </div>
+        <div class="card accent"><h3>엔티티(Entity, 개체)</h3><p>현실 세계나 도메인에 존재하는 <b>독립적이고 식별 가능한</b> 모든 사물·개념<br>핵심 특징: 고유 식별자(URI/IRI), 속성(Property)</p></div>
+      </div>
+    </div>
+    <div class="callout">지식그래프를 <b>설계하고 규정하는 것</b>이 온톨로지(Ontology) — 기계가 인간의 지식을 이해하고 학습하는 방법</div>
+  </div>
+</section>
+
+<section class="slide" data-ch="1장 · 지식그래프에 대하여">
+  <header><span class="sec">1.2</span><h2>인공지능과 지식그래프의 역사</h2></header>
+  <div class="body">
+    <div class="timeline fill">
+      <div class="era"><div class="card" style="height:100%"><span class="tag">첫 번째</span><h3>기호 기반<small>Symbolic AI</small></h3><p>규칙과 기호로 지식을 이해</p><p style="margin-top:8px;color:var(--warm)"><b style="color:var(--warm)">한계</b> 모든 규칙·지식을 수동으로 정의</p>
+        <div class="ms"><b>1976</b><span>MYCIN 전문가 시스템</span><small>스탠퍼드 · 감염 진단 규칙 약 600개를 전문가가 직접 입력</small></div></div></div>
+      <div class="era"><div class="card" style="height:100%"><span class="tag">두 번째</span><h3>확률 기반 기계학습<small>Connectionist</small></h3><p>신경망의 부상</p><p style="margin-top:8px">지식그래프는 비주류로 밀려남</p>
+        <div class="ms"><b>1986</b><span>역전파(Backpropagation) 논문</span><small>Rumelhart · Hinton · Williams, <i>Nature</i> — 다층 신경망 학습의 길을 엶</small></div></div></div>
+      <div class="era"><div class="card" style="height:100%"><span class="tag">세 번째</span><h3>시맨틱 웹<small>Semantic Web</small></h3><p>늘어나는 웹 데이터에 의미를 부여해 기계가 이해·처리하도록</p><p style="margin-top:8px"><b>RDF · OWL · SPARQL</b><br><span style="font-size:13.5px;color:var(--muted)">→ 다음 슬라이드에서 자세히</span></p>
+        <div class="ms"><b>2001</b><span>“The Semantic Web”</span><small>Berners-Lee · Hendler · Lassila, <i>Scientific American</i></small></div></div></div>
+      <div class="era now"><div class="card accent" style="height:100%"><span class="tag">네 번째 · 현재</span><h3>LLM과의 융합<small>LLM + KG</small></h3><p>확률 기반 답변에 부족한 논리적 연결을 보강</p><p style="margin-top:8px">RAG로 지식그래프를 <b>LLM의 기억 창고</b>로 사용</p>
+        <div class="ms"><b>2023</b><span>“Unifying LLMs and KGs: A Roadmap”</span><small>Pan 외 — 1.3.1의 세 가지 결합 방식을 제시</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="1장 · 지식그래프에 대하여">
+  <header><span class="sec">1.2 · 시맨틱 웹</span><h2>시맨틱 웹을 떠받치는 세 가지 표준</h2>
+    <p class="sub">이름은 어렵지만 하는 일은 간단하다 — 사실을 <b>적고</b>, 단어의 <b>뜻을 정하고</b>, 필요할 때 <b>찾는다</b></p></header>
+  <div class="body">
+    <div class="g3 fill">
+      <div class="card easy">
+        <div class="trow"><span class="tag">① 적는다</span><span class="yr">1999 · W3C 표준</span></div>
+        <h3>RDF <small>Resource Description Framework</small></h3>
+        <p class="meta">“데이터를 기록하는 기본 뼈대”</p>
+        <p>모든 사실을 <b>“누가 – 무엇을 했다 – 무엇에”</b> 짧은 한 문장으로 적는다</p>
+        <div class="iri"><span class="iri-k">IRI</span><p><b>웹 주소 형태의 고유 이름</b> — 동명이인도 구별</p><code>톰 행크스 → http://example.org/TomHanks</code></div>
+        <div class="eg"><span class="eg-l">예시</span>
+          <div class="trip"><span class="nd">톰 행크스</span><span class="rel">출연했다 →</span><span class="nd">포레스트 검프</span></div></div>
+      </div>
+      <div class="card easy">
+        <div class="trow"><span class="tag">② 뜻을 정한다</span><span class="yr">2004 · W3C 표준</span></div>
+        <h3>OWL <small>Web Ontology Language</small></h3>
+        <p class="meta">“의미와 관계를 정의하는 규칙 사전”</p>
+        <p>단어의 뜻과 규칙을 미리 정해 두면 <b>컴퓨터가 스스로 알아낸다</b></p>
+        <div class="eg"><span class="eg-l">예시 · 사전에 적힌 규칙</span>
+          <p class="rule">“출연했다”는 <b>사람</b>이 <b>영화</b>에 하는 것</p>
+          <p class="rule">A가 B에 출연했다 ⇒ B의 출연자는 A</p>
+          <p class="eg-n">→ 입력하지 않은 사실도 컴퓨터가 추론</p></div>
+      </div>
+      <div class="card easy">
+        <div class="trow"><span class="tag">③ 찾는다</span><span class="yr">2008 · W3C 표준</span></div>
+        <h3>SPARQL <small>RDF 질의 언어</small></h3>
+        <p class="meta">“지식그래프 전용 검색창”</p>
+        <p>그래프에 <b>질문</b>을 던지면, 연결을 따라가 <b>답</b>을 찾아 준다</p>
+        <div class="eg"><span class="eg-l">예시</span>
+          <p class="qa"><b>Q</b> 톰 행크스가 출연한 영화는?</p>
+          <p class="qa ans"><b>A</b> 포레스트 검프</p></div>
+      </div>
+    </div>
+    <div class="callout">비유하면 — RDF는 <b>공책에 적은 메모</b>, OWL은 <b>낱말 사전</b>, SPARQL은 <b>검색창</b> · 3장과 4장에서 다시 만난다</div>
+  </div>
+</section>
+
+<section class="slide" data-ch="1장 · 지식그래프에 대하여">
+  <header><span class="sec">1.3</span><h2>거대언어모델(LLM)과 지식그래프</h2></header>
+  <div class="body">
+    <div class="g2">
+      <div class="card accent"><span class="tag">LLM의 장점</span><p class="lead" style="font-size:18px">방대한 언어 데이터를 학습해 사람처럼 자연어를 <b>이해하고 생성</b></p></div>
+      <div class="card warm"><span class="tag warm">LLM의 단점</span><p class="lead" style="font-size:18px">사실을 정확히 기억하지 못하고, 지식의 <b style="color:#7A3518">구조를 이해하지 못함</b></p></div>
+    </div>
+    <div class="callout warm">실무 적용에 필요한 요건: <b style="color:#7A3518">신뢰성 · 설명 가능성 · 법적 책임성</b> → 과제는 지식의 구조화, 검증 가능성, 설명 가능한 신뢰 기반 시스템</div>
+    <div style="font-size:15px;font-weight:700;color:var(--muted);margin-top:4px">LLM + 지식그래프 결합의 기대효과</div>
+    <div class="g3 fill">
+      <div class="card"><span class="num">1</span><h3 style="margin-top:10px">사실 기반 응답</h3><p>정확하고 신뢰할 수 있는 배경 지식을 제공</p></div>
+      <div class="card"><span class="num">2</span><h3 style="margin-top:10px">의미 기반 추론 강화</h3><p>그래프 속 인과관계로 논리적 추론이 가능</p></div>
+      <div class="card"><span class="num">3</span><h3 style="margin-top:10px">용어의 모호성 해소</h3><p>용어를 정확한 맥락에 연결</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="1장 · 지식그래프에 대하여">
+  <header><span class="sec">1.3.1</span><h2>지식그래프와 LLM을 결합하는 세 가지 방식</h2></header>
+  <div class="body">
+    <div class="g3 fill">
+      <div class="card" style="display:flex;flex-direction:column">
+        <span class="tag">KG → LLM</span><h3>지식그래프 강화 LLM<small>KG-enhanced LLMs</small></h3>
+        <p style="margin-top:10px"><b style="color:var(--warm)">한계</b> LLM이 잘못된 정보를 생성</p>
+        <p style="margin-top:8px"><b>보완</b> 사전 학습 때 지식그래프 정보를 반영하거나, 실시간으로 구조화된 지식을 참고</p>
+      </div>
+      <div class="card" style="display:flex;flex-direction:column">
+        <span class="tag">LLM → KG</span><h3>LLM 증강 지식그래프<small>LLM-augmented KGs</small></h3>
+        <p style="margin-top:10px"><b style="color:var(--warm)">한계</b> 지식그래프는 텍스트 외 정보에 취약하고 누락된 사실도 존재</p>
+        <p style="margin-top:8px"><b>보완</b> LLM으로 텍스트에서 개체·관계를 추출하고 누락된 사실을 보완</p>
+      </div>
+      <div class="card accent" style="display:flex;flex-direction:column">
+        <span class="tag">LLM ⇄ KG</span><h3>시너지 LLM + 지식그래프<small>Synergized LLMs + KGs</small></h3>
+        <p style="margin-top:10px">두 기술의 장점을 동시에 살림</p>
+        <p style="margin-top:8px">AI가 <b>더 정확하고, 설명 가능하며, 신뢰할 수 있게</b> 됨</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="1장 · 지식그래프에 대하여">
+  <header><span class="sec">1.3.2 – 1.3.3</span><h2>LLM으로 지식그래프를 구축하고 관리하기</h2>
+    <p class="sub">텍스트의 의미와 구조를 이해하는 LLM으로 지식그래프를 자동 생성·관리·확장</p></header>
+  <div class="body">
+    <div class="g2 fill">
+      <div class="card">
+        <span class="tag">구축</span>
+        <div class="vlist">
+          <div class="it"><span class="num">1</span><div><h4>개체 및 관계 추출</h4><p>주요 개체와 관계를 파악해 노드·엣지를 자동 생성</p></div></div>
+          <div class="it"><span class="num">2</span><div><h4>관계 분류</h4><p>문맥을 이해해 관계 유형을 분류</p></div></div>
+          <div class="it"><span class="num">3</span><div><h4>개체 연결 (Entity Linking)</h4><p>텍스트 속 개체를 기존 그래프의 노드와 연결</p></div></div>
+          <div class="it"><span class="num">4</span><div><h4>정보 추출 및 통합</h4><p>여러 텍스트 소스를 일관된 그래프로 통합</p></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag">관리</span>
+        <div class="vlist">
+          <div class="it"><span class="num">1</span><div><h4>지식그래프 완성 (Completion)</h4><p>누락된 정보를 LLM으로 추론·예측해 채움</p></div></div>
+          <div class="it"><span class="num">2</span><div><h4>지식그래프 업데이트</h4><p>새로운 정보를 자동으로 반영</p></div></div>
+          <div class="it"><span class="num">3</span><div><h4>품질 관리</h4><p>그래프 내 오류나 불일치를 감지하고 수정</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="1장 · 지식그래프에 대하여">
+  <header><span class="sec">CHAPTER 01 · 정리</span><h2>이번 장에서 배운 것</h2></header>
+  <div class="body">
+    <div class="rclist fill">
+      <div class="rc"><span class="ck">✓</span><p>지식그래프는 개체를 관계로 연결한 그래프 — 기본 단위는 <b>삼중항</b>, 구성 요소는 <b>노드 · 엣지 · 속성 · 라벨</b></p></div>
+      <div class="rc"><span class="ck">✓</span><p>지식그래프를 설계하고 규정하는 틀이 <b>온톨로지</b> (3장에서 자세히)</p></div>
+      <div class="rc"><span class="ck">✓</span><p>AI는 기호 기반(1976 MYCIN) → 기계학습(1986 역전파) → 시맨틱 웹(2001) → <b>LLM 융합</b>(2023~)으로 발전</p></div>
+      <div class="rc"><span class="ck">✓</span><p>시맨틱 웹의 세 표준 — <b>RDF</b>로 적고, <b>OWL</b>로 뜻을 정하고, <b>SPARQL</b>로 찾는다</p></div>
+      <div class="rc"><span class="ck">✓</span><p>LLM의 약점(사실·구조)을 지식그래프가 보완 — 결합 방식은 <b>KG 강화 LLM · LLM 증강 KG · 시너지</b></p></div>
+    </div>
+    <div class="pills"><span class="label">핵심 키워드</span><span class="pill acc">삼중항</span><span class="pill acc">노드 · 엣지 · 속성 · 라벨</span><span class="pill acc">온톨로지</span><span class="pill acc">RDF · OWL · SPARQL</span><span class="pill acc">RAG</span><span class="pill acc">LLM + KG</span></div>
+  </div>
+</section>
+
+<!-- ================= 2장 ================= -->
+<section class="slide divider" data-ch="2장 · 지식그래프의 활용">
+  <div class="chno">02</div>
+  <h1>지식그래프의 활용</h1>
+  <p class="intro">지식그래프는 다양한 산업에서 <b style="color:#fff">의사결정과 자동화의 엔진</b>으로 주목받고 있다.<br>검색, 추천, 보안, 전략 — 네 기업의 실제 사례를 살펴본다.</p>
+  <div class="toc"><span><b>2.1</b>Google · 검색</span><span><b>2.2</b>Amazon · 추천</span><span><b>2.3</b>Intuit · 보안</span><span><b>2.4</b>팔란티어 · 전략</span></div>
+</section>
+
+<section class="slide" data-ch="2장 · 지식그래프의 활용">
+  <header><span class="sec">CHAPTER 02 · 학습 목표</span><h2>이번 장에서 배울 것</h2></header>
+  <div class="body">
+    <div class="g-5-7 fill">
+      <div class="card accent qbox"><span class="tag">핵심 질문</span><p class="q">지식그래프는<br>실제로 어디에서<br>어떻게 쓰이고 있을까?</p><p class="qs">검색·추천·보안·전략, 네 분야에서 기존 방식의 한계와 지식그래프가 바꾼 점을 비교한다.</p></div>
+      <div class="goals">
+        <div class="goal"><span class="num">1</span><div><h4>Google · 키워드 검색에서 의미 검색으로</h4><p>TF-IDF·BM25·PageRank의 한계와 지식 패널</p></div><span class="ref">2.1</span></div>
+        <div class="goal"><span class="num">2</span><div><h4>Amazon · 설명 가능한 추천</h4><p>전통 추천 알고리즘의 한계와 KG 추천의 5단계</p></div><span class="ref">2.2</span></div>
+        <div class="goal"><span class="num">3</span><div><h4>Intuit · 관계로 찾는 보안 위협</h4><p>규칙·통계 기반 탐지에서 관계 중심 분석으로</p></div><span class="ref">2.3</span></div>
+        <div class="goal"><span class="num">4</span><div><h4>팔란티어 · 데이터를 전략 자산으로</h4><p>온톨로지 기반 통합과 Gotham·Foundry·Apollo·AIP</p></div><span class="ref">2.4</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="2장 · 지식그래프의 활용">
+  <header><span class="sec">2.1 GOOGLE</span><h2>초기 검색엔진: 키워드 기반 검색</h2></header>
+  <div class="body">
+    <div class="g3 fill">
+      <div class="card"><span class="tag">1</span><h3>TF-IDF</h3><p>문서 안에서 <b>자주</b> 나오고(TF), 전체 문서에서는 <b>드물게</b> 나오는(IDF) 단어가 중요하다</p><p style="margin-top:8px">TF × IDF로 흔한 단어를 걸러내고 핵심 키워드를 가진 문서를 상위 노출</p></div>
+      <div class="card"><span class="tag">2</span><h3>BM25</h3><p><b>단어 빈도 포화</b>: 아무리 많이 나와도 점수가 한계치에 수렴</p><p style="margin-top:8px"><b>문서 길이 정규화</b>: 짧은 문서에 검색어가 집중되면 더 높은 점수</p></div>
+      <div class="card"><span class="tag">3</span><h3>PageRank</h3><p>웹페이지 간 <b>링크 관계</b>를 분석하는 구글 창업자들의 알고리즘</p><p style="margin-top:8px">논문 인용처럼, 좋은 페이지일수록 다른 페이지로부터 링크를 많이 받는다는 가정</p></div>
+    </div>
+    <div class="pills"><span class="label">기존 방식의 한계</span><span class="pill warm">의미 파악의 부재</span><span class="pill warm">사용자 의도 미반영</span><span class="pill warm">정보 연결 부족</span></div>
+  </div>
+</section>
+
+<section class="slide" data-ch="2장 · 지식그래프의 활용">
+  <header><span class="sec">2.1.1 – 2.1.2 GOOGLE</span><h2>지식그래프 기반 검색</h2>
+    <p class="sub">구글은 검색엔진에 지식그래프를 도입해 검색 품질을 끌어올렸다 — 문자열이 아니라 ‘사물’을 찾는다</p></header>
+  <div class="body">
+    <div class="g-5-7 fill">
+      <div class="kpanel">
+        <div class="t">포레스트 검프</div>
+        <div class="st">1994 · 드라마/로맨스 · 영화</div>
+        <div class="row"><b>감독:</b> 로버트 저메키스</div>
+        <div class="row"><b>출연:</b> 톰 행크스, 로빈 라이트</div>
+        <div class="row"><b>원작:</b> 윈스턴 그룸 『포레스트 검프』</div>
+        <div class="rel"><span>톰 행크스</span><span>캐스트 어웨이</span><span>로버트 저메키스</span></div>
+        <div style="font-size:11px;color:#9AA0A6;margin-top:10px">지식 패널 예시 (설명용 모형)</div>
+      </div>
+      <div class="vlist" style="justify-content:center">
+        <div class="card"><h3>① 지식그래프 패널</h3><p>검색어와 관련된 다양한 정보를 <b>구조화된 요약</b> 형태로 제공</p></div>
+        <div class="card"><h3>② 요약 정보 제공</h3><p>검색어의 주요 정보와 연관 맥락을 통합해 요약</p></div>
+        <div class="card"><h3>③ 관련 정보 연결</h3><p>검색어와 관련된 개체들과의 <b>관계</b>를 시각화</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="2장 · 지식그래프의 활용">
+  <header><span class="sec">2.2 AMAZON</span><h2>당신의 취향을 연결하다: 추천 시스템</h2>
+    <p class="sub">사용자의 행동이나 관심사에 맞춰 정보를 제공하는 추천 시스템은 전자상거래 플랫폼의 핵심 기능</p></header>
+  <div class="body">
+    <div style="font-size:15px;font-weight:700;color:var(--muted)">전통적인 추천 알고리즘</div>
+    <div class="g3 fill">
+      <div class="card"><h3>연관 분석</h3><p>“A 상품을 산 고객은 B 상품도 샀다”는 규칙을 도출해 추천</p></div>
+      <div class="card"><h3>협업 필터링</h3><p>비슷한 행동을 보이는 사용자들의 데이터를 기반으로 추천</p></div>
+      <div class="card"><h3>SVD 잠재요인 모델</h3><p>사용자–상품 상호작용 행렬을 분해해 숨은 선호도를 수치화</p></div>
+    </div>
+    <div class="pills"><span class="label">한계</span><span class="pill warm">설명 가능성 부족</span><span class="pill warm">콜드 스타트 문제</span><span class="pill warm">의미 기반 연결 부족</span><span class="pill warm">속성 정보 활용 미흡</span></div>
+  </div>
+</section>
+
+<section class="slide" data-ch="2장 · 지식그래프의 활용">
+  <header><span class="sec">2.2.1 AMAZON</span><h2>지식그래프 기반 추천 시스템의 작동 과정</h2></header>
+  <div class="body" style="justify-content:center">
+    <div class="flow">
+      <div class="step"><span class="num">1</span><h4>행동 이력 수집</h4><p>사용자의 선호도를 파악하는 핵심 단계</p></div>
+      <div class="step"><span class="num">2</span><h4>지식그래프 연동·개체 추출</h4><p>이력 속 상품·속성을 그래프의 개체와 연결</p></div>
+      <div class="step"><span class="num">3</span><h4>의미 기반 탐색·확장</h4><p>관심 개체와 의미적으로 연결된 노드로 확장해 후보군 구성</p></div>
+      <div class="step"><span class="num">4</span><h4>후보 생성·랭킹</h4><p>경로 강도, 유사도, 노출 빈도, 피드백으로 우선순위 정렬</p></div>
+      <div class="step"><span class="num">5</span><h4>추천 및 설명</h4><p>추천 결과와 함께 <b>추천 이유</b>를 제공</p></div>
+    </div>
+    <div class="callout" style="margin-top:20px">관계 경로가 남기 때문에 “왜 이 상품인가”를 설명할 수 있고, 이력이 적은 신규 사용자도 속성 연결로 추천할 수 있다.</div>
+  </div>
+</section>
+
+<section class="slide" data-ch="2장 · 지식그래프의 활용">
+  <header><span class="sec">2.3 INTUIT</span><h2>보이지 않는 위험까지 관리하다</h2>
+    <p class="sub">지식그래프는 보안 위협 대응과 사기 탐지 분야의 핵심 기술로 쓰인다</p></header>
+  <div class="body">
+    <div class="g2 fill">
+      <div class="card">
+        <span class="tag warm">전통적인 방법</span>
+        <ul>
+          <li><b>규칙 기반</b>: 전문가가 정의한 규칙으로 이상 거래 탐지</li>
+          <li><b>통계적 이상 탐지</b>: 평소 패턴에서 벗어난 거래를 이상으로 간주</li>
+          <li><b>머신러닝</b>: 지도학습으로 사기 패턴 예측</li>
+        </ul>
+        <div class="callout warm" style="margin-top:14px;font-size:15.5px">정적인 규칙·수치 패턴에 의존해 행위 사이의 <b style="color:#7A3518">숨은 관계</b>를 찾기 어렵다</div>
+      </div>
+      <div class="card accent">
+        <span class="tag">보안 지식 플랫폼</span>
+        <p>보안 관련 개체 간의 <b>관계 중심 분석</b>으로 전환</p>
+        <div class="vlist" style="margin-top:12px">
+          <div class="it"><span class="num">1</span><div><h4>로그 수집·실시간 삽입</h4><p>로그인 기록, 접속 위치, 디바이스 정보를 그래프에 연결</p></div></div>
+          <div class="it"><span class="num">2</span><div><h4>관계 기반 위협 탐지</h4><p>낯선 IP·디바이스 접속, 의심 거래와 연결된 계정 탐지</p></div></div>
+          <div class="it"><span class="num">3</span><div><h4>시각화·패턴 인식</h4><p>위협의 연결망을 시각적으로 탐색</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="2장 · 지식그래프의 활용">
+  <header><span class="sec">2.4 PALANTIR</span><h2>산재된 지식을 전략으로</h2>
+    <p class="sub">조직 곳곳의 데이터를 하나의 구조로 통합해, 전략 수립과 의사결정의 기반이 되는 자산으로 전환</p></header>
+  <div class="body">
+    <div class="flow">
+      <div class="step"><span class="num">1</span><h4>데이터 수집</h4><p>기업 데이터 소스 수집</p></div>
+      <div class="step"><span class="num">2</span><h4>온톨로지 정렬</h4><p>데이터를 구조화·분류</p></div>
+      <div class="step"><span class="num">3</span><h4>정보 추출</h4><p>핵심 정보로 그래프 생성</p></div>
+      <div class="step"><span class="num">4</span><h4>완성·추론</h4><p>잠재 개체·관계 예측</p></div>
+      <div class="step"><span class="num">5</span><h4>활용</h4><p>지능형 서비스로 활용</p></div>
+    </div>
+    <div class="g4 fill">
+      <div class="card tight"><h3>Gotham<small>작전·첩보 플랫폼</small></h3><p>테러범 위치, 인신매매 경로, 금융 사기 네트워크를 시각화·추론</p></div>
+      <div class="card tight"><h3>Foundry<small>기업용 데이터 통합</small></h3><p>재무·인사·물류·재고를 하나의 온톨로지로 연결해 협업과 지연 파악</p></div>
+      <div class="card tight"><h3>Apollo<small>SaaS 배포 플랫폼</small></h3><p>다른 팔란티어 플랫폼을 자동으로 업데이트·유지</p></div>
+      <div class="card tight accent"><h3>AIP<small>AI Platform</small></h3><p>LLM이 온톨로지 기반 지식그래프로 기업 데이터를 정확히 분석</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="2장 · 지식그래프의 활용">
+  <header><span class="sec">CHAPTER 02 · 정리</span><h2>이번 장에서 배운 것</h2></header>
+  <div class="body">
+    <table class="tbl">
+      <tr><th style="width:150px">기업 · 분야</th><th>기존 방식의 한계</th><th>지식그래프가 바꾼 것</th></tr>
+      <tr><td>Google · 검색</td><td>키워드 일치에 의존 — 의미·의도 파악 부재</td><td>문자열이 아닌 <b>사물</b>을 찾는 검색, 지식 패널과 관련 정보 연결</td></tr>
+      <tr><td>Amazon · 추천</td><td>설명력 부족, 콜드 스타트, 속성 활용 미흡</td><td>의미 경로로 후보를 확장하고 <b>추천 이유</b>까지 제시</td></tr>
+      <tr><td>Intuit · 보안</td><td>정적 규칙·수치 패턴 — 숨은 관계를 놓침</td><td>계정·기기·IP·거래를 연결한 <b>관계 기반 위협 탐지</b></td></tr>
+      <tr><td>팔란티어 · 전략</td><td>조직 곳곳에 데이터가 흩어져 있음</td><td>온톨로지로 통합해 <b>의사결정의 기반 자산</b>으로 전환</td></tr>
+    </table>
+    <div class="callout">네 사례의 공통점 — 데이터를 따로따로 보지 않고 <b>관계를 중심에 놓을 때</b> 의미·설명·통찰이 생긴다</div>
+    <div class="pills"><span class="label">핵심 키워드</span><span class="pill acc">TF-IDF · BM25 · PageRank</span><span class="pill acc">지식 패널</span><span class="pill acc">콜드 스타트</span><span class="pill acc">관계 기반 탐지</span><span class="pill acc">온톨로지 정렬</span></div>
+  </div>
+</section>
+
+<!-- ================= 3장 ================= -->
+<section class="slide divider" data-ch="3장 · 온톨로지">
+  <div class="chno">03</div>
+  <h1>온톨로지: 지식그래프의 청사진</h1>
+  <p class="intro">1장에서 개념을, 2장에서 가능성을 봤다면 이제 설계다.<br>지식그래프를 설계하기 위한 <b style="color:#fff">온톨로지</b>를 살펴본다.</p>
+  <div class="toc"><span><b>3.1</b>개념</span><span><b>3.2</b>활용</span><span><b>3.3</b>구축 과정</span><span><b>3.4</b>공연/전시 예시</span><span><b>3.5</b>편집 도구</span></div>
+</section>
+
+<section class="slide" data-ch="3장 · 온톨로지">
+  <header><span class="sec">CHAPTER 03 · 학습 목표</span><h2>이번 장에서 배울 것</h2></header>
+  <div class="body">
+    <div class="g-5-7 fill">
+      <div class="card accent qbox"><span class="tag">핵심 질문</span><p class="q">좋은 지식그래프를<br>만들려면 무엇부터<br>설계해야 할까?</p><p class="qs">건물에 설계도가 필요하듯, 지식그래프에는 개념과 관계를 정의한 청사진 — 온톨로지가 필요하다.</p></div>
+      <div class="goals">
+        <div class="goal"><span class="num">1</span><div><h4>온톨로지를 쓰는 이유</h4><p>의미 명확화 · 구조 정의 · 데이터 통합 · 추론 기반</p></div><span class="ref">3장 도입</span></div>
+        <div class="goal"><span class="num">2</span><div><h4>온톨로지의 정의와 구성 요소</h4><p>클래스·인스턴스·속성·관계, 지식그래프와의 대응</p></div><span class="ref">3.1 – 3.2</span></div>
+        <div class="goal"><span class="num">3</span><div><h4>구축 방법론과 8단계 절차</h4><p>도메인 이해부터 배포·유지보수까지</p></div><span class="ref">3.3</span></div>
+        <div class="goal"><span class="num">4</span><div><h4>공연/전시 예시와 Protégé</h4><p>Ontology Development 101을 실제 도메인에 적용</p></div><span class="ref">3.4 – 3.5</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="3장 · 온톨로지">
+  <header><span class="sec">3장</span><h2>지식그래프를 만들 때 온톨로지를 쓰는 이유</h2></header>
+  <div class="body">
+    <div class="g2 fill" style="grid-template-rows:1fr 1fr">
+      <div class="card"><span class="num">1</span><h3 style="margin-top:10px">의미 명확화</h3><p>개체의 유형, 속성, 개체 간 관계를 정의해 데이터에 <b>의미</b>를 부여</p></div>
+      <div class="card"><span class="num">2</span><h3 style="margin-top:10px">구조 정의</h3><p>데이터의 <b>일관성</b>을 보장</p></div>
+      <div class="card"><span class="num">3</span><h3 style="margin-top:10px">데이터 통합</h3><p>서로 다른 데이터 소스를 <b>공통의 온톨로지</b>에 매핑</p></div>
+      <div class="card"><span class="num">4</span><h3 style="margin-top:10px">추론 기반 마련</h3><p>정의된 의미 관계로 추론 엔진이 새 지식을 자동 발견하거나 데이터의 일관성을 검증</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="3장 · 온톨로지">
+  <header><span class="sec">3.1</span><h2>온톨로지의 개념</h2></header>
+  <div class="body">
+    <div class="card accent" style="padding:26px 30px">
+      <p style="font-size:26px;font-weight:700;line-height:1.45;color:var(--accent-ink)">“An ontology is an explicit, formal specification of a shared conceptualization.”</p>
+      <p style="margin-top:8px;color:var(--muted)">— Thomas R. Gruber</p>
+    </div>
+    <p class="lead">구성원 간에 <b>합의된 개념(공통 어휘)</b>과 그 관계를, 컴퓨터가 이해할 수 있도록 <b>정형화된 형식</b>으로 정의·표현한 것</p>
+    <div class="g4 fill">
+      <div class="card tight"><h3>클래스</h3><p>같은 성질을 가진 것들의 범주</p></div>
+      <div class="card tight"><h3>인스턴스</h3><p>개별적이고 구체적인 실체</p></div>
+      <div class="card tight"><h3>속성</h3><p>클래스·인스턴스의 특정한 성질</p></div>
+      <div class="card tight"><h3>관계</h3><p>클래스·인스턴스 간 상호작용</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="3장 · 온톨로지">
+  <header><span class="sec">3.2</span><h2>온톨로지의 활용과 지식그래프와의 대응</h2></header>
+  <div class="body">
+    <div class="g2 fill">
+      <div class="vlist">
+        <div class="card tight"><h3>지식 관리 시스템</h3><p>지식을 체계적으로 관리하고 공유</p></div>
+        <div class="card tight"><h3>정보 검색·질의 시스템</h3><p>사용자 의도를 정밀하게 이해해 정확한 결과 제공</p></div>
+        <div class="card tight"><h3>의료 정보학</h3><p>의료 데이터 통합과 상호운용성 향상</p></div>
+        <div class="card tight"><h3>AI 및 머신러닝</h3><p>추론과 의사결정을 위한 지식 표현</p></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <table class="tbl">
+          <tr><th>온톨로지</th><th>지식그래프</th><th>특성</th></tr>
+          <tr><td>클래스</td><td>라벨</td><td>유형, 범주</td></tr>
+          <tr><td>인스턴스</td><td>노드</td><td>개체</td></tr>
+          <tr><td>관계</td><td>엣지</td><td>관계</td></tr>
+          <tr><td>속성</td><td>속성</td><td>추가 정보</td></tr>
+        </table>
+        <div class="callout">지식그래프를 구축할 때 <b>표준적인 형식으로 기본 구조를 설계</b>할 수 있다는 점이 온톨로지의 핵심 가치</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="3장 · 온톨로지">
+  <header><span class="sec">3.3</span><h2>온톨로지 구축 과정 8단계</h2></header>
+  <div class="body">
+    <div class="pills"><span class="label">대표 방법론</span><span class="pill">TOVE</span><span class="pill">METHONTOLOGY</span><span class="pill">CYC</span><span class="pill">OTK</span><span class="pill acc">Ontology Development 101</span><span style="font-size:14px;color:var(--muted);margin-left:6px">도메인과 개발 여건에 따라 선택</span></div>
+    <div class="g4 fill" style="grid-template-rows:1fr 1fr">
+      <div class="card tight"><span class="num">1</span><h3 style="margin-top:8px">도메인 이해</h3><p>개념, 사용 목적, 기존 온톨로지, 용어 파악</p></div>
+      <div class="card tight"><span class="num">2</span><h3 style="margin-top:8px">범위 결정</h3><p>다룰 개념과 범위를 명확히 정의</p></div>
+      <div class="card tight"><span class="num">3</span><h3 style="margin-top:8px">개체 탐색</h3><p>용어 수집, 인스턴스 탐색, 기존 온톨로지 재사용</p></div>
+      <div class="card tight"><span class="num">4</span><h3 style="margin-top:8px">클래스·속성 정의</h3><p>공통 개념을 모아 클래스와 속성 정의</p></div>
+      <div class="card tight"><span class="num">5</span><h3 style="margin-top:8px">관계 정의</h3><p>계층 관계(상하·포함)와 비계층 관계(인과·행위)</p></div>
+      <div class="card tight"><span class="num">6</span><h3 style="margin-top:8px">표현 및 구현</h3><p>온톨로지 언어·도구로 형식화</p></div>
+      <div class="card tight"><span class="num">7</span><h3 style="margin-top:8px">검증 및 평가</h3><p>도메인 지식을 정확히 표현하는지 테스트</p></div>
+      <div class="card tight"><span class="num">8</span><h3 style="margin-top:8px">배포·유지보수</h3><p>활용하며 필요에 따라 업데이트</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="3장 · 온톨로지">
+  <header><span class="sec">3.4 예시</span><h2>‘공연/전시 서비스’ 온톨로지 구축 ① 1–4단계</h2>
+    <p class="sub">공연 정보, 아티스트, 장소, 티켓 판매, 관객 피드백을 가치 있는 정보로 — Ontology Development 101 (Noy, 2001) 적용</p></header>
+  <div class="body">
+    <div class="g2 fill" style="grid-template-rows:auto 1fr">
+      <div class="card tight"><span class="tag">1단계 · 도메인 이해</span><p>도메인 전문가 인터뷰, 관련 문서·데이터 분석, 기존 문화예술 온톨로지 분석</p></div>
+      <div class="card tight"><span class="tag">2단계 · 범위 결정</span><p>온톨로지 활용 목적 정의, <b>역량 질문(Competency Question)</b> 정의</p></div>
+      <div class="card tight"><span class="tag">3단계 · 개체 탐색</span><p style="margin-bottom:8px">핵심 용어 추출, 동의어 정리, 접근법 선택(하향식·상향식·중간 확장식)</p>
+        <ul style="font-size:14.5px">
+          <li><b>공연/전시</b>: 연극, 뮤지컬, 콘서트, 오페라, 발레, 전시회</li>
+          <li><b>참여자</b>: 아티스트, 배우, 가수, 연주자, 무용수, 감독</li>
+          <li><b>장소</b>: 극장, 콘서트홀, 미술관, 갤러리, 박물관</li>
+          <li><b>속성</b>: 장르, 가격, 좌석 등급, 관람 등급, 할인</li>
+        </ul></div>
+      <div class="card tight"><span class="tag">4단계 · 클래스 및 속성 정의</span><p>온톨로지의 기본 골격 만들기</p>
+        <ul style="margin-top:8px">
+          <li>클래스 정의</li><li>클래스 계층 구조 설계</li><li>속성 정의</li><li>속성의 <b>정의역(domain)</b>과 <b>치역(range)</b> 정의</li>
+        </ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="3장 · 온톨로지">
+  <header><span class="sec">3.4 예시</span><h2>‘공연/전시 서비스’ 온톨로지 구축 ② 5–8단계</h2></header>
+  <div class="body">
+    <div class="g2 fill">
+      <div class="card"><span class="tag">5단계 · 관계 정의</span><p>객체 속성을 상세화하고 속성의 특성과 제약 조건을 정의</p>
+        <div class="pills" style="margin-top:12px"><span class="pill acc">최소 카디널리티</span><span class="pill acc">최대 카디널리티</span><span class="pill acc">정확 카디널리티</span></div>
+        <p style="margin-top:10px;font-size:15px">예) 공연은 장소를 정확히 1개 가진다</p></div>
+      <div class="card"><span class="tag">6단계 · 표현 및 구현</span><p>클래스·속성·관계를 컴퓨터가 처리할 수 있는 <b>표준 형식</b>으로 변환해 온톨로지 파일 생성</p></div>
+      <div class="card"><span class="tag">7단계 · 검증 및 평가</span><p>기술적으로 올바르고, 논리적으로 일관되며, 요구사항을 충족하는지 평가</p>
+        <div class="pills" style="margin-top:12px"><span class="pill">일관성</span><span class="pill">완전성</span><span class="pill">정확성</span><span class="pill">품질 기준</span></div></div>
+      <div class="card"><span class="tag">8단계 · 배포 및 유지보수</span><p>실제 시스템에 적용하고, 변하는 도메인 지식과 요구에 맞춰 관리</p>
+        <div class="pills" style="margin-top:12px"><span class="pill">배포</span><span class="pill">문서화</span><span class="pill">버전 관리</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="3장 · 온톨로지">
+  <header><span class="sec">3.5</span><h2>온톨로지 편집 도구: Protégé</h2></header>
+  <div class="body">
+    <div class="g-5-7 fill">
+      <div class="card accent" style="display:flex;flex-direction:column;justify-content:center;padding:28px 30px">
+        <h3 style="font-size:30px">Protégé</h3>
+        <p style="font-size:18px;margin-top:6px">스탠퍼드 대학에서 개발한 <b>무료 오픈소스</b> 온톨로지 편집기</p>
+        <ul style="margin-top:16px"><li>Java 기반 — Windows·macOS·Linux에서 실행</li><li><b>플러그인 아키텍처</b>로 확장성이 뛰어남</li><li>복잡한 온톨로지 설계와 지능형 시스템 구축에 활용</li><li>웹에서 함께 편집하는 <b>WebProtégé</b>도 제공</li></ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="code-cap" style="margin:0">주요 작업 화면</div>
+        <div class="g2 fill" style="grid-template-rows:repeat(3,1fr);gap:12px">
+          <div class="card tight"><h3>Classes</h3><p>클래스와 상하 계층 구조</p></div>
+          <div class="card tight"><h3>Object Properties</h3><p>개체 간 관계, 정의역·치역, 속성 특성</p></div>
+          <div class="card tight"><h3>Data Properties</h3><p>문자열·숫자·날짜 같은 값 속성</p></div>
+          <div class="card tight"><h3>Individuals</h3><p>실제 개체(인스턴스) 입력</p></div>
+          <div class="card tight"><h3>Reasoner</h3><p>HermiT 등 추론기로 일관성 검사·추론</p></div>
+          <div class="card tight"><h3>저장 · 내보내기</h3><p>OWL(RDF/XML), Turtle 등 표준 형식</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="3장 · 온톨로지">
+  <header><span class="sec">CHAPTER 03 · 정리</span><h2>이번 장에서 배운 것</h2></header>
+  <div class="body">
+    <div class="rclist fill">
+      <div class="rc"><span class="ck">✓</span><p>온톨로지는 구성원이 <b>합의한 개념과 관계</b>를 컴퓨터가 이해하도록 정형화한 명세 — 지식그래프의 <b>청사진</b></p></div>
+      <div class="rc"><span class="ck">✓</span><p>쓰는 이유: <b>의미 명확화 · 구조 정의 · 데이터 통합 · 추론 기반</b> 마련</p></div>
+      <div class="rc"><span class="ck">✓</span><p>클래스 ↔ 라벨, 인스턴스 ↔ 노드, 관계 ↔ 엣지, 속성 ↔ 속성으로 지식그래프와 대응</p></div>
+      <div class="rc"><span class="ck">✓</span><p>구축 8단계: 도메인 이해 → 범위 결정(<b>역량 질문</b>) → 개체 탐색 → 클래스·속성 → 관계 → 구현 → 검증 → 배포</p></div>
+      <div class="rc"><span class="ck">✓</span><p>방법론은 TOVE·METHONTOLOGY·CYC·OTK·<b>Ontology Development 101</b> 등, 구현 도구는 <b>Protégé</b></p></div>
+    </div>
+    <div class="pills"><span class="label">핵심 키워드</span><span class="pill acc">청사진</span><span class="pill acc">클래스 · 인스턴스</span><span class="pill acc">정의역 · 치역</span><span class="pill acc">카디널리티</span><span class="pill acc">역량 질문</span><span class="pill acc">Protégé</span></div>
+  </div>
+</section>
+
+<section class="slide" data-ch="3장 · 온톨로지">
+  <header><span class="sec">3장 · 실습</span><h2>실습: Protégé로 만든 공연/전시 온톨로지</h2>
+    <p class="sub">3.4절의 예시를 직접 Protégé로 구현해 보았다</p></header>
+  <div class="body">
+    <div class="g-5-7 fill">
+      <div class="card" style="background:var(--dark);border-color:var(--dark);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:32px">
+        <span class="tag" style="background:#1F3A3A;color:var(--dark-accent);align-self:flex-start">LIVE DEMO</span>
+        <p style="font-size:34px;font-weight:800;line-height:1.35;letter-spacing:-.02em;margin-top:6px">Protégé를 열어<br>직접 보여드립니다</p>
+        <p style="font-size:15px;color:#93A6B4;margin-top:16px;font-family:'JetBrains Mono',monospace">protege_ontology.owl</p>
+      </div>
+      <div class="goals">
+        <div class="goal"><span class="num">1</span><div><h4>클래스 계층</h4><p>Performance · Exhibition · Artist · Venue 등</p></div></div>
+        <div class="goal"><span class="num">2</span><div><h4>객체 속성</h4><p>hasPerformer, takesPlaceAt — 정의역과 치역</p></div></div>
+        <div class="goal"><span class="num">3</span><div><h4>데이터 속성</h4><p>hasTitle, hasDuration, hasPrice, openingDate</p></div></div>
+        <div class="goal"><span class="num">4</span><div><h4>속성 특성과 제약</h4><p>역관계 · Functional · Disjoint</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 4장 ================= -->
+<section class="slide divider" data-ch="4장 · 지식그래프 생명주기">
+  <div class="chno">04</div>
+  <h1>지식그래프 생명주기</h1>
+  <p class="intro">다양한 데이터에서 지식을 추출해 지식그래프를 <b style="color:#fff">구축 · 저장 · 관리 · 활용</b>하는 전체 과정</p>
+  <div class="toc"><span><b>4.1</b>수집·전처리</span><span><b>4.2</b>구축</span><span><b>4.3</b>저장·호스팅</span><span><b>4.4</b>관리·큐레이션</span><span><b>4.5</b>활용·추론</span></div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">CHAPTER 04 · 학습 목표</span><h2>이번 장에서 배울 것</h2></header>
+  <div class="body">
+    <div class="g-5-7 fill">
+      <div class="card accent qbox"><span class="tag">핵심 질문</span><p class="q">지식그래프는<br>어떻게 만들어지고,<br>어떻게 살아 움직일까?</p><p class="qs">데이터를 모으는 순간부터 새로운 지식을 추론하기까지, 지식그래프의 한살이를 단계별로 따라간다.</p></div>
+      <div class="goals">
+        <div class="goal"><span class="num">1</span><div><h4>생명주기 큰 그림과 데이터 준비</h4><p>구축·저장·관리·활용 4단계, 수집과 전처리</p></div><span class="ref">4장 개요 · 4.1</span></div>
+        <div class="goal"><span class="num">2</span><div><h4>데이터 유형별 구축 기법</h4><p>비정형은 NER·RE·EE·EL, 정형·반정형은 매핑</p></div><span class="ref">4.2</span></div>
+        <div class="goal"><span class="num">3</span><div><h4>저장 방식과 질의 언어</h4><p>RDF 트리플 저장소 vs 속성 그래프, SPARQL vs Cypher</p></div><span class="ref">4.3</span></div>
+        <div class="goal"><span class="num">4</span><div><h4>관리, 그리고 활용과 추론</h4><p>품질·스키마·버전·보안, 규칙 기반과 임베딩 기반 추론</p></div><span class="ref">4.4 – 4.5</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">4장 개요</span><h2>생명주기의 네 단계</h2></header>
+  <div class="body" style="justify-content:center">
+    <div class="flow">
+      <div class="step" style="padding:24px 20px"><span class="tag">Construction</span><h4 style="font-size:21px">구축</h4><p style="font-size:15.5px">데이터 소스에서 정보를 추출하고 구조화해 유용한 지식을 생성</p></div>
+      <div class="step" style="padding:24px 20px"><span class="tag">Storage / Hosting</span><h4 style="font-size:21px">저장 및 호스팅</h4><p style="font-size:15.5px">지식그래프의 특징에 맞는 데이터베이스 기술을 선택</p></div>
+      <div class="step" style="padding:24px 20px"><span class="tag">Curation</span><h4 style="font-size:21px">관리 및 큐레이션</h4><p style="font-size:15.5px">품질 평가, 정제, 보강, 스키마·버전 관리, 보안·접근 통제</p></div>
+      <div class="step" style="padding:24px 20px;background:var(--accent-soft);border-color:#C3DDD5"><span class="tag">Consumption</span><h4 style="font-size:21px">활용 및 추론</h4><p style="font-size:15.5px">실제 애플리케이션에서 활용하고 새로운 지식을 추론</p></div>
+    </div>
+    <div class="callout" style="margin-top:24px">한 번 만들고 끝나는 것이 아니라, 활용 결과가 다시 관리·보강으로 돌아가는 <b>순환 구조</b></div>
+  </div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">4.1</span><h2>데이터 수집 및 전처리</h2></header>
+  <div class="body">
+    <div class="card accent"><span class="tag">4.1.1 데이터 수집</span><p class="lead" style="font-size:18px">신뢰할 수 있는 데이터를 위해 먼저 <b>수집 범위를 설정</b>하고 <b>수집 대상을 선정</b>한다</p></div>
+    <div style="font-size:15px;font-weight:700;color:var(--muted)">4.1.2 데이터 정제 및 전처리</div>
+    <div class="g3 fill" style="grid-template-columns:repeat(5,1fr)">
+      <div class="card tight ex-card"><span class="num">1</span><h3 style="margin-top:8px">토큰화</h3><p>Tokenization<br>텍스트를 의미 단위로 분할</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">톰 행크스는 영화에 출연했다</div><div class="ex-ar">↓</div><div class="ex-a">[톰 행크스] [는] [영화] [에] [출연] [했다]</div></div></div>
+      <div class="card tight ex-card"><span class="num">2</span><h3 style="margin-top:8px">정제</h3><p>Cleaning<br>태그·특수문자 등 노이즈 제거</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">&lt;p&gt;출연했다!!! 😊&lt;/p&gt;</div><div class="ex-ar">↓</div><div class="ex-a">출연했다</div></div></div>
+      <div class="card tight ex-card"><span class="num">3</span><h3 style="margin-top:8px">어간·표제어 추출</h3><p>Stemming &amp; Lemmatization<br>여러 형태를 기본형으로 통일</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">출연했다 · 출연하는 · 출연한</div><div class="ex-ar">↓</div><div class="ex-a">출연하다</div><div class="ex-b" style="margin-top:6px">running · ran → run</div></div></div>
+      <div class="card tight ex-card"><span class="num">4</span><h3 style="margin-top:8px">불용어 처리</h3><p>Stop word removal<br>의미 없는 고빈도 단어 제거</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">[톰 행크스] [는] [영화] [에] [출연]</div><div class="ex-ar">↓</div><div class="ex-a">[톰 행크스] [영화] [출연]</div></div></div>
+      <div class="card tight ex-card"><span class="num">5</span><h3 style="margin-top:8px">상호 참조 해결</h3><p>Co-reference resolution<br>대명사가 가리키는 개체 찾기</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">톰 행크스는 배우다. <u>그</u>는 1994년 영화에 출연했다.</div><div class="ex-ar">↓</div><div class="ex-a">그 = 톰 행크스</div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">4.2</span><h2>지식그래프 구축: 데이터 소스에 맞는 추출과 변환</h2>
+    <p class="sub">정보를 추출·구조화해 기계가 이해할 수 있는 그래프로 만들고, 통합·분석·추론의 기반을 마련</p></header>
+  <div class="body">
+    <div class="g4">
+      <div class="card tight warm"><span class="tag warm">비정형</span><h3>자연어 텍스트</h3><p>뉴스, 문서, 보고서</p></div>
+      <div class="card tight"><span class="tag">반정형</span><h3>HTML · JSON · XML</h3><p>시스템 로그</p></div>
+      <div class="card tight"><span class="tag">정형</span><h3>데이터베이스 · CSV</h3><p>테이블 데이터</p></div>
+      <div class="card tight accent"><span class="tag">기존 KG</span><h3>DBpedia · Wikidata</h3><p>공개 지식그래프</p></div>
+    </div>
+    <div class="g2 fill">
+      <div class="card warm"><h3>비정형 → 정보 추출 (4.2.2)</h3><p>개체·관계·이벤트를 텍스트에서 찾아내고 기존 그래프에 연결<br><span style="color:var(--muted)">→ 다음 슬라이드</span></p></div>
+      <div class="card"><h3>정형·반정형 → 매핑 (4.2.3)</h3><p>원본 데이터의 구조와 지식그래프 <b>목표 스키마 간 변환 규칙</b>을 정의하는 것이 핵심</p></div>
+    </div>
+    <div class="callout">각 데이터 유형에 맞는 추출·변환 기술을 <b>선택하고 조합</b>하는 것이 성공의 열쇠</div>
+  </div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">4.2.2</span><h2>비정형 데이터에서 정보 추출하기</h2></header>
+  <div class="body">
+    <div class="card" style="font-size:22px;padding:18px 24px">
+      <span style="background:#E2EFEA;padding:2px 6px;border-radius:6px;font-weight:700">톰 행크스</span>는
+      <span style="background:#F6E7DE;padding:2px 6px;border-radius:6px;font-weight:700">1994년</span> 영화
+      <span style="background:#E2EFEA;padding:2px 6px;border-radius:6px;font-weight:700">포레스트 검프</span>에
+      <span style="border-bottom:3px solid var(--accent);font-weight:700">출연했다</span>.
+      <span style="font-size:13px;color:var(--muted);margin-left:10px">예시 문장</span>
+    </div>
+    <div class="g4 fill">
+      <div class="card tight"><span class="tag">NER</span><h3>개체 추출</h3><p>고유한 이름을 찾아 분류</p><p style="margin-top:8px;font-size:14.5px;color:var(--accent-ink)">톰 행크스 → 인물<br>포레스트 검프 → 영화</p></div>
+      <div class="card tight"><span class="tag">RE</span><h3>관계 추출</h3><p>개체 사이 의미 관계를 정해진 유형으로 분류</p><p style="margin-top:8px;font-size:14.5px;color:var(--accent-ink)">(톰 행크스, 출연, 포레스트 검프)</p></div>
+      <div class="card tight"><span class="tag">EE</span><h3>이벤트 추출</h3><p>사건의 발생과 관련 정보를 구조화</p><p style="margin-top:8px;font-size:13.5px;color:var(--muted)">질의응답·생성 모델(템플릿)·그래프 기반 접근</p></div>
+      <div class="card tight"><span class="tag">EL</span><h3>개체 연결</h3><p>기존 그래프의 고유 개체와 매핑해 중의성 해소</p><p style="margin-top:8px;font-size:14.5px;color:var(--accent-ink)">‘톰 행크스’ → 그래프의 고유 URI 노드</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">4.3.1 – 4.3.2</span><h2>저장 옵션: RDF 트리플 저장소 vs 속성 그래프 DB</h2>
+    <p class="sub">적합한 DB를 고르고, 그래프를 적재하고, 질의·관리 환경을 설정하는 단계</p></header>
+  <div class="body">
+    <table class="tbl">
+      <tr><th style="width:160px"></th><th>RDF 트리플 저장소</th><th>속성 그래프 DB (PGD)</th></tr>
+      <tr><td>데이터 모델</td><td>모든 정보를 <b>[주어, 술어, 객체]</b> 트리플로 저장</td><td><b>노드 · 관계 · 속성(키–값) · 레이블</b>의 네 요소</td></tr>
+      <tr><td>식별자</td><td>전역 고유 <b>URI</b>로 표현 → 데이터 통합·공유가 쉬움</td><td>DB 내부 ID, 노드·관계에 속성을 직접 부착</td></tr>
+      <tr><td>질의 언어</td><td><b>SPARQL</b> (W3C 표준)</td><td><b>Cypher</b>(Neo4j), Gremlin(TinkerPop), GQL(ISO 표준, 2024)</td></tr>
+      <tr><td>강점</td><td>표준 기반 상호운용성, 온톨로지(RDFS/OWL) 추론</td><td>직관적 모델링, 빠른 관계 탐색</td></tr>
+      <tr><td>대표 시스템</td><td>Ontotext GraphDB, Stardog, Apache Jena, OpenLink Virtuoso</td><td><b>Neo4j</b>, FalkorDB, NebulaGraph</td></tr>
+    </table>
+    <div class="callout"><b>Amazon Neptune</b>은 두 모델을 모두 지원 — 하나만 골라야 하는 것은 아니다</div>
+  </div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">4.3.3</span><h2>질의 언어: SPARQL과 Cypher</h2>
+    <p class="sub">같은 질문 — “아티스트 A가 출연한 뮤지컬의 제목은?”</p></header>
+  <div class="body">
+    <div class="g2 fill">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card tight"><h3>SPARQL</h3><p>RDF용 W3C 표준 질의 언어. 트리플 패턴으로 구성된 <b>그래프 패턴 매칭</b></p></div>
+<pre class="code"><span class="k">PREFIX</span> ex: &lt;http://example.org/&gt;
+
+<span class="k">SELECT</span> ?title
+<span class="k">WHERE</span> {
+  ?show  a              ex:Musical ;
+         ex:hasPerformer ex:ArtistA ;
+         ex:hasTitle     ?title .
+}</pre>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card tight"><h3>Cypher</h3><p>Neo4j의 선언적 질의 언어. SQL과 비슷하며 <b>GQL 표준</b>의 기반</p></div>
+<pre class="code"><span class="k">MATCH</span> (a:Artist {name: <span class="s">"A"</span>})
+      -[:PERFORMS_IN]-&gt;(m:Musical)
+<span class="k">RETURN</span> m.title
+
+<span class="c">// 노드는 ( ), 관계는 -[ ]-&gt;
+// 그림을 그리듯 패턴을 적는다</span></pre>
+      </div>
+    </div>
+    <div style="font-size:12.5px;color:var(--muted)">※ 이해를 돕기 위한 예시 쿼리</div>
+  </div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">4.4.1</span><h2>관리 및 큐레이션 ① 데이터 품질 관리</h2>
+    <p class="sub">지식그래프의 핵심 가치는 정확하고 신뢰할 수 있는 정보 — 품질이 곧 애플리케이션의 성패</p></header>
+  <div class="body">
+    <div class="g3">
+      <div class="card"><span class="tag warm">과제</span><div class="pills"><span class="pill">정확성</span><span class="pill">완전성</span><span class="pill">일관성</span><span class="pill">적시성</span><span class="pill">비중복성</span></div></div>
+      <div class="card"><span class="tag">프로세스</span><div class="pills"><span class="pill">품질 평가</span><span class="pill">오류 탐지</span><span class="pill">정제</span><span class="pill">보강·완성</span></div></div>
+      <div class="card"><span class="tag">해결 방안</span><div class="pills"><span class="pill">데이터 거버넌스</span><span class="pill">제약 조건 검증</span><span class="pill">중복 탐지 도구</span></div></div>
+    </div>
+    <div class="card accent fill" style="display:flex;flex-direction:column;justify-content:center">
+      <h3>지식그래프 완성 (Knowledge Graph Completion)</h3>
+      <p class="lead" style="font-size:19px">저장된 정보만 내주는 <b>수동적인 데이터베이스</b>가 아니라, 학습과 추론으로 스스로 지식을 확장해 가는 <b>능동적인 시스템</b>으로 발전할 가능성</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">4.4.2</span><h2>관리 및 큐레이션 ② 스키마 관리 및 검증</h2>
+    <p class="sub">스키마는 데이터의 구조와 의미를 정의 — 일관성 보장, 상호운용성, 추론의 기반. 주로 <b>온톨로지</b>가 그 역할을 한다</p></header>
+  <div class="body">
+    <div class="g2 fill">
+      <div class="card">
+        <span class="tag">RDFS</span><h3>RDF Schema</h3>
+        <p>RDF의 기본 어휘 확장</p>
+        <ul style="margin-top:10px"><li>클래스·속성의 <b>계층 구조</b></li><li>속성의 <b>정의역·치역</b> 명시</li><li>기본적인 스키마 정의 기능</li></ul>
+      </div>
+      <div class="card accent">
+        <span class="tag">OWL</span><h3>Web Ontology Language</h3>
+        <p>RDFS를 확장한 W3C 표준 — 더 풍부하고 정교한 표현</p>
+        <ul style="margin-top:10px"><li>클래스 간 다양한 관계 (예: Disjoint)</li><li>속성의 특성 (예: Functional, 역관계)</li><li><b>카디널리티 제약</b></li></ul>
+      </div>
+    </div>
+    <div class="callout">온톨로지 설계와 편집에는 3장의 <b>Protégé</b> 같은 도구를 사용한다</div>
+  </div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">4.4.3</span><h2>관리 및 큐레이션 ③ 버전 관리</h2>
+    <p class="sub">지식그래프는 시간이 지나며 계속 변하는 동적인 자산</p></header>
+  <div class="body">
+    <div class="pills"><span class="label">핵심 기능</span><span class="pill acc">재현성</span><span class="pill acc">변경 추적·감사</span><span class="pill acc">오류 복구</span><span class="pill acc">동시 작업·협업</span><span class="pill acc">점진적 업데이트 관리</span></div>
+    <div class="g3 fill" style="grid-template-columns:repeat(5,1fr)">
+      <div class="card tight"><h3>스냅샷</h3><p>특정 시점마다 그래프 전체의 복사본을 저장</p></div>
+      <div class="card tight"><h3>변경 로그</h3><p>초기 버전 이후의 모든 변경 작업을 로그로 기록</p></div>
+      <div class="card tight"><h3>델타</h3><p>버전 간 차이만 저장 — 스냅샷과 로그의 절충안</p></div>
+      <div class="card tight"><h3>이벤트 스트리밍</h3><p>소스의 변경을 감지해 그 부분만 반영</p></div>
+      <div class="card tight accent"><h3>시간적 KG</h3><p>각 트리플에 타임스탬프·유효기간을 명시</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">4.4.4</span><h2>관리 및 큐레이션 ④ 보안 및 접근 통제</h2>
+    <p class="sub">조직의 다양한 데이터를 통합·연결하는 만큼, 부적절한 접근을 막는 장치가 필수</p></header>
+  <div class="body">
+    <div class="g3 fill" style="grid-template-rows:1fr 1fr">
+      <div class="card tight"><h3>RBAC<small>역할 기반 접근 통제</small></h3><p>역할에 따라 노드·관계·속성의 읽기/쓰기/수정/삭제 권한 부여</p></div>
+      <div class="card tight"><h3>ABAC<small>속성 기반 접근 통제</small></h3><p>사용자·자원 속성과 환경 조건으로 동적이고 세분화된 결정</p></div>
+      <div class="card tight"><h3>IAM 통합<small>신원 및 접근 관리</small></h3><p>조직의 기존 IAM과 연동해 일관된 인증·권한 정책 적용</p></div>
+      <div class="card tight"><h3>데이터 암호화</h3><p>저장된 데이터와 전송 중인 데이터를 암호화</p></div>
+      <div class="card tight"><h3>감사 및 모니터링</h3><p>누가, 언제, 어떤 데이터에 접근·변경했는지 기록</p></div>
+      <div class="card tight"><h3>익명화 · 가명화</h3><p>프라이버시 보호를 위한 비식별 처리</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">4.5</span><h2>지식그래프 활용 및 추론</h2></header>
+  <div class="body">
+    <div class="g4">
+      <div class="card tight"><h3>시맨틱 검색</h3><p>질의 속 개체·관계를 파악 — <b>things, not strings</b></p></div>
+      <div class="card tight"><h3>추천 시스템</h3><p>아이템·사용자·속성 관계로 잠재 선호를 추론</p></div>
+      <div class="card tight"><h3>질의응답</h3><p>자연어 질문에 답할 구조화된 지식 제공</p></div>
+      <div class="card tight"><h3>데이터 통합·분석</h3><p>여러 소스를 통합한 일관된 뷰</p></div>
+    </div>
+    <div class="callout">추론 = 명시적으로 저장된 사실에서 규칙이나 학습된 패턴으로 <b>암시적·누락된 새로운 사실</b>을 도출하는 것</div>
+    <div class="g2 fill">
+      <div class="card"><span class="tag">4.5.2.1</span><h3>규칙 기반 추론</h3><p>논리 규칙으로 새로운 사실을 <b>연역적으로</b> 추론</p>
+        <p style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:14px;background:#F2EFE8;padding:10px 12px;border-radius:8px">(A 부모 B) ∧ (B 부모 C) → (A 조부모 C)</p></div>
+      <div class="card accent"><span class="tag">4.5.2.2</span><h3>임베딩 기반 추론 <small>KGE · KRL</small></h3><p>개체와 관계를 <b>저차원 연속 벡터 공간</b>에 매핑해 유사성으로 누락된 관계를 예측</p>
+        <p style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:14px;background:#fff;padding:10px 12px;border-radius:8px">예) TransE: 머리 + 관계 ≈ 꼬리</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">CHAPTER 04 · 정리</span><h2>이번 장에서 배운 것</h2></header>
+  <div class="body">
+    <table class="tbl">
+      <tr><th style="width:150px">단계</th><th>핵심 내용</th><th style="width:330px">키워드</th></tr>
+      <tr><td>준비</td><td>수집 범위·대상을 정하고 텍스트를 정제</td><td>토큰화, 불용어, 상호 참조 해결</td></tr>
+      <tr><td>구축</td><td>데이터 유형에 맞는 추출·변환 기술을 선택하고 조합</td><td>NER · RE · EE · EL, 스키마 매핑</td></tr>
+      <tr><td>저장·호스팅</td><td>모델에 맞는 DB 선택 — 표준·상호운용성 vs 직관·탐색 속도</td><td>RDF + SPARQL, 속성 그래프 + Cypher</td></tr>
+      <tr><td>관리·큐레이션</td><td>신뢰할 수 있는 자산으로 유지하는 지속적인 관리</td><td>품질, RDFS·OWL, 버전, RBAC·ABAC</td></tr>
+      <tr><td>활용·추론</td><td>검색·추천·질의응답·통합에 활용하고 숨은 사실을 도출</td><td>규칙 기반 추론, 임베딩(KGE)</td></tr>
+    </table>
+    <div class="callout">지식그래프는 한 번 만들고 끝나는 데이터베이스가 아니라, 활용 → 관리 → 보강을 반복하며 <b>스스로 자라는 시스템</b></div>
+  </div>
+</section>
+
+<!-- ================= 5장 ================= -->
+<section class="slide divider" data-ch="5장 · 시스템 아키텍처">
+  <div class="chno">05</div>
+  <h1>지식그래프 활용을 위한 시스템 아키텍처</h1>
+  <p class="intro">지식그래프는 개체와 관계를 구조화된 네트워크로 표현해 시스템이 <b style="color:#fff">‘이해하고 연결’</b>하도록 돕는다.<br>분야별 시스템이 내부에서 어떻게 흘러가는지 살펴본다.</p>
+  <div class="toc"><span><b>5.1</b>검색엔진</span><span><b>5.2</b>RAG</span><span><b>5.3</b>추천시스템</span></div>
+</section>
+
+<section class="slide" data-ch="5장 · 시스템 아키텍처">
+  <header><span class="sec">CHAPTER 05 · 학습 목표</span><h2>이번 장에서 배울 것</h2></header>
+  <div class="body">
+    <div class="g-5-7 fill">
+      <div class="card accent qbox"><span class="tag">핵심 질문</span><p class="q">질문 하나가 답이 되기까지,<br>시스템 안에서는<br>무슨 일이 일어날까?</p><p class="qs">2장에서 본 서비스들의 내부를 열어, 지식그래프가 어느 단계에서 어떤 역할을 하는지 살펴본다.</p></div>
+      <div class="goals">
+        <div class="goal"><span class="num">1</span><div><h4>지식그래프 기반 검색엔진</h4><p>질의 → 개체·관계 추출 → 그래프 매칭·탐색 → 응답 6단계</p></div><span class="ref">5.1</span></div>
+        <div class="goal"><span class="num">2</span><div><h4>RAG의 구조</h4><p>Vector Search와 Graph Search를 결합한 응답 생성</p></div><span class="ref">5.2</span></div>
+        <div class="goal"><span class="num">3</span><div><h4>지식그래프 기반 추천시스템</h4><p>그래프 구축 → 임베딩 → 유사도 추론 → 추천 예측</p></div><span class="ref">5.3</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="5장 · 시스템 아키텍처">
+  <header><span class="sec">5.1</span><h2>지식그래프를 활용한 검색엔진</h2>
+    <p class="sub">질의 “2023년에 개정된 개인정보 관련 지침이 뭐야?”가 답이 되기까지</p></header>
+  <div class="body">
+    <div class="flow" style="gap:24px">
+      <div class="step tight" style="padding:14px"><span class="num">1</span><h4>질의 입력</h4><p>자연어 질문</p></div>
+      <div class="step" style="padding:14px"><span class="num">2</span><h4>개체·관계 추출</h4><p>개체: 개인정보 지침, 2023년<br>관계: 개정, 시행</p></div>
+      <div class="step" style="padding:14px"><span class="num">3</span><h4>그래프 매칭</h4><p>지침 – 개정일자 = 2023</p></div>
+      <div class="step" style="padding:14px"><span class="num">4</span><h4>탐색·질의</h4><p>관련 노드와 경로 추론</p></div>
+      <div class="step" style="padding:14px"><span class="num">5</span><h4>관련 문서 검색</h4><p>연결된 보고서·데이터</p></div>
+      <div class="step" style="padding:14px"><span class="num">6</span><h4>응답·시각화</h4><p>관계망과 함께 표시</p></div>
+    </div>
+    <div class="g2 fill">
+      <div><div class="code-cap">④ 그래프 질의 (Cypher)</div>
+<pre class="code"><span class="k">MATCH</span> (policy:Guideline {
+        title: <span class="s">"개인정보 지침"</span>,
+        revisedYear: <span class="s">"2023"</span>})
+      -[:LINKED_DOCUMENT]-&gt;(doc)
+<span class="k">RETURN</span> doc</pre></div>
+      <div><div class="code-cap">⑥ 최종 응답</div>
+<pre class="code" style="background:#fff;color:var(--ink);border:1px solid var(--line)"><span style="color:var(--accent)">[정책명]</span>   개인정보 보호 지침
+<span style="color:var(--accent)">[개정 연도]</span> 2023
+<span style="color:var(--accent)">[시행일자]</span> 2023-03-01
+<span style="color:var(--accent)">[소관 부서]</span> 정책기획팀
+<span style="color:var(--accent)">[문서 ID]</span>  doc_423</pre></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="5장 · 시스템 아키텍처">
+  <header><span class="sec">5.2</span><h2>RAG: 검색으로 증강한 생성</h2>
+    <p class="sub">LLM이 외부 지식에서 관련 정보를 먼저 검색해 오고, 그 정보를 바탕으로 신뢰할 수 있는 응답을 생성</p></header>
+  <div class="body">
+    <div class="card" style="font-size:20px;padding:14px 22px"><span class="tag" style="margin:0 10px 0 0">질의</span>“톰 행크스가 출연한 SF 영화는?”</div>
+    <div class="g2">
+      <div class="card"><span class="tag">2.1 Vector Search</span><p>문서에서 <b>의미 유사성</b>을 기준으로 관련 내용을 검색</p></div>
+      <div class="card accent"><span class="tag">2.2 Graph Search</span><p>지식그래프에서 <b>‘톰 행크스’ 노드</b>를 기준으로 출연 → 장르 = SF 경로를 탐색</p></div>
+    </div>
+    <div class="flow fill" style="grid-auto-columns:1fr">
+      <div class="step"><span class="num">3</span><h4>정보 결합 및 LLM 입력</h4><p>두 검색 결과를 조합해 LLM에게 전달</p></div>
+      <div class="step" style="background:var(--accent-soft);border-color:#C3DDD5"><span class="num">4</span><h4>지식 기반 응답 생성</h4><p>단순한 언어 생성이 아니라, 질문과 연결된 <b>정확하고 설명 가능한</b> 응답</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="5장 · 시스템 아키텍처">
+  <header><span class="sec">5.3</span><h2>추천시스템에서의 지식그래프</h2>
+    <p class="sub">상품과 사용자 간의 관계를 구조화해 더 정확하고 설명력 있는 추천</p></header>
+  <div class="body">
+    <div class="g-5-7 fill">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card tight"><span class="tag">1 · 지식그래프 구축</span><p>사용자 관련 정보를 노드로, 관계를 엣지로 구성</p></div>
+<pre class="code">&lt;사용자 A, 조회, 상품 X&gt;
+&lt;상품 X, 속성, 러닝화&gt;
+&lt;사용자 A, 팔로우, 사용자 B&gt;</pre>
+      </div>
+      <div class="vlist">
+        <div class="card tight"><div class="it"><span class="num">2</span><div><h4>지식그래프 임베딩</h4><p>노드와 관계를 저차원 밀집 벡터로 변환 — 의미가 비슷하면 벡터도 비슷</p></div></div></div>
+        <div class="card tight"><div class="it"><span class="num">3</span><div><h4>협업 필터링·유사도 추론</h4><p>행동 이력 + 그래프의 의미 관계로 유사도 계산</p></div></div></div>
+        <div class="card tight accent"><div class="it"><span class="num">4</span><div><h4>추천 예측 모듈</h4><p>Top-N 후보 중 실제로 좋아할 가능성과 추천 순서를 결정</p></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="5장 · 시스템 아키텍처">
+  <header><span class="sec">CHAPTER 05 · 정리</span><h2>이번 장에서 배운 것</h2></header>
+  <div class="body">
+    <div class="flow">
+      <div class="step"><span class="num">1</span><h4>입력 이해</h4><p>질의·행동 이력에서 개체와 관계를 뽑아낸다</p></div>
+      <div class="step"><span class="num">2</span><h4>그래프 연결</h4><p>뽑아낸 개체를 지식그래프의 노드와 매칭한다</p></div>
+      <div class="step"><span class="num">3</span><h4>탐색·추론</h4><p>관계 경로를 따라가거나 임베딩으로 유사도를 계산한다</p></div>
+      <div class="step" style="background:var(--accent-soft);border-color:#C3DDD5"><span class="num">4</span><h4>결과 + 설명</h4><p>정확한 답과 함께 근거가 되는 관계망을 보여준다</p></div>
+    </div>
+    <div class="g3 fill">
+      <div class="card tight"><h3>검색엔진</h3><p>개체·관계를 이해하고 그래프 질의(Cypher)로 정확한 문서를 찾는다</p></div>
+      <div class="card tight"><h3>RAG</h3><p>벡터 검색 + <b>그래프 검색</b>으로 모은 지식을 LLM에 넣어 설명 가능한 답을 생성</p></div>
+      <div class="card tight"><h3>추천시스템</h3><p>그래프를 <b>임베딩</b>해 의미 관계와 행동 이력을 함께 반영한 Top-N 추천</p></div>
+    </div>
+    <div class="callout">세 시스템은 모두 <b>“이해 → 연결 → 탐색 → 설명”</b>이라는 같은 뼈대를 공유한다</div>
+  </div>
+</section>
+
+<!-- ================= 6장 ================= -->
+<section class="slide divider" data-ch="6장 · 미래와 전망">
+  <div class="chno">06</div>
+  <h1>지식그래프의 가치: 미래와 전망</h1>
+  <p class="intro">지금까지 살펴본 개념·사례·설계·생명주기·아키텍처를 바탕으로,<br>지식그래프가 앞으로 어떤 <b style="color:#fff">가치</b>를 만들어 갈지 전망한다.</p>
+  <div class="toc"><span><b>6.1</b>주목받는 이유</span><span><b>6.2</b>산업 확산</span><span><b>6.3</b>LLM과의 상호보완</span></div>
+</section>
+
+<section class="slide" data-ch="6장 · 미래와 전망">
+  <header><span class="sec">CHAPTER 06 · 학습 목표</span><h2>이번 장에서 배울 것</h2></header>
+  <div class="body">
+    <div class="g-5-7 fill">
+      <div class="card accent qbox"><span class="tag">핵심 질문</span><p class="q">LLM의 시대에도<br>지식그래프는<br>왜 필요할까?</p><p class="qs">지식그래프가 주목받는 이유와 산업 확산, 그리고 LLM과 함께 그려갈 미래를 정리한다.</p></div>
+      <div class="goals">
+        <div class="goal"><span class="num">1</span><div><h4>지식그래프가 주목받는 이유</h4><p>데이터를 AI가 이해할 수 있는 지식으로 바꾸는 기술</p></div><span class="ref">6.1</span></div>
+        <div class="goal"><span class="num">2</span><div><h4>시장과 산업으로의 확산</h4><p>금융·제조·제약·의료·국방, 약물 재창출 사례</p></div><span class="ref">6.2</span></div>
+        <div class="goal"><span class="num">3</span><div><h4>LLM과의 상호보완과 Graph-RAG</h4><p>언어 능력과 구조화된 지식의 결합</p></div><span class="ref">6.3</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="6장 · 미래와 전망">
+  <header><span class="sec">6.1</span><h2>지식그래프는 왜 주목받고 있는가?</h2></header>
+  <div class="body">
+    <div class="g3">
+      <div class="card"><span class="num">1</span><h3 style="margin-top:10px">구조화</h3><p>흩어진 데이터를 개체와 관계의 구조로 정리</p></div>
+      <div class="card"><span class="num">2</span><h3 style="margin-top:10px">의미 관계 발견</h3><p>다양한 데이터 사이의 의미적 관계를 밝혀냄</p></div>
+      <div class="card accent"><span class="num">3</span><h3 style="margin-top:10px">AI가 이해하는 지식</h3><p>데이터를 인공지능 시스템이 <b>이해할 수 있는 지식</b>으로 전환</p></div>
+    </div>
+    <div class="card fill" style="display:flex;flex-direction:column;justify-content:center;padding:28px 32px">
+      <p class="lead">전 세계 유수의 기업들이 다양한 서비스에 지식그래프를 실제로 적용하며, 지식그래프는 이제 <b>경쟁력의 핵심 요소</b>로 자리 잡았다.</p>
+      <div class="pills" style="margin-top:18px"><span class="label">2장에서 본 사례</span><span class="pill">Google 검색</span><span class="pill">Amazon 추천</span><span class="pill">Intuit 보안</span><span class="pill">팔란티어 전략</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="6장 · 미래와 전망">
+  <header><span class="sec">6.2 – 6.3</span><h2>산업으로의 확산, 그리고 LLM과의 상호보완</h2></header>
+  <div class="body">
+    <div class="card">
+      <span class="tag">6.2 시장과 산업에서의 확산</span>
+      <p>더 이상 특정 기술 기업만의 전략 자산이 아니다</p>
+      <div class="pills" style="margin-top:10px"><span class="pill">금융</span><span class="pill">전자상거래</span><span class="pill">제조</span><span class="pill acc">제약</span><span class="pill">의료</span><span class="pill">국방</span></div>
+      <p style="margin-top:10px;font-size:15px">예) 제약: 신약 후보 물질과 질병 간 관계를 분석해 개발 기간 단축, <b>약물 재창출</b> 가능성 발굴</p>
+    </div>
+    <div style="font-size:15px;font-weight:700;color:var(--muted)">6.3 LLM과 지식그래프의 상호보완성</div>
+    <div class="g3 fill">
+      <div class="card"><h3>LLM</h3><p>방대한 텍스트 학습으로 자연어 이해·생성에서 놀라운 성과</p></div>
+      <div class="card"><h3>지식그래프</h3><p>정확하고 구조화된 지식, 명시적 관계를 바탕으로 한 논리적 추론</p></div>
+      <div class="card accent"><h3>Graph-RAG</h3><p>엔티티 간 관계와 의미망으로 깊이 있는 추론, <b>출처가 명확한</b> 신뢰할 수 있는 응답</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="6장 · 미래와 전망">
+  <header><span class="sec">CHAPTER 06 · 정리</span><h2>이번 장에서 배운 것</h2></header>
+  <div class="body">
+    <div class="rclist fill">
+      <div class="rc"><span class="ck">✓</span><p>지식그래프는 데이터를 구조화하고 의미 관계를 밝혀, AI가 <b>이해할 수 있는 지식</b>으로 바꾸는 핵심 기술</p></div>
+      <div class="rc"><span class="ck">✓</span><p>특정 기술 기업을 넘어 <b>금융·전자상거래·제조·제약·의료·국방</b>으로 확산 중</p></div>
+      <div class="rc"><span class="ck">✓</span><p>제약 분야에서는 신약 후보와 질병의 관계를 분석해 개발 기간을 줄이고 <b>약물 재창출</b>을 발굴</p></div>
+      <div class="rc"><span class="ck">✓</span><p>LLM의 <b>언어 능력</b>과 지식그래프의 <b>정확한 구조 지식·추론</b>은 서로의 약점을 보완</p></div>
+      <div class="rc"><span class="ck">✓</span><p><b>Graph-RAG</b>는 엔티티 관계와 의미망으로 출처가 명확하고 신뢰할 수 있는 응답을 만든다</p></div>
+    </div>
+    <div class="pills"><span class="label">핵심 키워드</span><span class="pill acc">경쟁력</span><span class="pill acc">산업 확산</span><span class="pill acc">약물 재창출</span><span class="pill acc">상호보완</span><span class="pill acc">Graph-RAG</span></div>
+  </div>
+</section>
+
+<!-- 마무리 -->
+<section class="slide" data-ch="정리">
+  <header><span class="sec">SUMMARY</span><h2>한 장으로 정리</h2></header>
+  <div class="body">
+    <div class="g3 fill" style="grid-template-rows:1fr 1fr">
+      <div class="card tight"><span class="tag">01</span><p>지식그래프는 개체와 관계의 <b>삼중항</b>으로 지식을 표현하고, LLM의 약점을 보완한다</p></div>
+      <div class="card tight"><span class="tag">02</span><p>Google·Amazon·Intuit·팔란티어는 검색·추천·보안·전략에 이미 활용 중</p></div>
+      <div class="card tight"><span class="tag">03</span><p><b>온톨로지</b>는 지식그래프의 청사진 — 8단계로 설계하고 Protégé로 구현</p></div>
+      <div class="card tight"><span class="tag">04</span><p>구축 → 저장 → 관리 → 활용·추론의 <b>순환 생명주기</b></p></div>
+      <div class="card tight"><span class="tag">05</span><p>검색엔진·RAG·추천시스템 속에서 그래프 탐색이 정확성과 설명력을 더한다</p></div>
+      <div class="card tight accent"><span class="tag">06</span><p>산업 전반으로 확산 중, <b>Graph-RAG</b>로 LLM과 함께 신뢰할 수 있는 AI로</p></div>
+    </div>
+    <div style="text-align:center;font-size:34px;font-weight:800;color:var(--accent-ink);margin-top:4px">Q &amp; A</div>
+  </div>
+</section>
+
+</div>
+<div id="hud"><i></i></div>
+<div id="help">← → 이동 · F 전체화면</div>
+<script>
+(function(){
+  var stage=document.getElementById('stage');
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var N=slides.length, cur=0, bar=document.querySelector('#hud i');
+  var chNames=['개념','활용','온톨로지','생명주기','아키텍처','전망'], groups={};
+  slides.forEach(function(s,i){var c=parseInt(s.dataset.ch,10);if(c){(groups[c]=groups[c]||[]).push(i)}});
+  slides.forEach(function(s,i){
+    var c=parseInt(s.dataset.ch,10);if(!c)return;
+    var nav=document.createElement('div');nav.className='chnav';
+    var ol='<ol>'+chNames.map(function(n,j){var k=j+1;return '<li data-go="'+groups[k][0]+'" title="'+k+'장 시작으로 이동" class="'+(k<c?'done':k===c?'cur':'')+'"><b>'+k+'</b>'+n+'</li>'}).join('')+'</ol>';
+    nav.innerHTML=ol+'<span class="chpg"><small>이번 장</small>'+(groups[c].indexOf(i)+1)+' / '+groups[c].length+'</span>';
+    s.appendChild(nav);
+  });
+  [].forEach.call(document.querySelectorAll('[data-toc]'),function(t){var c=+t.dataset.toc;t.textContent='CHAPTER 0'+c+'  ·  p.'+(groups[c][0]+1)+'–'+(groups[c][groups[c].length-1]+1)});
+  slides.forEach(function(s,i){
+    if(s.classList.contains('cover'))return;
+    var f=document.createElement('div');f.className='foot';
+    f.innerHTML='<span>지식그래프 · '+(s.dataset.ch||'')+'</span><span class="pg">'+(i+1)+' / '+N+'</span>';
+    s.appendChild(f);
+  });
+  function fit(){var k=Math.min(innerWidth/1280,innerHeight/720);stage.style.transform='translate(-50%,-50%) scale('+k+')';}
+  function go(i){
+    cur=Math.max(0,Math.min(N-1,i));
+    slides.forEach(function(s,j){s.classList.toggle('active',j===cur)});
+    bar.style.width=((cur+1)/N*100)+'%';
+    if(location.hash!=='#'+(cur+1))history.replaceState(null,'','#'+(cur+1));
+  }
+  addEventListener('resize',fit);
+  addEventListener('keydown',function(e){
+    var k=e.key;
+    if(k==='ArrowRight'||k==='PageDown'||k===' '||k==='Enter'){e.preventDefault();go(cur+1)}
+    else if(k==='ArrowLeft'||k==='PageUp'||k==='Backspace'){e.preventDefault();go(cur-1)}
+    else if(k==='Home')go(0);
+    else if(k==='End')go(N-1);
+    else if(k==='f'||k==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen();}
+  });
+  document.addEventListener('click',function(e){ var t=e.target.closest('[data-go]'); if(t)go(+t.dataset.go); });
+  var h=parseInt((location.hash||'').slice(1),10);
+  fit(); go(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>
