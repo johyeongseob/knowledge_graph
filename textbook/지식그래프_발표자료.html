@@ -91,7 +91,7 @@ pre.code .c{color:#7D8B97}
 .slide.divider{background:var(--dark);color:#fff;padding:80px 96px;justify-content:center}
 .divider .chno{font-size:120px;font-weight:800;line-height:1;color:var(--dark-accent);letter-spacing:-.04em}
 .divider h1{font-size:52px;font-weight:800;letter-spacing:-.02em;margin-top:18px;line-height:1.2}
-.divider p.intro{font-size:21px;line-height:1.65;color:#B8C6D1;margin-top:20px;max-width:900px}
+.divider p.intro{font-size:21px;line-height:1.65;color:#B8C6D1;margin-top:20px;max-width:900px;min-height:3.3em}
 .divider .toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px}
 .divider .toc span{font-size:15px;font-weight:600;padding:8px 16px;border-radius:999px;border:1px solid #33495A;color:#D5E0E8}
 .divider .toc span b{color:var(--dark-accent);margin-right:6px}
@@ -100,11 +100,11 @@ pre.code .c{color:#7D8B97}
 
 /* cover */
 .slide.cover{background:var(--dark);color:#fff;padding:90px 96px;justify-content:center}
-.cover .kicker{font-size:18px;font-weight:600;color:var(--dark-accent);letter-spacing:.08em}
-.cover h1{font-size:96px;font-weight:800;letter-spacing:-.04em;line-height:1.05;margin-top:16px}
-.cover h2{font-size:32px;font-weight:600;color:#D5E0E8;margin-top:14px}
-.cover .meta{margin-top:56px;font-size:18px;color:#93A6B4;line-height:1.7}
-.cover .net{position:absolute;right:20px;top:60px;width:600px;opacity:.85}
+.cover .kicker{font-size:18px;font-weight:600;color:var(--dark-accent);letter-spacing:.12em}
+.cover h1{font-size:96px;font-weight:800;letter-spacing:-.015em;line-height:1.05;margin-top:16px}
+.cover h2{font-size:32px;font-weight:600;color:#D5E0E8;margin-top:14px;letter-spacing:.02em}
+.cover .meta{margin-top:56px;font-size:18px;color:#93A6B4;line-height:1.7;letter-spacing:.03em}
+.cover .net{position:absolute;right:0;top:134px;width:672px;opacity:1}
 
 /* timeline */
 .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative;padding-top:26px}
@@ -278,6 +278,15 @@ pre.code .c{color:#7D8B97}
 .goal.goalink{cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s}
 .goal.goalink:hover{border-color:var(--accent);box-shadow:0 6px 18px rgba(14,107,92,.12);transform:translateY(-2px)}
 
+.kgnet svg{width:100%;height:auto;display:block;overflow:visible}
+.kgnet-ch{position:absolute;right:24px;top:86px;width:400px;z-index:1}
+.kgnet .kn-g{cursor:pointer;transition:opacity .15s}
+.kgnet .kn-g:hover{opacity:1!important}
+.kgnet .kn-g:hover .kn-c{stroke:#9BE3D3;stroke-width:4}
+
+.kgnet .ke-g{cursor:help}
+.kgnet .ke-g:hover line:first-of-type{stroke:#9BE3D3}
+
 /* chapter progress (top-right) */
 .chnav{position:absolute;top:16px;right:72px;display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-size:12.5px;z-index:2}
 .chnav ol{list-style:none;display:flex;align-items:center;gap:2px}
@@ -329,19 +338,7 @@ pre.code .c{color:#7D8B97}
 
 <!-- 1. 표지 -->
 <section class="slide cover" data-ch="">
-  <svg class="net" viewBox="0 0 600 460" fill="none" aria-hidden="true">
-    <g stroke="#2E4657" stroke-width="2">
-      <line x1="120" y1="110" x2="300" y2="70"/><line x1="300" y1="70" x2="470" y2="150"/><line x1="120" y1="110" x2="210" y2="260"/>
-      <line x1="210" y1="260" x2="380" y2="290"/><line x1="470" y1="150" x2="380" y2="290"/><line x1="300" y1="70" x2="380" y2="290"/>
-      <line x1="380" y1="290" x2="520" y2="380"/><line x1="210" y1="260" x2="150" y2="400"/><line x1="380" y1="290" x2="300" y2="420"/>
-    </g>
-    <g fill="#13202B" stroke-width="3">
-      <circle cx="120" cy="110" r="16" stroke="#62C7B1"/><circle cx="300" cy="70" r="22" stroke="#62C7B1" fill="#1D3A3A"/>
-      <circle cx="470" cy="150" r="16" stroke="#62C7B1"/><circle cx="210" cy="260" r="18" stroke="#62C7B1"/>
-      <circle cx="380" cy="290" r="26" stroke="#E39A72" fill="#3A2A22"/><circle cx="520" cy="380" r="12" stroke="#62C7B1"/>
-      <circle cx="150" cy="400" r="12" stroke="#62C7B1"/><circle cx="300" cy="420" r="12" stroke="#62C7B1"/>
-    </g>
-  </svg>
+  <div class="net kgnet" data-kg="0"></div>
   <div class="kicker">KNOWLEDGE GRAPH · 1–6장 정리</div>
   <h1>지식그래프</h1>
   <h2>AI와 온톨로지로 여는 지식혁명</h2>
@@ -365,6 +362,7 @@ pre.code .c{color:#7D8B97}
 
 <!-- ================= 1장 ================= -->
 <section class="slide divider" data-ch="1장 · 지식그래프에 대하여">
+  <div class="kgnet kgnet-ch" data-kg="1"></div>
   <div class="chno">01</div>
   <h1>지식그래프에 대하여</h1>
   <p class="intro">방대한 데이터 속에서 어떻게 ‘가치’를 찾아낼까?<br>지식그래프는 지식을 통합·구조화하고 새로운 지식을 추론해 <b style="color:#fff">비즈니스 가치</b>로 연결한다.</p>
@@ -565,6 +563,7 @@ pre.code .c{color:#7D8B97}
 
 <!-- ================= 2장 ================= -->
 <section class="slide divider" data-ch="2장 · 지식그래프의 활용">
+  <div class="kgnet kgnet-ch" data-kg="2"></div>
   <div class="chno">02</div>
   <h1>지식그래프의 활용</h1>
   <p class="intro">지식그래프는 다양한 산업에서 <b style="color:#fff">의사결정과 자동화의 엔진</b>으로 주목받고 있다.<br>검색, 추천, 보안, 전략 — 네 기업의 실제 사례를 살펴본다.</p>
@@ -746,6 +745,7 @@ pre.code .c{color:#7D8B97}
 
 <!-- ================= 3장 ================= -->
 <section class="slide divider" data-ch="3장 · 온톨로지">
+  <div class="kgnet kgnet-ch" data-kg="3"></div>
   <div class="chno">03</div>
   <h1>온톨로지: 지식그래프의 청사진</h1>
   <p class="intro">1장에서 개념을, 2장에서 가능성을 봤다면 이제 설계다.<br>지식그래프를 설계하기 위한 <b style="color:#fff">온톨로지</b>를 살펴본다.</p>
@@ -957,6 +957,7 @@ pre.code .c{color:#7D8B97}
 
 <!-- ================= 4장 ================= -->
 <section class="slide divider" data-ch="4장 · 지식그래프 생명주기">
+  <div class="kgnet kgnet-ch" data-kg="4"></div>
   <div class="chno">04</div>
   <h1>지식그래프 생명주기</h1>
   <p class="intro">다양한 데이터에서 지식을 추출해 지식그래프를 <b style="color:#fff">구축 · 저장 · 관리 · 활용</b>하는 전체 과정</p>
@@ -1250,6 +1251,7 @@ pre.code .c{color:#7D8B97}
 
 <!-- ================= 5장 ================= -->
 <section class="slide divider" data-ch="5장 · 시스템 아키텍처">
+  <div class="kgnet kgnet-ch" data-kg="5"></div>
   <div class="chno">05</div>
   <h1>지식그래프 활용을 위한 시스템 아키텍처</h1>
   <p class="intro">지식그래프는 개체와 관계를 구조화된 네트워크로 표현해 시스템이 <b style="color:#fff">‘이해하고 연결’</b>하도록 돕는다.<br>분야별 시스템이 내부에서 어떻게 흘러가는지 살펴본다.</p>
@@ -1355,6 +1357,7 @@ pre.code .c{color:#7D8B97}
 
 <!-- ================= 6장 ================= -->
 <section class="slide divider" data-ch="6장 · 미래와 전망">
+  <div class="kgnet kgnet-ch" data-kg="6"></div>
   <div class="chno">06</div>
   <h1>지식그래프의 가치: 미래와 전망</h1>
   <p class="intro">지금까지 살펴본 개념·사례·설계·생명주기·아키텍처를 바탕으로,<br>지식그래프가 앞으로 어떤 <b style="color:#fff">가치</b>를 만들어 갈지 전망한다.</p>
@@ -1454,6 +1457,68 @@ pre.code .c{color:#7D8B97}
     var ol='<ol>'+chNames.map(function(n,j){var k=j+1;return '<li data-go="'+groups[k][0]+'" title="'+k+'장 시작으로 이동" class="'+(k<c?'done':k===c?'cur':'')+'"><b>'+k+'</b>'+n+'</li>'}).join('')+'</ol>';
     nav.innerHTML=ol+'<span class="chpg"><small>이번 장</small>'+(groups[c].indexOf(i)+1)+' / '+groups[c].length+'</span>';
     s.appendChild(nav);
+  });
+  // six-chapter network graphic (cover + dividers) — edges only where chapters are linked by content
+  var KN=[{x:311,y:204,l:'개념'},{x:214,y:318,l:'활용'},{x:463,y:228,l:'온톨로지'},{x:409,y:97,l:'생명주기',lp:'top'},{x:251,y:76,l:'아키텍처',lp:'top'},{x:154,y:185,l:'전망'}];
+  var KE=[
+    [1,3,'온톨로지가 규정','1.1 지식그래프를 설계·규정하는 틀이 온톨로지 → 3장'],
+    [1,4,'W3C 표준','1.2 시맨틱 웹 표준 RDF·OWL·SPARQL → 4.3 저장·질의, 4.4.2 스키마'],
+    [3,4,'스키마','3장 온톨로지 → 4.2.3 매핑의 목표 스키마, 4.4.2 스키마 관리'],
+    [4,5,'활용 → 시스템','4.5 활용 및 추론 → 5장에서 자세히'],
+    [5,6,'RAG의 발전','5.2 RAG → 6.3 Graph-RAG'],
+    [1,2,'개념 → 사례','1장 개념 → 2장 실제 활용 사례']];
+  function kgSvg(h){
+    var s='<svg viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg" font-family="Pretendard,sans-serif">';
+    var cx=0,cy=0;KN.forEach(function(q){cx+=q.x/6;cy+=q.y/6});
+    function hit(L,R,T,B,boxes){return boxes.some(function(b){return L<b[1]&&R>b[0]&&T<b[3]&&B>b[2]})}
+    // obstacle boxes: node circles (with glow) and node name labels
+    var OB=[];KN.forEach(function(q,i){var rr=(i+1)===h?44:30;OB.push([q.x-rr,q.x+rr,q.y-rr,q.y+rr]);if(q.lp==='left'){OB.push([q.x-(((i+1)===h)?30:22)-8-80,q.x-20,q.y-10,q.y+10])}else{var qy=q.lp==='top'?q.y-(((i+1)===h)?42:34)-14:q.y+(((i+1)===h)?30:22)+6;OB.push([q.x-36,q.x+36,qy,qy+18])}});
+    // 1) place labels of highlighted edges (avoid nodes, node names and each other)
+    var LB=[],PL={};
+    if(h)KE.forEach(function(e,ei){if(e[0]!==h&&e[1]!==h)return;var a=KN[e[0]-1],b=KN[e[1]-1],dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy),nx=-dy/len,ny=dx/len;
+      var mx0=(a.x+b.x)/2,my0=(a.y+b.y)/2;if((mx0+nx-cx)*(mx0+nx-cx)+(my0+ny-cy)*(my0+ny-cy)<(mx0-nx-cx)*(mx0-nx-cx)+(my0-ny-cy)*(my0-ny-cy)){nx=-nx;ny=-ny}
+      var w=e[2].split('').reduce(function(acc,ch){return acc+(ch.charCodeAt(0)>0x1100?13.5:8.2)},10),best=null,first=null;
+      [0.5,0.42,0.58,0.34,0.66,0.28,0.72,0.22,0.78].some(function(f){return [1,-1].some(function(sg){return [14,24,34,44].some(function(off){
+        var px=a.x+dx*f+nx*sg*off,py=a.y+dy*f+ny*sg*off+4,anc=Math.abs(nx)>0.6?((nx*sg)>0?'start':'end'):'middle';
+        var L=anc==='start'?px:anc==='end'?px-w:px-w/2,R=L+w,T=py-15,B=py+5;
+        if(!first)first=[px,py,anc,[L,R,T,B]];
+        var crossLine=KE.some(function(o2,oi){if(oi===ei)return false;var A=KN[o2[0]-1],Bq=KN[o2[1]-1];for(var f2=0;f2<=1;f2+=0.03){var X=A.x+(Bq.x-A.x)*f2,Y=A.y+(Bq.y-A.y)*f2;if(X>L&&X<R&&Y>T&&Y<B)return true}return false});
+        if(!crossLine&&!hit(L,R,T,B,OB)&&!hit(L,R,T,B,LB)&&L>0&&R<600){best=[px,py,anc,[L,R,T,B]];return true}return false})})});
+      best=best||first;LB.push(best[3]);PL[ei]=best});
+    // 2) small decorative stars around each node (tiny, faint, never connected; avoid lines, names and labels)
+    var SP=[[-150,50,1],[-110,66,0],[-75,54,0],[-45,72,1],[-20,48,1],[10,64,0],[35,58,0],[60,74,1],[160,52,1],[195,70,0]];
+    KN.forEach(function(n,i){var k=i+1,hi=k===h;SP.forEach(function(p){var ang=(p[0]+i*23)*Math.PI/180,d=p[1]+(i%3)*4,x=n.x+Math.cos(ang)*d,y=n.y+Math.sin(ang)*d;
+      if(x<6||x>594||y<6||y>354)return;
+      var bad=false;KE.forEach(function(e){var A=KN[e[0]-1],B=KN[e[1]-1],ddx=B.x-A.x,ddy=B.y-A.y,tt=Math.max(0,Math.min(1,((x-A.x)*ddx+(y-A.y)*ddy)/(ddx*ddx+ddy*ddy)));if(Math.hypot(x-(A.x+tt*ddx),y-(A.y+tt*ddy))<9)bad=true});
+      if(hit(x-6,x+6,y-6,y+6,OB)||hit(x-6,x+6,y-6,y+6,LB))bad=true;
+      if(y>n.y+20&&Math.abs(x-n.x)<42)bad=true;
+      KE.forEach(function(e){var A=KN[e[0]-1],B=KN[e[1]-1];if(Math.hypot(x-(A.x+B.x)/2,y-(A.y+B.y)/2)<48)bad=true});
+      KN.forEach(function(q){if(q.lp==='left'&&x<q.x-20&&x>q.x-110&&Math.abs(y-q.y)<14)bad=true;if(Math.abs(x-q.x)<44&&y>q.y+18&&y<q.y+56)bad=true;if(Math.hypot(x-q.x,y-q.y)<34)bad=true});
+      if(bad)return;
+      var op=hi?0.85:0.45;
+      if(p[2]){var z=hi?4.5:3.5;s+='<path class="kg-star" d="M'+x+' '+(y-z)+' L'+(x+z*0.28)+' '+(y-z*0.28)+' L'+(x+z)+' '+y+' L'+(x+z*0.28)+' '+(y+z*0.28)+' L'+x+' '+(y+z)+' L'+(x-z*0.28)+' '+(y+z*0.28)+' L'+(x-z)+' '+y+' L'+(x-z*0.28)+' '+(y-z*0.28)+' Z" fill="#CFEFE7" opacity="'+op+'"/>';}
+      else s+='<circle class="kg-star" cx="'+x+'" cy="'+y+'" r="'+(hi?1.9:1.5)+'" fill="#CFEFE7" opacity="'+op+'"/>';});});
+    // 3) edges (+ hover reason, + placed label when highlighted)
+    KE.forEach(function(e,ei){var a=KN[e[0]-1],b=KN[e[1]-1],on=h&&(e[0]===h||e[1]===h);
+      s+='<g class="ke-g"><title>'+e[0]+'장 – '+e[1]+'장: '+e[3]+'</title>';
+      s+='<line x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+'" stroke="'+(on?'#4E8C82':'#2E4657')+'" stroke-width="'+(on?3:2)+'"/>';
+      s+='<line class="ke-hit" x1="'+a.x+'" y1="'+a.y+'" x2="'+b.x+'" y2="'+b.y+'" stroke="transparent" stroke-width="16"/>';
+      if(on){var bl=PL[ei];s+='<text x="'+bl[0]+'" y="'+bl[1]+'" text-anchor="'+bl[2]+'" font-size="13" font-weight="700" fill="#9BE3D3" stroke="#13202B" stroke-width="5" paint-order="stroke">'+e[2]+'</text>';}
+      s+='</g>';});
+    // 4) nodes
+    KN.forEach(function(n,i){var k=i+1,hi=k===h,dim=h&&!hi,r=hi?30:22;
+      s+='<g class="kn-g'+(hi?' hi':'')+'" data-gonode="'+k+'" style="opacity:'+(dim?0.55:1)+'">';
+      if(hi)s+='<circle cx="'+n.x+'" cy="'+n.y+'" r="42" fill="none" stroke="#62C7B1" stroke-width="2" opacity=".35"/>';
+      s+='<circle class="kn-c" cx="'+n.x+'" cy="'+n.y+'" r="'+r+'" fill="'+(hi?'#62C7B1':'#13202B')+'" stroke="#62C7B1" stroke-width="3"/>';
+      s+='<text x="'+n.x+'" y="'+(n.y+(hi?8:6))+'" text-anchor="middle" font-size="'+(hi?22:17)+'" font-weight="800" fill="'+(hi?'#13202B':'#D5E0E8')+'">'+k+'</text>';
+      var ly=n.lp==='top'?(n.y-r-12):n.lp==='left'?(n.y+5):(n.y+r+22),lx2=n.lp==='left'?(n.x-r-8):n.x;
+      s+='<text x="'+lx2+'" y="'+ly+'" text-anchor="'+(n.lp==='left'?'end':'middle')+'" font-size="'+(hi?17:14)+'" font-weight="'+(hi?800:600)+'" fill="'+(hi?'#FFFFFF':'#93A6B4')+'">'+n.l+'</text></g>';
+    });
+    return s+'</svg>';
+  }
+  [].forEach.call(document.querySelectorAll('[data-kg]'),function(box){
+    box.innerHTML=kgSvg(+box.getAttribute('data-kg'));
+    [].forEach.call(box.querySelectorAll('[data-gonode]'),function(g){var k=+g.getAttribute('data-gonode');if(groups[k]){g.setAttribute('data-go',groups[k][0]);var tt=document.createElementNS('http://www.w3.org/2000/svg','title');tt.textContent=k+'장으로 이동';g.appendChild(tt)}});
   });
   [].forEach.call(document.querySelectorAll('[data-toc]'),function(t){var c=+t.dataset.toc;t.textContent='CHAPTER 0'+c+'  ·  p.'+(groups[c][0]+1)+'–'+(groups[c][groups[c].length-1]+1);var cd=t.closest('.card');cd.dataset.go=groups[c][0];cd.classList.add('tocard');cd.title=c+'장으로 이동'});
   [].forEach.call(document.querySelectorAll('[data-goch]'),function(el){var c=+el.dataset.goch;if(groups[c]){el.dataset.go=groups[c][0];el.classList.add('golink');el.title=c+'장으로 이동'}});
