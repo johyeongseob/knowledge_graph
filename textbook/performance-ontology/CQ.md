@@ -26,16 +26,21 @@
 |---|---|---|---|---|
 | CQ1 | Performance, Artist | hasPerformer (공연 → 아티스트) | hasTitle | ✅ 모두 있음 |
 | CQ2 | Musical, Venue | takesPlaceAt (공연 → 장소) | hasTitle | ✅ 모두 있음 |
-| CQ3 | Ticket, Performance | **ticketFor (티켓 → 공연)** | hasPrice | ❌ ticketFor 없음 |
+| CQ3 | Ticket, Performance | **ticketFor (티켓 → 공연)** | hasPrice | ✅ M2에서 ticketFor 추가 |
+
+세 질문에 필요한 **구조(스키마)는 모두 갖춰졌습니다.** 실제로 답을 얻으려면 M4에서 데이터(인스턴스)를 넣어야 합니다.
 
 ---
 
-## 3. 빠진 요소 → 다음 마일스톤에서 추가할 것
+## 3. 빠진 요소 → 마일스톤별 추가 내역
 
-### M2. 클래스·속성 추가
-| 추가할 것 | 종류 | 정의역 (Domain) | 치역 (Range) | 이유 |
-|---|---|---|---|---|
-| ticketFor | 객체 속성 | Ticket | Performance | CQ3: 어느 공연의 티켓인지 연결 |
+### M2. 클래스·속성 추가 ✅ 완료
+| 추가한 것 | 종류 | 정의역 (Domain) | 치역 (Range) | 이유 | 상태 |
+|---|---|---|---|---|---|
+| ticketFor | 객체 속성 | Ticket | Performance | CQ3: 어느 공연의 티켓인지 연결 | ✅ 추가됨 (라벨 `ticketFor`@en) |
+
+- Functional 특성은 일부러 체크하지 않았습니다. "티켓 한 장은 공연 하나"라는 규칙은 M3에서 카디널리티(exactly 1)로 표현합니다.
+- 새로 만든 속성의 ID는 `…#ticketFor`이고, 기존 요소들은 WebProtégé가 만든 무작위 ID(`R92Gma…` 등)입니다. 동작에는 차이가 없습니다.
 
 ### M3. 제약 (카디널리티)
 | 클래스 | 제약 | 의미 | 관련 슬라이드 |
@@ -77,7 +82,7 @@ M5에서는 이 질문들을 SPARQL(또는 Protégé의 DL Query)로 바꿔 실�
 ## 6. 진행 상황
 
 - [x] M1. 역량 질문 정하기
-- [ ] M2. 빠진 클래스·속성 추가 (ticketFor)
+- [x] M2. 빠진 클래스·속성 추가 (ticketFor) — 추론기(HermiT) 확인 남음
 - [ ] M3. 제약 추가 (카디널리티 3개)
 - [ ] M4. 인스턴스 입력
 - [ ] M5. 검증 (HermiT 추론 + CQ 질의)

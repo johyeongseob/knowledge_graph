@@ -87,6 +87,16 @@
     
 
 
+    <!-- urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#ticketFor -->
+
+    <owl:ObjectProperty rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#ticketFor">
+        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R92Gma3jduIxJMpCX1IPtLq"/>
+        <rdfs:range rdf:resource="http://webprotege.stanford.edu/RC8Wx8IIZZmSqeEx2oTnUBY"/>
+        <rdfs:label xml:lang="en">ticketFor</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -251,8 +261,8 @@
             <rdf:Description rdf:about="http://webprotege.stanford.edu/R8siYXlUEK9VwhCZhgRBzgL"/>
             <rdf:Description rdf:about="http://webprotege.stanford.edu/R92Gma3jduIxJMpCX1IPtLq"/>
             <rdf:Description rdf:about="http://webprotege.stanford.edu/RBjnohV6vQp3JdNgaE0GP8r"/>
-            <rdf:Description rdf:about="http://webprotege.stanford.edu/RCHRQnmGtRhNDrdwWWQGj7L"/>
             <rdf:Description rdf:about="http://webprotege.stanford.edu/RC8Wx8IIZZmSqeEx2oTnUBY"/>
+            <rdf:Description rdf:about="http://webprotege.stanford.edu/RCHRQnmGtRhNDrdwWWQGj7L"/>
             <rdf:Description rdf:about="http://webprotege.stanford.edu/RLdm5wMMN89kkzvZY3DYAk"/>
         </owl:members>
     </rdf:Description>
