@@ -275,6 +275,9 @@ pre.code .c{color:#7D8B97}
 .journey b{font-size:13.5px;color:var(--accent-ink)}
 .journey span{font-size:12px;line-height:1.4;color:#4A5461}
 
+.goal.goalink{cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s}
+.goal.goalink:hover{border-color:var(--accent);box-shadow:0 6px 18px rgba(14,107,92,.12);transform:translateY(-2px)}
+
 /* chapter progress (top-right) */
 .chnav{position:absolute;top:16px;right:72px;display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-size:12.5px;z-index:2}
 .chnav ol{list-style:none;display:flex;align-items:center;gap:2px}
@@ -342,7 +345,7 @@ pre.code .c{color:#7D8B97}
   <div class="kicker">KNOWLEDGE GRAPH · 1–6장 정리</div>
   <h1>지식그래프</h1>
   <h2>AI와 온톨로지로 여는 지식혁명</h2>
-  <div class="meta">이강배 외 3인 지음<br>독서 정리 발표</div>
+  <div class="meta">이강배 외 3인 지음<br>교재 스터디 발표</div>
 </section>
 
 <!-- 2. 목차 -->
@@ -1465,6 +1468,7 @@ pre.code .c{color:#7D8B97}
     else{var m=el.textContent.match(/\d+(?:\.\d+)+/);if(!m)return;to=findSec(c,m[0]);label=m[0]+'절'}
     if(to<0)return;
     el.dataset.go=to;el.classList.add('golink');el.title=label+'로 이동';
+    var gc=el.closest('.goal');if(gc){gc.dataset.go=to;gc.classList.add('golink','goalink');gc.title=label+'로 이동'}
   });
   slides.forEach(function(s,i){
     if(s.classList.contains('cover'))return;
