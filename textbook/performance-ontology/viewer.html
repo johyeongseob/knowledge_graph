@@ -248,7 +248,11 @@ document.querySelectorAll('.cq').forEach(b => b.onclick = () => runCQ(+b.dataset
 document.getElementById('infer').onchange = () => { draw(); if(currentCQ) runCQ(currentCQ); };
 document.getElementById('typeEdges').onchange = () => draw(false);
 
-load();
+// 주소 뒤에 ?infer=1&types=1&cq=1 을 붙이면 그 상태로 열림 (발표·캡처용)
+const qs = new URLSearchParams(location.search);
+if(qs.get('infer') === '1') document.getElementById('infer').checked = true;
+if(qs.get('types') === '1') document.getElementById('typeEdges').checked = true;
+load().then(() => { if(qs.get('cq')) runCQ(+qs.get('cq')); });
 </script>
 </body>
 </html>

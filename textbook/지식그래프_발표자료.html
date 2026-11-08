@@ -971,8 +971,12 @@ pre.code .c{color:#7D8B97}
     <div class="g-5-7 fill">
       <div class="card" style="background:var(--dark);border-color:var(--dark);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:32px">
         <span class="tag" style="background:#1F3A3A;color:var(--dark-accent);align-self:flex-start">LIVE DEMO</span>
-        <p style="font-size:34px;font-weight:800;line-height:1.35;letter-spacing:-.02em;margin-top:6px">Protégé를 열어<br>직접 보여드립니다</p>
-        <p style="font-size:15px;color:#93A6B4;margin-top:16px;font-family:'JetBrains Mono',monospace">protege_ontology.owl</p>
+        <p style="font-size:26px;font-weight:800;line-height:1.35;letter-spacing:-.02em;margin-top:6px;color:#fff">Protégé를 열어 직접 보여드립니다</p>
+        <a href="performance-ontology/viewer.html?infer=1&amp;types=1" target="_blank" rel="noopener" style="display:block;margin-top:14px;border-radius:10px;overflow:hidden;border:1px solid #2C4650"><img src="performance-ontology/viewer-preview.png" alt="온톨로지 검증 페이지 화면: 클래스·인스턴스 그래프와 CQ 검증" style="display:block;width:100%"></a>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:10px">
+          <p style="font-size:13px;color:#93A6B4;font-family:'JetBrains Mono',monospace">protege_ontology.owl</p>
+          <a href="performance-ontology/viewer.html?infer=1&amp;types=1" target="_blank" rel="noopener" style="font-size:13.5px;font-weight:700;color:var(--dark-accent);text-decoration:none;border:1.5px solid var(--dark-accent);border-radius:999px;padding:3px 12px;white-space:nowrap">배포본 검증 페이지 열기 ↗</a>
+        </div>
       </div>
       <div class="goals demo-steps">
         <div class="goal"><span class="num">1</span><div><h4>역량 질문 (CQ)</h4><p>“공연 X의 출연자는?” 등 답해야 할 질문 3개로 범위 결정</p></div><span class="ref">2단계</span></div>
@@ -1000,7 +1004,7 @@ pre.code .c{color:#7D8B97}
         <div class="ex" style="padding:12px 14px"><span class="ex-l">일관성 검사</span><div class="ex-b" style="font-size:14px">HermiT 추론기 실행 결과 <b>모순 없음</b> — 카디널리티 제약과 데이터가 서로 충돌하지 않는다</div></div>
         <div class="ex" style="padding:12px 14px"><span class="ex-l">도구 메모</span><div class="ex-b" style="font-size:13.5px">Protégé 5.6의 기본 SPARQL 플러그인은 호환되지 않아 <b>Snap SPARQL</b> 플러그인을 사용</div></div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;flex-direction:column;gap:7px">
         <div class="code-cap">CQ1 · DL Query (Protégé, Manchester 문법) — 결과: 배우A</div>
 <pre class="code" style="font-size:13.5px;line-height:1.55;padding:12px 16px">Artist <span class="k">and</span> performsIn <span class="k">value</span> <span class="s">'오페라의 유령'</span></pre>
         <div class="code-cap">CQ1 · SPARQL (Snap SPARQL) — 결과: ex:ActorA</div>
@@ -1009,7 +1013,7 @@ pre.code .c{color:#7D8B97}
 <span class="k">WHERE</span> {
   ?artist ex:performsIn ex:PhantomOfTheOpera .
 }</pre>
-        <a class="linkbtn" href="performance-ontology/viewer.html" target="_blank" rel="noopener" style="align-self:flex-start;text-decoration:none">배포된 온톨로지로 직접 검증하기 <span class="lb-ar">↗</span></a>
+        <div class="codeexp"><div><code>?artist</code><span><b>?</b> = 빈칸(변수) — 여기에 들어갈 값을 찾아 줘</span></div><div><code>ex:</code><span>긴 주소의 줄임말 — 맨 위 <b>PREFIX</b> 줄에서 정함</span></div></div>
       </div>
     </div>
     <div class="callout" style="font-size:16px;margin-top:auto">입력한 사실은 <b>“오페라의 유령 hasPerformer 배우A”</b> 하나뿐이다. <b>performsIn</b>은 넣지 않았지만, hasPerformer의 역관계로 정의돼 있어 <b>추론기가 채워서</b> 답했다 — 저장된 데이터 너머의 지식을 얻는 것이 온톨로지의 힘</div>
