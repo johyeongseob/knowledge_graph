@@ -58,16 +58,18 @@
     <section class="card">
       <div class="bar">
         <label class="toggle"><input type="checkbox" id="infer"> 역관계 추론 켜기</label>
+        <label class="toggle" style="background:#F3F4F5;border-color:#D5D9DD"><input type="checkbox" id="typeEdges" style="accent-color:#7B848E"> 종류 선 보기</label>
         <div class="legend">
           <span><i class="sw" style="background:var(--warm-soft);border:1px solid var(--warm)"></i>클래스</span>
           <span><i class="sw" style="background:var(--accent-soft);border:1px solid var(--accent);border-radius:9px"></i>인스턴스</span>
           <span><i class="ln" style="border-color:#B4562B"></i>하위 클래스</span>
-          <span><i class="ln" style="border-color:#9AA1A9;border-top-style:dashed"></i>종류 (rdf:type)</span>
+          <span><i class="ln" style="border-color:#C3C8CE;border-top-width:1px"></i>종류 (rdf:type)</span>
           <span><i class="ln" style="border-color:#2F6B57"></i>관계 (입력)</span>
           <span><i class="ln" style="border-color:#E0A800;border-top-style:dashed"></i>관계 (추론)</span>
         </div>
       </div>
       <div id="graph"></div>
+      <div id="idle" style="display:none;margin-top:10px;padding:10px 12px;border:1px dashed var(--line);border-radius:10px;font-size:13px;color:var(--muted)"></div>
       <p id="status" style="margin:8px 0 0;font-size:13px;color:var(--muted)">온톨로지를 불러오는 중…</p>
     </section>
 
@@ -144,42 +146,59 @@ function triples(s, p, o){
 }
 
 /* ── 4. 그래프 그리기 ────────────────────────────────────── */
-function draw(){
+function draw(keepPos = true){
   const nodes = [], edges = [];
   const classes = store.each(null, RDF('type'), OWL('Class')).filter(c => c.termType === 'NamedNode');
   const inds = store.each(null, RDF('type'), OWL('NamedIndividual'));
+  const typesOf = i => store.each(i, RDF('type')).filter(c => !c.equals(OWL('NamedIndividual')));
 
-  classes.forEach(c => nodes.push({id:c.value, label:short(c), shape:'box', margin:8,
+  // 인스턴스가 하나도 없는 클래스 묶음(하위 클래스로 이어진 덩어리)은 그래프에서 빼고 아래 목록으로
+  const parent = {}; const find = x => parent[x] === x ? x : (parent[x] = find(parent[x]));
+  classes.forEach(c => parent[c.value] = c.value);
+  classes.forEach(c => store.each(c, RDFS('subClassOf')).forEach(p => { if(parent[p.value]) parent[find(c.value)] = find(p.value); }));
+  const used = new Set(); inds.forEach(i => typesOf(i).forEach(c => { if(parent[c.value]) used.add(find(c.value)); }));
+  const idle = classes.filter(c => !used.has(find(c.value)));
+  const idleSet = new Set(idle.map(c => c.value));
+  const chip = t => '<span style="display:inline-block;margin:2px 4px 2px 0;padding:1px 9px;border-radius:6px;background:#F4D6C6;border:1px solid #B4562B;color:#5A2A12">' + t + '</span>';
+  const idleBox = document.getElementById('idle');
+  idleBox.style.display = idle.length ? 'block' : 'none';
+  idleBox.innerHTML = '<b style="color:var(--ink)">인스턴스가 없는 클래스</b> (그래프에서 제외) &nbsp; '
+    + idle.map(c => { const sup = store.each(c, RDFS('subClassOf')).filter(p => idleSet.has(p.value)); return chip(short(c) + (sup.length ? ' ⊂ ' + sup.map(short).join(', ') : '')); }).join('');
+  const shownClasses = classes.filter(c => !idleSet.has(c.value));
+
+  shownClasses.forEach(c => nodes.push({id:c.value, label:short(c), shape:'box', margin:8,
     color:{background:'#F4D6C6', border:'#B4562B', highlight:{background:'#F4D6C6', border:'#7A3518'}}, font:{face:'Noto Sans KR', size:14, color:'#5A2A12'}}));
-  inds.forEach(i => nodes.push({id:i.value, label:short(i), shape:'ellipse', margin:10,
-    color:{background:'#E3EFE9', border:'#2F6B57', highlight:{background:'#CFE6DC', border:'#1E4D3D'}}, font:{face:'Noto Sans KR', size:14, color:'#1E4D3D', bold:true}}));
+  inds.forEach(i => nodes.push({id:i.value, label:'<b>' + short(i) + '</b>\n<i>' + typesOf(i).map(short).join(', ') + '</i>', shape:'ellipse', margin:10,
+    color:{background:'#E3EFE9', border:'#2F6B57', highlight:{background:'#CFE6DC', border:'#1E4D3D'}}, font:{face:'Noto Sans KR', size:14, color:'#1E4D3D', multi:'html', bold:{color:'#1E4D3D', size:14}, ital:{color:'#6B7480', size:11}}}));
 
   // 하위 클래스 (rdfs:subClassOf)
-  classes.forEach(c => store.each(c, RDFS('subClassOf')).forEach(p => {
-    if(p.termType === 'NamedNode') edges.push({from:c.value, to:p.value, label:'하위', color:'#B4562B', width:1.5});
+  shownClasses.forEach(c => store.each(c, RDFS('subClassOf')).forEach(p => {
+    if(p.termType === 'NamedNode' && !idleSet.has(p.value)) edges.push({from:c.value, to:p.value, label:'하위', color:'#B4562B', width:1.5, smooth:false, arrows:{to:{enabled:true, type:'triangle', scaleFactor:.9}}});
   }));
   // 종류 (rdf:type) : 인스턴스 → 클래스
-  inds.forEach(i => store.each(i, RDF('type')).forEach(c => {
-    if(!c.equals(OWL('NamedIndividual'))) edges.push({from:i.value, to:c.value, label:'종류', dashes:true, color:'#9AA1A9'});
-  }));
+  if(document.getElementById('typeEdges').checked)
+    inds.forEach(i => typesOf(i).forEach(c =>
+      edges.push({from:i.value, to:c.value, label:'종류', color:{color:'#C3C8CE', opacity:.9}, width:1, font:{color:'#9AA1A9', size:10},
+                  arrows:{to:{enabled:true, scaleFactor:.5}}, smooth:false})));
   // 관계 (객체 속성) : 인스턴스 → 인스턴스
   store.each(null, RDF('type'), OWL('ObjectProperty')).forEach(p =>
     store.match(null, p, null).forEach(st =>
-      edges.push({from:st.subject.value, to:st.object.value, label:short(p), color:'#2F6B57', width:2})));
+      edges.push({from:st.subject.value, to:st.object.value, label:short(p), color:'#2F6B57', width:2.5, smooth:{type:'curvedCW', roundness:.18}})));
   // 추론된 관계
   inferred().forEach(t =>
-    edges.push({from:t.s.value, to:t.o.value, label:short(t.p) + ' (추론)', color:'#E0A800', dashes:true, width:2, font:{color:'#8A6A00'}}));
+    edges.push({from:t.s.value, to:t.o.value, label:short(t.p) + ' (추론)', color:'#E0A800', dashes:[8,5], width:2.5, font:{color:'#8A6A00'}, smooth:{type:'curvedCW', roundness:.18}}));
 
-  const pos = network ? network.getPositions() : null;
+  const pos = (network && keepPos) ? network.getPositions() : null;
   if(pos) nodes.forEach(n => { if(pos[n.id]){ n.x = pos[n.id].x; n.y = pos[n.id].y; } });
 
   if(network) network.destroy();
   network = new vis.Network(document.getElementById('graph'), {nodes, edges}, {
-    edges:{arrows:{to:{scaleFactor:.6}}, font:{face:'Noto Sans KR', size:11, align:'middle', strokeWidth:3, strokeColor:'#FBFAF7'}, smooth:{type:'dynamic'}},
+    edges:{arrows:{to:{enabled:true, scaleFactor:1.1}}, font:{face:'Noto Sans KR', size:11, align:'middle', strokeWidth:3, strokeColor:'#FBFAF7'}, smooth:{type:'dynamic'}},
     physics: pos ? false : {solver:'forceAtlas2Based', forceAtlas2Based:{gravitationalConstant:-70, springLength:120}, stabilization:{iterations:300}},
+    layout:{randomSeed:7},   // 시작 위치를 고정해 새로고침해도 같은 그림이 나오게 함
     interaction:{hover:true}
   });
-  if(pos) network.fit(); else network.once('stabilizationIterationsDone', () => network.fit());
+  if(pos) network.fit(); else { network.once('stabilizationIterationsDone', () => network.fit()); network.once('stabilized', () => network.fit({animation:{duration:300}})); }
   network.on('click', e => { if(e.nodes.length) showDetail($rdf.sym(e.nodes[0])); });
 }
 
@@ -227,6 +246,7 @@ function runCQ(n){
 }
 document.querySelectorAll('.cq').forEach(b => b.onclick = () => runCQ(+b.dataset.cq));
 document.getElementById('infer').onchange = () => { draw(); if(currentCQ) runCQ(currentCQ); };
+document.getElementById('typeEdges').onchange = () => draw(false);
 
 load();
 </script>
