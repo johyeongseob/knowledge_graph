@@ -49,15 +49,18 @@
 
 ## 4. 기대하는 답과 검증 결과
 
-| ID | 구체적인 질문 | 기대하는 답 | DL Query | SPARQL (Snap SPARQL) | 배포본 SPARQL (Comunica) |
-|---|---|---|---|---|---|
-| CQ1 | 오페라의 유령의 출연자는? | 배우A | ✅ 배우A | ✅ ex:ActorA | ❌ 결과 없음 (추론 없음) |
-| CQ2 | 샤롯데씨어터에서 열리는 뮤지컬은? | 오페라의 유령 | ⏳ | ✅ ex:PhantomOfTheOpera, "오페라의 유령" | ✅ ex:PhantomOfTheOpera, "오페라의 유령" |
-| CQ3 | 5만 원 이하 티켓이 있는 공연은? | 오페라의 유령 (티켓1, 45,000원) | ⏳ | ⏳ | ✅ ex:PhantomOfTheOpera, 45000 |
+| ID | 구체적인 질문 | 기대하는 답 | DL Query | SPARQL (Snap SPARQL) | 배포본 SPARQL (Comunica) | 검증 페이지 (viewer.html) |
+|---|---|---|---|---|---|---|
+| CQ1 | 오페라의 유령의 출연자는? | 배우A | ✅ 배우A | ✅ ex:ActorA | ➖ 결과 없음 (추론기 없음 · 예상대로) | ➖ 추론 끔: 결과 없음 → ✅ 추론 켬: 배우A |
+| CQ2 | 샤롯데씨어터에서 열리는 뮤지컬은? | 오페라의 유령 | ✅ 오페라의 유령 | ✅ ex:PhantomOfTheOpera, "오페라의 유령" | ✅ ex:PhantomOfTheOpera, "오페라의 유령" | ✅ 오페라의 유령 |
+| CQ3 | 5만 원 이하 티켓이 있는 공연은? | 오페라의 유령 (티켓1, 45,000원) | ✅ 오페라의 유령 | ✅ ex:PhantomOfTheOpera, 45000 | ✅ ex:PhantomOfTheOpera, 45000 | ✅ 오페라의 유령 (티켓1, 45,000원) |
+
+✅ 기대한 답이 나옴 · ➖ 추론기가 없어 답이 없음 (오류가 아니라 예상한 결과)
 
 - 일관성: HermiT 추론기 실행 결과 모순 없음
 - CQ1은 DL Query와 Snap SPARQL 모두 **입력하지 않은 performsIn**으로 물었는데 답이 나왔습니다. hasPerformer의 역관계를 추론기가 채운 결과입니다.
 - 배포본 검증: GitHub Pages에 올라간 파일(`https://johyeongseob.github.io/knowledge_graph/textbook/performance-ontology/protege_ontology.owl`)을 브라우저용 SPARQL 엔진 [Comunica](https://query.comunica.dev/)로 직접 질의했습니다. Comunica에는 추론기가 없어 **저장된 트리플만** 보므로, 추론에 기대는 CQ1은 답이 없고 저장된 사실만 쓰는 CQ2·CQ3은 답이 나옵니다.
+- 검증 페이지: 같은 폴더의 `viewer.html`이 배포된 파일을 읽어 CQ를 실행합니다. `owl:inverseOf`만 처리하는 간단한 추론을 켜고 끌 수 있어, CQ1이 추론 여부에 따라 달라지는 것을 직접 볼 수 있습니다.
 
 ---
 
