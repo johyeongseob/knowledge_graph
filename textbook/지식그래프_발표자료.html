@@ -945,13 +945,44 @@ pre.code .c{color:#7D8B97}
         <p style="font-size:34px;font-weight:800;line-height:1.35;letter-spacing:-.02em;margin-top:6px">Protégé를 열어<br>직접 보여드립니다</p>
         <p style="font-size:15px;color:#93A6B4;margin-top:16px;font-family:'JetBrains Mono',monospace">protege_ontology.owl</p>
       </div>
-      <div class="goals">
-        <div class="goal"><span class="num">1</span><div><h4>클래스 계층</h4><p>Performance · Exhibition · Artist · Venue 등</p></div></div>
-        <div class="goal"><span class="num">2</span><div><h4>객체 속성</h4><p>hasPerformer, takesPlaceAt — 정의역과 치역</p></div></div>
-        <div class="goal"><span class="num">3</span><div><h4>데이터 속성</h4><p>hasTitle, hasDuration, hasPrice, openingDate</p></div></div>
-        <div class="goal"><span class="num">4</span><div><h4>속성 특성과 제약</h4><p>역관계 · Functional · Disjoint</p></div></div>
+      <div class="goals demo-steps">
+        <div class="goal"><span class="num">1</span><div><h4>역량 질문 (CQ)</h4><p>“공연 X의 출연자는?” 등 답해야 할 질문 3개로 범위 결정</p></div><span class="ref">2단계</span></div>
+        <div class="goal"><span class="num">2</span><div><h4>클래스와 속성</h4><p>Performance · Artist · Venue · Ticket, hasPerformer · takesPlaceAt · ticketFor</p></div><span class="ref">4단계</span></div>
+        <div class="goal"><span class="num">3</span><div><h4>제약</h4><p>장소는 정확히 1곳 · 출연자는 최소 1명 · 역관계 · Disjoint</p></div><span class="ref">5단계</span></div>
+        <div class="goal"><span class="num">4</span><div><h4>데이터 입력</h4><p>공연장 · 배우 · 뮤지컬 · 티켓 8개, 모두 서로 다른 개체로 선언</p></div><span class="ref">6단계</span></div>
+        <div class="goal"><span class="num">5</span><div><h4>추론과 검증</h4><p>HermiT로 일관성 확인, DL Query · SPARQL로 CQ의 답 확인</p></div><span class="ref">7단계</span></div>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="3장 · 온톨로지">
+  <header><span class="sec">3장 · 실습</span><h2>실습 결과: 역량 질문으로 검증하기</h2>
+    <p class="sub">처음 정한 질문에 온톨로지가 답하면 요구사항을 충족한 것</p></header>
+  <div class="body">
+    <div class="g2">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <table class="tbl tbl-tight" style="font-size:15px">
+          <tr><th>CQ</th><th>질문</th><th>답</th></tr>
+          <tr><td>CQ1</td><td>오페라의 유령의 출연자는?</td><td>배우A</td></tr>
+          <tr><td>CQ2</td><td>샤롯데씨어터에서 열리는 뮤지컬은?</td><td>오페라의 유령</td></tr>
+          <tr><td>CQ3</td><td>5만 원 이하 티켓이 있는 공연은?</td><td>오페라의 유령<br><small style="color:var(--muted)">티켓1 45,000원 · 레미제라블은 제외</small></td></tr>
+        </table>
+        <div class="ex" style="padding:12px 14px"><span class="ex-l">일관성 검사</span><div class="ex-b" style="font-size:14px">HermiT 추론기 실행 결과 <b>모순 없음</b> — 카디널리티 제약과 데이터가 서로 충돌하지 않는다</div></div>
+        <div class="ex" style="padding:12px 14px"><span class="ex-l">도구 메모</span><div class="ex-b" style="font-size:13.5px">Protégé 5.6의 기본 SPARQL 플러그인은 호환되지 않아 <b>Snap SPARQL</b> 플러그인을 사용</div></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="code-cap">CQ1 · DL Query (Protégé, Manchester 문법) — 결과: 배우A</div>
+<pre class="code" style="font-size:13.5px;line-height:1.55;padding:12px 16px">Artist <span class="k">and</span> performsIn <span class="k">value</span> <span class="s">'오페라의 유령'</span></pre>
+        <div class="code-cap">CQ1 · SPARQL (Snap SPARQL) — 결과: ex:ActorA</div>
+<pre class="code" style="font-size:13.5px;line-height:1.55;padding:12px 16px"><span style="font-size:11.5px"><span class="k">PREFIX</span> ex: &lt;urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#&gt;</span>
+<span class="k">SELECT</span> ?artist
+<span class="k">WHERE</span> {
+  ?artist ex:performsIn ex:PhantomOfTheOpera .
+}</pre>
+      </div>
+    </div>
+    <div class="callout" style="font-size:16px;margin-top:auto">입력한 사실은 <b>“오페라의 유령 hasPerformer 배우A”</b> 하나뿐이다. <b>performsIn</b>은 넣지 않았지만, hasPerformer의 역관계로 정의돼 있어 <b>추론기가 채워서</b> 답했다 — 저장된 데이터 너머의 지식을 얻는 것이 온톨로지의 힘</div>
   </div>
 </section>
 
