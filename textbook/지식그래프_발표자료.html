@@ -168,6 +168,9 @@ pre.code .c{color:#7D8B97}
 .ex-l{display:inline-block;font-size:11.5px;font-weight:700;color:var(--warm);letter-spacing:.06em;margin-bottom:6px}
 .ex-b{font-size:14px;line-height:1.5;color:#4A5461}
 .ex-ar{font-size:14px;color:var(--accent);font-weight:700;margin:2px 0}
+.exsteps{display:flex;flex-direction:column;gap:4px;margin-top:6px}
+.exsteps>div{display:grid;grid-template-columns:62px 1fr;gap:6px;font-size:13.5px;line-height:1.45;color:#4A5461}
+.exsteps>div>i{font-style:normal;font-weight:700;color:var(--accent-ink)}
 .ex-a{font-size:14.5px;line-height:1.5;font-weight:700;color:var(--accent-ink)}
 
 .tocard{cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s}
@@ -472,6 +475,7 @@ pre.code .c{color:#7D8B97}
         <h3>SPARQL <small>RDF 질의 언어</small></h3>
         <p class="meta">“지식그래프 전용 검색창”</p>
         <p>그래프에 <b>질문</b>을 던지면, 연결을 따라가 <b>답</b>을 찾아 준다</p>
+        <div class="iri"><span class="iri-k">W3C 표준이란?</span><p><b>World Wide Web Consortium</b> — 웹 표준을 정하는 국제 단체 · 웹을 만든 팀 버너스리가 1994년 설립</p></div>
         <div class="eg"><span class="eg-l">예시</span>
           <p class="qa"><b>Q</b> 톰 행크스가 출연한 영화는?</p>
           <p class="qa ans"><b>A</b> 포레스트 검프</p></div>
@@ -526,22 +530,36 @@ pre.code .c{color:#7D8B97}
     <p class="sub">텍스트의 의미와 구조를 이해하는 LLM으로 지식그래프를 자동 생성·관리·확장</p></header>
   <div class="body">
     <div class="g2 fill">
-      <div class="card">
-        <span class="tag">구축</span>
+      <div class="card ex-card">
+        <span class="tag" style="align-self:flex-start">구축</span>
         <div class="vlist">
           <div class="it"><span class="num">1</span><div><h4>개체 및 관계 추출</h4><p>주요 개체와 관계를 파악해 노드·엣지를 자동 생성</p></div></div>
           <div class="it"><span class="num">2</span><div><h4>관계 분류</h4><p>문맥을 이해해 관계 유형을 분류</p></div></div>
           <div class="it"><span class="num">3</span><div><h4>개체 연결 (Entity Linking)</h4><p>텍스트 속 개체를 기존 그래프의 노드와 연결</p></div></div>
           <div class="it"><span class="num">4</span><div><h4>정보 추출 및 통합</h4><p>여러 텍스트 소스를 일관된 그래프로 통합</p></div></div>
         </div>
+        <div class="ex"><span class="ex-l">예시 · 문장 하나를 그래프로</span>
+          <div class="ex-b">“<b>행크스</b>는 영화 <b>포레스트 검프</b>에서 주인공을 맡았다”</div>
+          <div class="exsteps">
+            <div><i>① 추출</i><span>개체 ‘행크스’ · ‘포레스트 검프’, 관계 ‘주인공을 맡았다’</span></div>
+            <div><i>② 분류</i><span>‘주인공을 맡았다’ → <b>출연</b> 관계로 분류</span></div>
+            <div><i>③ 연결</i><span>‘행크스’ = 그래프에 이미 있는 <b>톰 행크스</b> 노드</span></div>
+            <div><i>④ 통합</i><span>위키·뉴스에 흩어진 같은 사실을 엣지 하나로 합침</span></div>
+          </div></div>
       </div>
-      <div class="card">
-        <span class="tag">관리</span>
+      <div class="card ex-card">
+        <span class="tag" style="align-self:flex-start">관리</span>
         <div class="vlist">
           <div class="it"><span class="num">1</span><div><h4>지식그래프 완성 (Completion)</h4><p>누락된 정보를 LLM으로 추론·예측해 채움</p></div></div>
           <div class="it"><span class="num">2</span><div><h4>지식그래프 업데이트</h4><p>새로운 정보를 자동으로 반영</p></div></div>
           <div class="it"><span class="num">3</span><div><h4>품질 관리</h4><p>그래프 내 오류나 불일치를 감지하고 수정</p></div></div>
         </div>
+        <div class="ex"><span class="ex-l">예시 · 톰 행크스 노드 돌보기</span>
+          <div class="exsteps">
+            <div><i>① 완성</i><span>‘포레스트 검프’의 감독 칸이 비어 있음 → <b>로버트 저메키스</b>로 채움</span></div>
+            <div><i>② 업데이트</i><span>새 출연작 기사가 나오면 → <b>출연</b> 엣지를 자동 추가</span></div>
+            <div><i>③ 품질</i><span>출생연도가 1956과 1965로 충돌 → 불일치 감지, <b>1956</b>으로 수정</span></div>
+          </div></div>
       </div>
     </div>
   </div>
@@ -791,6 +809,7 @@ pre.code .c{color:#7D8B97}
       <p style="margin-top:8px;color:var(--muted)">— Thomas R. Gruber</p>
     </div>
     <p class="lead">구성원 간에 <b>합의된 개념(공통 어휘)</b>과 그 관계를, 컴퓨터가 이해할 수 있도록 <b>정형화된 형식</b>으로 정의·표현한 것</p>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:-6px"><span class="tag" style="align-self:center">구성요소 4가지</span><p style="font-size:17px;font-weight:700;color:var(--accent-ink)">온톨로지 = 클래스 + 인스턴스 + 속성 + 관계</p><span style="flex:1;height:1px;background:var(--line,#DDE3DF)"></span></div>
     <div data-eqex class="g4 fill">
       <div class="card tight ex-card"><h3>클래스</h3><p>같은 성질을 가진 것들의 범주</p>
         <div class="ex"><span class="ex-l">예시</span><div class="ex-a">영화 · 사람 · 공연장</div><div class="ex-b" style="margin-top:4px">→ 같은 성질끼리 묶은 이름표</div></div></div>
@@ -831,23 +850,30 @@ pre.code .c{color:#7D8B97}
 <section class="slide" data-ch="3장 · 온톨로지">
   <header><span class="sec">3.3</span><h2>온톨로지 구축 과정 8단계</h2></header>
   <div class="body">
-    <div class="pills"><span class="label">대표 방법론</span><span class="pill">TOVE</span><span class="pill">METHONTOLOGY</span><span class="pill">CYC</span><span class="pill">OTK</span><span class="pick"><span class="pill acc">✓ Ontology Development 101</span><span class="pick-note">↓ 이 책은 이 방법을 선택 (3.4 예시)</span></span></div>
-    <div data-eqex class="g4 fill steps8" style="grid-template-rows:1fr 1fr;gap:12px">
-      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">1</span><h3 style="margin-top:6px">도메인 이해</h3><p>개념, 사용 목적, 기존 온톨로지, 용어 파악</p>
+    <div class="pills"><span class="label">대표 방법론</span><span class="pill">TOVE</span><span class="pill">METHONTOLOGY</span><span class="pill">CYC</span><span class="pill">OTK</span><span class="pick"><span class="pill acc">✓ Ontology Development 101</span><span class="pick-note">↓ 이 책은 이 방법을 선택 (3.4 예시)</span></span><span style="margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;text-align:right;line-height:1.4"><span style="font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.02em">Ontology Development 101 원논문</span><span style="font-size:13.5px;color:var(--accent-ink)"><b>Noy &amp; McGuinness (2001)</b> · Stanford</span></span></div>
+    <div data-eqex class="g4 fill steps8" style="grid-template-rows:1fr 1fr;gap:22px 12px;position:relative">
+      <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;z-index:2">
+        <span style="position:absolute;left:37.5%;top:calc(50% - 11px);height:11px;border-left:2px dashed var(--accent-ink)"></span>
+        <span style="position:absolute;left:37.5%;width:25%;top:50%;border-top:2px dashed var(--accent-ink)"></span>
+        <span style="position:absolute;left:62.5%;top:50%;height:5px;border-left:2px dashed var(--accent-ink)"></span>
+        <span style="position:absolute;left:calc(62.5% - 5px);top:calc(50% + 4px);width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;border-top:7px solid var(--accent-ink)"></span>
+        <span style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:2px 12px;border-radius:999px;background:var(--accent-ink);color:#fff;font-size:12.5px;font-weight:700;white-space:nowrap">같은 질문으로 검증</span>
+      </div>
+      <div class="card tight ex-card" style="padding:11px 16px"><div class="trow"><span class="num">1</span><span class="secb" style="font-size:11.5px;padding:1px 9px;border-color:var(--line,#DDE3DF);color:var(--muted)">4장 · 4.1.1 수집 범위</span></div><h3 style="margin-top:6px">도메인 이해</h3><p>개념, 사용 목적, 기존 온톨로지, 용어 파악</p>
         <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>영화 전문가 인터뷰, 기존 영화 DB 살펴보기</div></div></div>
-      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">2</span><h3 style="margin-top:6px">범위 결정</h3><p>다룰 개념과 범위를 명확히 정의</p>
-        <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>“이 배우가 나온 영화는?”에 답할 수 있게</div></div></div>
-      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">3</span><h3 style="margin-top:6px">개체 탐색</h3><p>용어 수집, 인스턴스 탐색, 기존 온톨로지 재사용</p>
+      <div class="card tight ex-card" style="padding:11px 16px"><div class="trow"><span class="num">2</span><span class="secb" style="font-size:11.5px;padding:1px 9px;border-color:var(--line,#DDE3DF);color:var(--muted)">4장 · 4.1.1 수집 범위</span></div><h3 style="margin-top:6px">범위 결정</h3><p>다룰 개념과 범위를 명확히 정의</p>
+        <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span><span style="display:inline-block;margin-right:6px;padding:0 6px;border-radius:4px;background:var(--accent-ink);color:#fff;font-size:11.5px;font-weight:700;line-height:18px;vertical-align:1px">CQ 정하기</span>“이 배우가 나온 영화는?”에 답할 수 있게</div></div></div>
+      <div class="card tight ex-card" style="padding:11px 16px"><div class="trow"><span class="num">3</span><span class="secb" style="font-size:11.5px;padding:1px 9px;border-color:var(--line,#DDE3DF);color:var(--muted)">4장 · 4.2.2 개체 추출</span></div><h3 style="margin-top:6px">개체 탐색</h3><p>용어 수집, 인스턴스 탐색, 기존 온톨로지 재사용</p>
         <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>영화, 배우, 감독, 장르… 용어 모으기</div></div></div>
-      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">4</span><h3 style="margin-top:6px">클래스·속성 정의</h3><p>공통 개념을 모아 클래스와 속성 정의</p>
+      <div class="card tight ex-card" style="padding:11px 16px"><div class="trow"><span class="num">4</span><span class="secb" style="font-size:11.5px;padding:1px 9px;border-color:var(--line,#DDE3DF);color:var(--muted)">4장 · 4.2.3 매핑</span></div><h3 style="margin-top:6px">클래스·속성 정의</h3><p>공통 개념을 모아 클래스와 속성 정의</p>
         <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>‘영화’ 클래스 + ‘개봉연도’ 속성</div></div></div>
-      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">5</span><h3 style="margin-top:6px">관계 정의</h3><p><b class="hier">계층 관계</b>(상하·포함)와 <b class="nonhier">비계층 관계</b>(인과·행위)</p>
+      <div class="card tight ex-card" style="padding:11px 16px"><div class="trow"><span class="num">5</span><span class="secb" style="font-size:11.5px;padding:1px 9px;border-color:var(--line,#DDE3DF);color:var(--muted)">4장 · 4.2.2 관계 추출</span></div><h3 style="margin-top:6px">관계 정의</h3><p><b class="hier">계층 관계</b>(상하·포함)와 <b class="nonhier">비계층 관계</b>(인과·행위)</p>
         <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span><b class="hier">배우 ⊂ 사람</b><br><b class="nonhier">배우 –출연→ 영화</b></div></div></div>
-      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">6</span><h3 style="margin-top:6px">표현 및 구현</h3><p>온톨로지 언어·도구로 형식화</p>
+      <div class="card tight ex-card" style="padding:11px 16px"><div class="trow"><span class="num">6</span><span class="secb" style="font-size:11.5px;padding:1px 9px;border-color:var(--line,#DDE3DF);color:var(--muted)">4장 · 4.4.2 스키마</span></div><h3 style="margin-top:6px">표현 및 구현</h3><p>온톨로지 언어·도구로 형식화</p>
         <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>Protégé로 OWL 파일 만들기</div></div></div>
-      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">7</span><h3 style="margin-top:6px">검증 및 평가</h3><p>도메인 지식을 정확히 표현하는지 테스트</p>
-        <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>“톰 행크스 출연작은?” 물어서 답 확인</div></div></div>
-      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">8</span><h3 style="margin-top:6px">배포·유지보수</h3><p>활용하며 필요에 따라 업데이트</p>
+      <div class="card tight ex-card" style="padding:11px 16px"><div class="trow"><span class="num">7</span><span class="secb" style="font-size:11.5px;padding:1px 9px;border-color:var(--line,#DDE3DF);color:var(--muted)">4장 · 4.4.1 품질 검증</span></div><h3 style="margin-top:6px">검증 및 평가</h3><p>도메인 지식을 정확히 표현하는지 테스트</p>
+        <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span><span style="display:inline-block;margin-right:6px;padding:0 6px;border-radius:4px;background:var(--accent-ink);color:#fff;font-size:11.5px;font-weight:700;line-height:18px;vertical-align:1px">CQ 검증</span>“톰 행크스 출연작은?” 물어서 답 확인</div></div></div>
+      <div class="card tight ex-card" style="padding:11px 16px"><div class="trow"><span class="num">8</span><span class="secb" style="font-size:11.5px;padding:1px 9px;border-color:var(--line,#DDE3DF);color:var(--muted)">4장 · 4.4.3 버전 관리</span></div><h3 style="margin-top:6px">배포·유지보수</h3><p>활용하며 필요에 따라 업데이트</p>
         <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>새 개봉작 추가, 바뀐 내용은 버전으로 기록</div></div></div>
     </div>
   </div>
@@ -885,7 +911,8 @@ pre.code .c{color:#7D8B97}
           <div><span class="pill acc">최소</span><b>적어도 n개</b><span>공연에는 출연자가 최소 1명</span></div>
           <div><span class="pill acc">최대</span><b>많아야 n개</b><span>공연의 관람 등급은 최대 1개</span></div>
           <div><span class="pill acc">정확</span><b>꼭 n개</b><span>공연 장소는 정확히 1곳</span></div>
-        </div></div>
+        </div>
+        <div class="iri" style="margin-top:12px"><span class="iri-k">어원 · Cardinality</span><p><b>cardinal number</b>(개수를 세는 기수) → 집합의 <b>원소 개수</b></p></div></div>
       <div class="card" style="padding:16px 20px"><span class="tag">6단계 · 표현 및 구현</span><p>클래스·속성·관계를 컴퓨터가 처리할 수 있는 <b>표준 형식</b>으로 변환해 온톨로지 파일 생성</p><div class="ex" style="margin-top:10px;padding:9px 12px"><div class="ex-b" style="font-size:14px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>Protégé에서 ‘공연’ 클래스와 ‘출연자’ 속성을 입력 → .owl 파일로 저장</div></div></div>
       <div class="card" style="padding:16px 20px"><span class="tag">7단계 · 검증 및 평가</span><p>기술적으로 올바르고, 논리적으로 일관되며, 요구사항을 충족하는지 평가</p>
         <div class="pills" style="margin-top:12px"><span class="pill">일관성</span><span class="pill">완전성</span><span class="pill">정확성</span><span class="pill">품질 기준</span></div><div class="ex" style="margin-top:12px;padding:9px 12px"><div class="ex-b" style="font-size:14px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>추론기로 모순 검사 · “이 공연의 출연자는?”에 답하는지 확인</div></div></div>
@@ -980,6 +1007,7 @@ pre.code .c{color:#7D8B97}
 <span class="k">WHERE</span> {
   ?artist ex:performsIn ex:PhantomOfTheOpera .
 }</pre>
+        <a class="linkbtn" href="performance-ontology/viewer.html" target="_blank" rel="noopener" style="align-self:flex-start;text-decoration:none">배포된 온톨로지로 직접 검증하기 <span class="lb-ar">↗</span></a>
       </div>
     </div>
     <div class="callout" style="font-size:16px;margin-top:auto">입력한 사실은 <b>“오페라의 유령 hasPerformer 배우A”</b> 하나뿐이다. <b>performsIn</b>은 넣지 않았지만, hasPerformer의 역관계로 정의돼 있어 <b>추론기가 채워서</b> 답했다 — 저장된 데이터 너머의 지식을 얻는 것이 온톨로지의 힘</div>
@@ -1553,7 +1581,7 @@ pre.code .c{color:#7D8B97}
   });
   [].forEach.call(document.querySelectorAll('[data-toc]'),function(t){var c=+t.dataset.toc;t.textContent='CHAPTER 0'+c+'  ·  p.'+(groups[c][0]+1)+'–'+(groups[c][groups[c].length-1]+1);var cd=t.closest('.card');cd.dataset.go=groups[c][0];cd.classList.add('tocard');cd.title=c+'장으로 이동'});
   [].forEach.call(document.querySelectorAll('[data-goch]'),function(el){var c=+el.dataset.goch;if(groups[c]){el.dataset.go=groups[c][0];el.classList.add('golink');el.title=c+'장으로 이동'}});
-  [].forEach.call(document.querySelectorAll('[data-gosec]'),function(el){var c=parseInt(el.closest('.slide').dataset.ch,10);var to=findSec(c,el.dataset.gosec);if(to>=0){el.dataset.go=to;el.classList.add('golink');el.title=el.dataset.gosec+'절로 이동'}});
+  [].forEach.call(document.querySelectorAll('[data-gosec]'),function(el){var code=el.dataset.gosec;var c=parseInt(code,10);var to=findSec(c,code);while(to<0&&code.indexOf('.')>0&&code.split('.').length>2){code=code.replace(/\.\d+$/,'');to=findSec(c,code)}if(to>=0){el.dataset.go=to;el.classList.add('golink');el.title=el.dataset.gosec+'절로 이동'}});
   // section buttons on dividers (and goal refs) -> first slide of that section
   function secTokens(s){var h=s.querySelector('header .sec');return h?(h.textContent.match(/\d+(?:\.\d+)+/g)||[]):[]}
   function findSec(c,code){var g=groups[c]||[];for(var j=0;j<g.length;j++){var tk=secTokens(slides[g[j]]);for(var m=0;m<tk.length;m++){if(tk[m]===code||tk[m].indexOf(code+'.')===0)return g[j]}}return -1}

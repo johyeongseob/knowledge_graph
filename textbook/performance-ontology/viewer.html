@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>공연 온톨로지 검증</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/rdflib@2.2.33/dist/rdflib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.9/standalone/umd/vis-network.min.js"></script>
+<style>
+  :root{--bg:#F6F4EF;--card:#FFFFFF;--line:#E2DED5;--ink:#1F2A33;--muted:#6B7480;--accent:#2F6B57;--accent-ink:#1E4D3D;--accent-soft:#E3EFE9;--warm:#B4562B;--warm-soft:#F4D6C6;--gold:#E0A800}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:'Noto Sans KR',system-ui,sans-serif;line-height:1.5}
+  .wrap{max-width:1200px;margin:0 auto;padding:24px 16px 40px}
+  header h1{margin:0;font-size:26px;font-weight:800}
+  header p{margin:6px 0 0;color:var(--muted);font-size:14.5px}
+  header a{color:var(--accent-ink)}
+  .grid{display:grid;grid-template-columns:1fr 360px;gap:16px;margin-top:18px}
+  @media (max-width:900px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .card h2{margin:0 0 10px;font-size:16px;font-weight:800}
+  #graph{height:560px;border-radius:10px;background:#FBFAF7;border:1px solid var(--line)}
+  .bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-bottom:10px}
+  .legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{display:inline-block;width:18px;height:12px;border-radius:3px}
+  .ln{display:inline-block;width:22px;border-top:2px solid}
+  .toggle{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;cursor:pointer;background:#FFF8E1;border:1px solid #F0D98A;border-radius:999px;padding:5px 14px}
+  .toggle input{width:16px;height:16px;accent-color:var(--gold)}
+  .cqs{display:flex;flex-direction:column;gap:8px}
+  .cq{text-align:left;border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 12px;cursor:pointer;font:inherit}
+  .cq:hover{border-color:var(--accent)}
+  .cq.on{border-color:var(--accent);background:var(--accent-soft)}
+  .cq b{color:var(--accent-ink);margin-right:6px}
+  .cq small{display:block;color:var(--muted);font-size:12.5px}
+  pre{margin:10px 0 0;background:#1F2A33;color:#E6EDF3;border-radius:10px;padding:10px 12px;font-size:12px;overflow:auto;white-space:pre}
+  .res{margin-top:10px;border-radius:10px;padding:10px 12px;font-size:14px}
+  .res.ok{background:var(--accent-soft);color:var(--accent-ink)}
+  .res.no{background:#FBE9E2;color:#7A3518}
+  .res .why{display:block;margin-top:4px;font-size:12.5px;color:var(--muted)}
+  #detail{font-size:13.5px}
+  #detail table{width:100%;border-collapse:collapse}
+  #detail td{padding:4px 6px;border-top:1px solid var(--line);vertical-align:top}
+  #detail td:first-child{color:var(--muted);white-space:nowrap}
+  .inf{color:#8A6A00;font-weight:700}
+  .err{color:#7A3518;font-weight:700}
+  footer{margin-top:16px;color:var(--muted);font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>공연 온톨로지 검증</h1>
+    <p>이 페이지는 GitHub Pages에 배포된 <a href="protege_ontology.owl">protege_ontology.owl</a>을 직접 읽어 그래프로 그리고, 역량 질문(CQ)으로 검증합니다.</p>
+  </header>
+
+  <div class="grid">
+    <section class="card">
+      <div class="bar">
+        <label class="toggle"><input type="checkbox" id="infer"> 역관계 추론 켜기</label>
+        <div class="legend">
+          <span><i class="sw" style="background:var(--warm-soft);border:1px solid var(--warm)"></i>클래스</span>
+          <span><i class="sw" style="background:var(--accent-soft);border:1px solid var(--accent);border-radius:9px"></i>인스턴스</span>
+          <span><i class="ln" style="border-color:#B4562B"></i>하위 클래스</span>
+          <span><i class="ln" style="border-color:#9AA1A9;border-top-style:dashed"></i>종류 (rdf:type)</span>
+          <span><i class="ln" style="border-color:#2F6B57"></i>관계 (입력)</span>
+          <span><i class="ln" style="border-color:#E0A800;border-top-style:dashed"></i>관계 (추론)</span>
+        </div>
+      </div>
+      <div id="graph"></div>
+      <p id="status" style="margin:8px 0 0;font-size:13px;color:var(--muted)">온톨로지를 불러오는 중…</p>
+    </section>
+
+    <aside style="display:flex;flex-direction:column;gap:16px">
+      <section class="card">
+        <h2>역량 질문으로 검증</h2>
+        <div class="cqs">
+          <button class="cq" data-cq="1"><b>CQ1</b>오페라의 유령의 출연자는?<small>기대: 배우A · 입력하지 않은 performsIn으로 질문</small></button>
+          <button class="cq" data-cq="2"><b>CQ2</b>샤롯데씨어터에서 열리는 뮤지컬은?<small>기대: 오페라의 유령</small></button>
+          <button class="cq" data-cq="3"><b>CQ3</b>5만 원 이하 티켓이 있는 공연은?<small>기대: 오페라의 유령 (티켓1, 45,000원)</small></button>
+        </div>
+        <div id="cqout"></div>
+      </section>
+      <section class="card">
+        <h2>노드 정보</h2>
+        <div id="detail" style="color:var(--muted)">그래프에서 노드를 누르면 그 노드의 트리플이 여기에 보입니다.</div>
+      </section>
+    </aside>
+  </div>
+  <footer>읽기: rdflib.js · 그래프: vis-network · 추론: <code>owl:inverseOf</code>만 처리하는 간단한 규칙 (Protégé의 HermiT가 CQ1에서 해 준 일)</footer>
+</div>
+
+<script>
+/* ── 1. 이름표(네임스페이스) ─────────────────────────────── */
+const RDF  = $rdf.Namespace('http://www.w3.org/1999/02/22-rdf-syntax-ns#');
+const RDFS = $rdf.Namespace('http://www.w3.org/2000/01/rdf-schema#');
+const OWL  = $rdf.Namespace('http://www.w3.org/2002/07/owl#');
+const EX   = $rdf.Namespace('urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#');
+const WP   = $rdf.Namespace('http://webprotege.stanford.edu/');
+
+// 영어 라벨 → 한글 표시 (owl 파일의 rdfs:label이 영어인 요소용)
+const KO = {Performance:'공연',Musical:'뮤지컬',Concert:'콘서트',Exhibition:'전시',ArtExhibition:'미술 전시',Artist:'아티스트',Venue:'공연장',Ticket:'티켓',Genre:'장르',Artwork:'작품',
+  hasPerformer:'출연자',performsIn:'출연',takesPlaceAt:'공연장소',ticketFor:'티켓 대상',hasDirector:'감독',featuresWork:'작품 포함',hasGenre:'장르',
+  hasPrice:'가격',hasTitle:'제목',openingDate:'개막일',hasDuration:'공연 시간'};
+
+let store, network;
+
+/* ── 2. 배포된 owl 읽기 ──────────────────────────────────── */
+async function load(){
+  try{
+    const res = await fetch('protege_ontology.owl');
+    if(!res.ok) throw new Error('owl 파일 응답 ' + res.status);
+    store = $rdf.graph();
+    $rdf.parse(await res.text(), store, location.href, 'application/rdf+xml');
+    document.getElementById('status').textContent = '트리플 ' + store.statements.length + '개를 읽었습니다 · 노드를 끌어 옮기거나 눌러 볼 수 있어요';
+    draw();
+  }catch(e){
+    document.getElementById('status').innerHTML = '<span class="err">불러오기 실패: ' + e.message + '</span> — 파일을 file://로 열었다면 로컬 서버(python -m http.server)로 여세요.';
+  }
+}
+
+function rawLabel(n){ const l = store.any(n, RDFS('label')); return l ? l.value : n.value.split(/[#\/]/).pop(); }
+function label(n){ const r = rawLabel(n); return KO[r] ? KO[r] + ' (' + r + ')' : r; }
+function short(n){ const r = rawLabel(n); return KO[r] || r; }
+
+/* ── 3. 미니 추론기: owl:inverseOf ───────────────────────── */
+// "A hasPerformer B" 가 있으면 "B performsIn A" 도 참 — 그 반대도 마찬가지
+function inferred(){
+  if(!document.getElementById('infer').checked) return [];
+  const out = [];
+  store.match(null, OWL('inverseOf'), null).forEach(inv => {
+    const p = inv.subject, q = inv.object;
+    store.match(null, p, null).forEach(st => out.push({s:st.object, p:q, o:st.subject}));
+    store.match(null, q, null).forEach(st => out.push({s:st.object, p:p, o:st.subject}));
+  });
+  return out;
+}
+
+// 저장된 트리플 + 추론된 트리플에서 패턴 찾기 (SPARQL의 트리플 패턴 한 줄과 같음)
+function triples(s, p, o){
+  const stored = store.match(s, p, o).map(st => ({s:st.subject, p:st.predicate, o:st.object, inf:false}));
+  const inf = inferred().filter(t => (!s||t.s.equals(s)) && (!p||t.p.equals(p)) && (!o||t.o.equals(o))).map(t => ({...t, inf:true}));
+  return stored.concat(inf);
+}
+
+/* ── 4. 그래프 그리기 ────────────────────────────────────── */
+function draw(){
+  const nodes = [], edges = [];
+  const classes = store.each(null, RDF('type'), OWL('Class')).filter(c => c.termType === 'NamedNode');
+  const inds = store.each(null, RDF('type'), OWL('NamedIndividual'));
+
+  classes.forEach(c => nodes.push({id:c.value, label:short(c), shape:'box', margin:8,
+    color:{background:'#F4D6C6', border:'#B4562B', highlight:{background:'#F4D6C6', border:'#7A3518'}}, font:{face:'Noto Sans KR', size:14, color:'#5A2A12'}}));
+  inds.forEach(i => nodes.push({id:i.value, label:short(i), shape:'ellipse', margin:10,
+    color:{background:'#E3EFE9', border:'#2F6B57', highlight:{background:'#CFE6DC', border:'#1E4D3D'}}, font:{face:'Noto Sans KR', size:14, color:'#1E4D3D', bold:true}}));
+
+  // 하위 클래스 (rdfs:subClassOf)
+  classes.forEach(c => store.each(c, RDFS('subClassOf')).forEach(p => {
+    if(p.termType === 'NamedNode') edges.push({from:c.value, to:p.value, label:'하위', color:'#B4562B', width:1.5});
+  }));
+  // 종류 (rdf:type) : 인스턴스 → 클래스
+  inds.forEach(i => store.each(i, RDF('type')).forEach(c => {
+    if(!c.equals(OWL('NamedIndividual'))) edges.push({from:i.value, to:c.value, label:'종류', dashes:true, color:'#9AA1A9'});
+  }));
+  // 관계 (객체 속성) : 인스턴스 → 인스턴스
+  store.each(null, RDF('type'), OWL('ObjectProperty')).forEach(p =>
+    store.match(null, p, null).forEach(st =>
+      edges.push({from:st.subject.value, to:st.object.value, label:short(p), color:'#2F6B57', width:2})));
+  // 추론된 관계
+  inferred().forEach(t =>
+    edges.push({from:t.s.value, to:t.o.value, label:short(t.p) + ' (추론)', color:'#E0A800', dashes:true, width:2, font:{color:'#8A6A00'}}));
+
+  const pos = network ? network.getPositions() : null;
+  if(pos) nodes.forEach(n => { if(pos[n.id]){ n.x = pos[n.id].x; n.y = pos[n.id].y; } });
+
+  if(network) network.destroy();
+  network = new vis.Network(document.getElementById('graph'), {nodes, edges}, {
+    edges:{arrows:{to:{scaleFactor:.6}}, font:{face:'Noto Sans KR', size:11, align:'middle', strokeWidth:3, strokeColor:'#FBFAF7'}, smooth:{type:'dynamic'}},
+    physics: pos ? false : {solver:'forceAtlas2Based', forceAtlas2Based:{gravitationalConstant:-70, springLength:120}, stabilization:{iterations:300}},
+    interaction:{hover:true}
+  });
+  if(pos) network.fit(); else network.once('stabilizationIterationsDone', () => network.fit());
+  network.on('click', e => { if(e.nodes.length) showDetail($rdf.sym(e.nodes[0])); });
+}
+
+/* ── 5. 노드 정보 ────────────────────────────────────────── */
+function showDetail(node){
+  const rows = [];
+  triples(node, null, null).forEach(t => {
+    if(t.p.equals(RDFS('label')) || t.o.equals(OWL('NamedIndividual')) || t.o.equals(OWL('Class'))) return;
+    const pred = t.p.equals(RDF('type')) ? '종류' : t.p.equals(RDFS('subClassOf')) ? '하위 클래스' : short(t.p);
+    const obj = t.o.termType === 'Literal' ? '"' + t.o.value + '"' : label(t.o);
+    rows.push('<tr><td>' + pred + '</td><td' + (t.inf ? ' class="inf"' : '') + '>' + obj + (t.inf ? ' (추론)' : '') + '</td></tr>');
+  });
+  document.getElementById('detail').innerHTML = '<b style="color:var(--ink);font-size:15px">' + label(node) + '</b>'
+    + '<div style="font-size:11.5px;word-break:break-all;margin:2px 0 8px">' + node.value + '</div>'
+    + '<table>' + rows.join('') + '</table>';
+}
+
+/* ── 6. 역량 질문 ────────────────────────────────────────── */
+const CQ = {
+  1:{sparql:'SELECT ?artist WHERE {\n  ?artist ex:performsIn ex:PhantomOfTheOpera .\n}',
+     run:() => triples(null, EX('performsIn'), EX('PhantomOfTheOpera')).map(t => short(t.s)),
+     why:'performsIn은 입력한 적이 없어요. 위의 "역관계 추론 켜기"를 눌러 다시 실행해 보세요.'},
+  2:{sparql:'SELECT ?show ?title WHERE {\n  ?show rdf:type wp:…Musical .\n  ?show wp:…takesPlaceAt ex:CharlotteTheater .\n  ?show wp:…hasTitle ?title .\n}',
+     run:() => triples(null, WP('RBB0eHzgSPRwpTD2BS6Bium'), EX('CharlotteTheater'))
+                 .filter(t => store.holds(t.s, RDF('type'), WP('R7tKT0WRhsR1fgP3MpWJsOX')))
+                 .map(t => { const ti = store.any(t.s, WP('RCsd3diJIePADybfDz3m44E')); return short(t.s) + (ti ? ' — "' + ti.value + '"' : ''); })},
+  3:{sparql:'SELECT ?show ?price WHERE {\n  ?ticket ex:ticketFor ?show .\n  ?ticket wp:…hasPrice ?price .\n  FILTER (?price <= 50000)\n}',
+     run:() => { const rows = [];
+       triples(null, EX('ticketFor'), null).forEach(t => {
+         const price = store.any(t.s, WP('R7rThThQmUrXvESv38Kg0Gv'));
+         if(price && Number(price.value) <= 50000) rows.push(short(t.o) + ' (' + short(t.s) + ', ' + Number(price.value).toLocaleString() + '원)');
+       }); return rows; }}
+};
+let currentCQ = null;
+function runCQ(n){
+  if(!store) return;
+  currentCQ = n;
+  document.querySelectorAll('.cq').forEach(b => b.classList.toggle('on', b.dataset.cq == n));
+  const rows = CQ[n].run();
+  const infOn = document.getElementById('infer').checked;
+  document.getElementById('cqout').innerHTML = '<pre>' + CQ[n].sparql.replace(/</g,'&lt;') + '</pre>'
+    + (rows.length
+      ? '<div class="res ok">✅ ' + rows.join('<br>✅ ') + (n == 1 && infOn ? '<span class="why">추론이 hasPerformer의 반대 방향으로 performsIn을 채워 답이 나왔어요.</span>' : '') + '</div>'
+      : '<div class="res no">❌ 결과 없음' + (CQ[n].why && !infOn ? '<span class="why">' + CQ[n].why + '</span>' : '') + '</div>');
+}
+document.querySelectorAll('.cq').forEach(b => b.onclick = () => runCQ(+b.dataset.cq));
+document.getElementById('infer').onchange = () => { draw(); if(currentCQ) runCQ(currentCQ); };
+
+load();
+</script>
+</body>
+</html>

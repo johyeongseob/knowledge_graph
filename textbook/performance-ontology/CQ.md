@@ -49,14 +49,15 @@
 
 ## 4. 기대하는 답과 검증 결과
 
-| ID | 구체적인 질문 | 기대하는 답 | DL Query | SPARQL (Snap SPARQL) |
-|---|---|---|---|---|
-| CQ1 | 오페라의 유령의 출연자는? | 배우A | ✅ 배우A | ✅ ex:ActorA |
-| CQ2 | 샤롯데씨어터에서 열리는 뮤지컬은? | 오페라의 유령 | ⏳ | ✅ ex:PhantomOfTheOpera, "오페라의 유령" |
-| CQ3 | 5만 원 이하 티켓이 있는 공연은? | 오페라의 유령 (티켓1, 45,000원) | ⏳ | ⏳ |
+| ID | 구체적인 질문 | 기대하는 답 | DL Query | SPARQL (Snap SPARQL) | 배포본 SPARQL (Comunica) |
+|---|---|---|---|---|---|
+| CQ1 | 오페라의 유령의 출연자는? | 배우A | ✅ 배우A | ✅ ex:ActorA | ❌ 결과 없음 (추론 없음) |
+| CQ2 | 샤롯데씨어터에서 열리는 뮤지컬은? | 오페라의 유령 | ⏳ | ✅ ex:PhantomOfTheOpera, "오페라의 유령" | ✅ ex:PhantomOfTheOpera, "오페라의 유령" |
+| CQ3 | 5만 원 이하 티켓이 있는 공연은? | 오페라의 유령 (티켓1, 45,000원) | ⏳ | ⏳ | ✅ ex:PhantomOfTheOpera, 45000 |
 
 - 일관성: HermiT 추론기 실행 결과 모순 없음
-- CQ1은 두 방식 모두 **입력하지 않은 performsIn**으로 물었는데 답이 나왔습니다. hasPerformer의 역관계를 추론기가 채운 결과입니다.
+- CQ1은 DL Query와 Snap SPARQL 모두 **입력하지 않은 performsIn**으로 물었는데 답이 나왔습니다. hasPerformer의 역관계를 추론기가 채운 결과입니다.
+- 배포본 검증: GitHub Pages에 올라간 파일(`https://johyeongseob.github.io/knowledge_graph/textbook/performance-ontology/protege_ontology.owl`)을 브라우저용 SPARQL 엔진 [Comunica](https://query.comunica.dev/)로 직접 질의했습니다. Comunica에는 추론기가 없어 **저장된 트리플만** 보므로, 추론에 기대는 CQ1은 답이 없고 저장된 사실만 쓰는 CQ2·CQ3은 답이 나옵니다.
 
 ---
 
