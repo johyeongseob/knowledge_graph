@@ -4,5 +4,4 @@
 ## 바로가기
 - [발표자료 (HTML 슬라이드)](https://johyeongseob.github.io/knowledge_graph/textbook/지식그래프_발표자료.html)
 - [온톨로지 검증 페이지](https://johyeongseob.github.io/knowledge_graph/textbook/performance-ontology/viewer.html) — 배포된 OWL을 그래프로 보고 역량 질문(CQ)으로 검증
-- [온톨로지 파일 (OWL)](https://johyeongseob.github.io/knowledge_graph/textbook/performance-ontology/protege_ontology.owl)
 - [역량 질문 정리 (CQ.md)](textbook/performance-ontology/CQ.md)
