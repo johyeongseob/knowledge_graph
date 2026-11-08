@@ -1,7 +1,7 @@
 # 역량 질문 (Competency Questions)
 
 공연/전시 서비스 온톨로지가 **답할 수 있어야 하는 질문**을 정리한 문서입니다.
-교재 3.4절의 2단계(범위 결정)에 해당하며, 7단계(검증)에서 이 질문들로 온톨로지를 시험합니다.
+교재 3.4절의 2단계(범위 결정)에서 질문을 정하고, 7단계(검증)에서 이 질문들로 온톨로지를 시험합니다.
 
 - 대상 파일: `protege_ontology.owl`
 - 방법론: Ontology Development 101 (Noy & McGuinness, 2001)
@@ -22,42 +22,15 @@
 
 질문의 **명사는 클래스**, **동사는 객체 속성**, **조건은 데이터 속성**이 됩니다.
 
-| ID | 필요한 클래스 | 필요한 객체 속성 | 필요한 데이터 속성 | 현재 파일 |
-|---|---|---|---|---|
-| CQ1 | Performance, Artist | hasPerformer (공연 → 아티스트) | hasTitle | ✅ 모두 있음 |
-| CQ2 | Musical, Venue | takesPlaceAt (공연 → 장소) | hasTitle | ✅ 모두 있음 |
-| CQ3 | Ticket, Performance | **ticketFor (티켓 → 공연)** | hasPrice | ✅ M2에서 ticketFor 추가 |
-
-세 질문에 필요한 **구조(스키마)는 모두 갖춰졌습니다.** 실제로 답을 얻으려면 M4에서 데이터(인스턴스)를 넣어야 합니다.
+| ID | 클래스 | 객체 속성 | 데이터 속성 |
+|---|---|---|---|
+| CQ1 | Performance, Artist | hasPerformer (공연 → 아티스트), 역관계 performsIn | hasTitle |
+| CQ2 | Musical, Venue | takesPlaceAt (공연 → 장소) | hasTitle |
+| CQ3 | Ticket, Performance | ticketFor (티켓 → 공연) | hasPrice |
 
 ---
 
-## 3. 빠진 요소 → 마일스톤별 추가 내역
-
-### M2. 클래스·속성 추가 ✅ 완료
-| 추가한 것 | 종류 | 정의역 (Domain) | 치역 (Range) | 이유 | 상태 |
-|---|---|---|---|---|---|
-| ticketFor | 객체 속성 | Ticket | Performance | CQ3: 어느 공연의 티켓인지 연결 | ✅ 추가됨 (라벨 `ticketFor`@en) |
-
-- Functional 특성은 일부러 체크하지 않았습니다. "티켓 한 장은 공연 하나"라는 규칙은 M3에서 카디널리티(exactly 1)로 표현합니다.
-- 새로 만든 속성의 ID는 `…#ticketFor`이고, 기존 요소들은 WebProtégé가 만든 무작위 ID(`R92Gma…` 등)입니다. 동작에는 차이가 없습니다.
-
-### M3. 제약 (카디널리티) ✅ 완료
-| 클래스 | 제약 | 의미 | 관련 슬라이드 | 상태 |
-|---|---|---|---|---|
-| Performance | takesPlaceAt **exactly 1** Venue | 공연 장소는 정확히 1곳 | 28쪽 5단계, 42쪽 OWL | ✅ 추가됨 |
-| Performance | hasPerformer **min 1** Artist | 공연에는 출연자가 최소 1명 | 28쪽 5단계 | ✅ 추가됨 |
-| Ticket | ticketFor **exactly 1** Performance | 티켓 한 장은 공연 하나에 대한 것 | CQ3 | ✅ 추가됨 |
-
-- 세 제약 모두 클래스의 **SubClass Of**에 넣었습니다. ("Performance는 '장소가 정확히 1곳인 것'의 하위 클래스")
-- OWL 파일에는 `qualifiedCardinality`(정확히) / `minQualifiedCardinality`(최소)로 저장됩니다. "qualified"는 대상 클래스(Venue, Artist, Performance)까지 지정했다는 뜻입니다.
-- **주의 (열린 세계 가정)**: 값이 없어도 오류가 아닙니다. 또 "정확히 1곳"인 공연에 장소 두 개를 넣으면, 추론기는 모순 대신 "두 장소가 같은 곳"이라고 추론합니다. → M4에서 공연장들을 **서로 다른 개체(Different Individuals)**로 선언해야 합니다.
-
----
-
-## 4. 검증용 데이터 (M4) ✅ 입력 완료
-
-이름(ID)은 영어로 짓고, 화면에 보일 한글 이름은 `rdfs:label`(언어 `ko`)로 붙입니다.
+## 3. 검증용 데이터
 
 | ID | 한글 라벨 | 클래스 | 속성 값 |
 |---|---|---|---|
@@ -70,30 +43,78 @@
 | Ticket1 | 티켓1 | Ticket | ticketFor PhantomOfTheOpera, hasPrice 45000 |
 | Ticket2 | 티켓2 | Ticket | ticketFor LesMiserables, hasPrice 120000 |
 
-- 추가로 **서로 다른 개체(Different Individuals)** 선언: CharlotteTheater ≠ BlueSquare, ActorA ≠ ActorB, PhantomOfTheOpera ≠ LesMiserables, Ticket1 ≠ Ticket2 (M3의 열린 세계 가정 주의 참고)
-- 입력 순서: 장소·배우(연결 없음) → 뮤지컬(장소·배우와 연결) → 티켓(뮤지컬과 연결) → 서로 다른 개체 선언
+8개 개체는 모두 서로 다른 개체(owl:AllDifferent)로 선언되어 있습니다.
 
 ---
 
-## 5. 기대하는 답 (M5 검증 기준)
+## 4. 기대하는 답과 검증 결과
 
-| ID | 구체적인 질문 | 기대하는 답 |
-|---|---|---|
-| CQ1 | 오페라의 유령의 출연자는? | 배우A |
-| CQ2 | 샤롯데씨어터에서 열리는 뮤지컬은? | 오페라의 유령 |
-| CQ3 | 5만 원 이하 티켓이 있는 공연은? | 오페라의 유령 (티켓1, 45,000원) |
+| ID | 구체적인 질문 | 기대하는 답 | DL Query | SPARQL (Snap SPARQL) |
+|---|---|---|---|---|
+| CQ1 | 오페라의 유령의 출연자는? | 배우A | ✅ 배우A | ✅ ex:ActorA |
+| CQ2 | 샤롯데씨어터에서 열리는 뮤지컬은? | 오페라의 유령 | ⏳ | ✅ ex:PhantomOfTheOpera, "오페라의 유령" |
+| CQ3 | 5만 원 이하 티켓이 있는 공연은? | 오페라의 유령 (티켓1, 45,000원) | ⏳ | ⏳ |
 
-세 질문 모두 기대한 답이 나오면 온톨로지가 요구사항을 충족한 것으로 봅니다.
-M5에서는 이 질문들을 SPARQL(또는 Protégé의 DL Query)로 바꿔 실행합니다.
+- 일관성: HermiT 추론기 실행 결과 모순 없음
+- CQ1은 두 방식 모두 **입력하지 않은 performsIn**으로 물었는데 답이 나왔습니다. hasPerformer의 역관계를 추론기가 채운 결과입니다.
 
 ---
 
-## 6. 진행 상황
+## 5. 질의
 
-- [x] M1. 역량 질문 정하기
-- [x] M2. 빠진 클래스·속성 추가 (ticketFor) — HermiT 일관성 확인 완료
-- [x] M3. 제약 추가 (카디널리티 3개)
-- [x] M4. 인스턴스 입력 — 장소·배우 4개, 뮤지컬 2개(출연·장소·제목), 티켓 2장(공연·가격), 8개 모두 서로 다른 개체(owl:AllDifferent)
-- [ ] M5. 검증 (HermiT 추론 + CQ 질의)
-- [ ] M6. 문서화 (한글 라벨·설명)
-- [ ] M7. 시연 준비
+### 5-1. DL Query (Protégé의 DL Query 탭)
+
+오른쪽 Query for에서 **Instances**를 체크하고 실행합니다.
+
+| CQ | DL Query 식 |
+|---|---|
+| CQ1 | `Artist and performsIn value '오페라의 유령'` |
+| CQ2 | `Musical and takesPlaceAt value 샤롯데씨어터` |
+| CQ3 | `Performance and inverse (ticketFor) some (Ticket and hasPrice some xsd:decimal[<= 50000])` |
+
+### 5-2. SPARQL (Snap SPARQL)
+
+질의는 **한 번에 하나만** 실행합니다. 기존 요소들의 ID가 WebProtégé의 무작위 문자열이라 주소를 그대로 씁니다.
+
+| 주소 | 이름 |
+|---|---|
+| `wp:RClBMOPaBShii6OzewDhPEJ` | hasPerformer |
+| `wp:RBB0eHzgSPRwpTD2BS6Bium` | takesPlaceAt |
+| `wp:R7rThThQmUrXvESv38Kg0Gv` | hasPrice |
+| `wp:RCsd3diJIePADybfDz3m44E` | hasTitle |
+| `wp:R7tKT0WRhsR1fgP3MpWJsOX` | Musical |
+| `ex:performsIn`, `ex:ticketFor`, `ex:개체이름` | 직접 만든 요소 |
+
+**CQ1. 오페라의 유령의 출연자는?**
+```sparql
+PREFIX ex: <urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#>
+
+SELECT ?artist WHERE {
+  ?artist ex:performsIn ex:PhantomOfTheOpera .
+}
+```
+
+**CQ2. 샤롯데씨어터에서 열리는 뮤지컬은?**
+```sparql
+PREFIX ex: <urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#>
+PREFIX wp: <http://webprotege.stanford.edu/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?show ?title WHERE {
+  ?show rdf:type wp:R7tKT0WRhsR1fgP3MpWJsOX .
+  ?show wp:RBB0eHzgSPRwpTD2BS6Bium ex:CharlotteTheater .
+  ?show wp:RCsd3diJIePADybfDz3m44E ?title .
+}
+```
+
+**CQ3. 5만 원 이하 티켓이 있는 공연은?**
+```sparql
+PREFIX ex: <urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#>
+PREFIX wp: <http://webprotege.stanford.edu/>
+
+SELECT ?show ?price WHERE {
+  ?ticket ex:ticketFor ?show .
+  ?ticket wp:R7rThThQmUrXvESv38Kg0Gv ?price .
+  FILTER (?price <= 50000)
+}
+```
