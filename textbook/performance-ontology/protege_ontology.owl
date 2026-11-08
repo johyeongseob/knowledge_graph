@@ -5,7 +5,8 @@
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
      xmlns:xml="http://www.w3.org/XML/1998/namespace"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:webprotege="http://webprotege.stanford.edu/">
     <owl:Ontology rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6"/>
     
 
@@ -191,6 +192,13 @@
     <!-- http://webprotege.stanford.edu/R92Gma3jduIxJMpCX1IPtLq -->
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/R92Gma3jduIxJMpCX1IPtLq">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#ticketFor"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://webprotege.stanford.edu/RC8Wx8IIZZmSqeEx2oTnUBY"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="en">Ticket</rdfs:label>
     </owl:Class>
     
@@ -207,6 +215,20 @@
     <!-- http://webprotege.stanford.edu/RC8Wx8IIZZmSqeEx2oTnUBY -->
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/RC8Wx8IIZZmSqeEx2oTnUBY">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/RClBMOPaBShii6OzewDhPEJ"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://webprotege.stanford.edu/R8htdjuRGclEwV2i6sAUgyn"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/RBB0eHzgSPRwpTD2BS6Bium"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://webprotege.stanford.edu/RLdm5wMMN89kkzvZY3DYAk"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="en">Performance</rdfs:label>
     </owl:Class>
     
@@ -249,6 +271,99 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#ActorA -->
+
+    <owl:NamedIndividual rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#ActorA">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8htdjuRGclEwV2i6sAUgyn"/>
+        <rdfs:label xml:lang="ko">배우A</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#ActorB -->
+
+    <owl:NamedIndividual rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#ActorB">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8htdjuRGclEwV2i6sAUgyn"/>
+        <rdfs:label xml:lang="ko">배우B</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#BlueSquare -->
+
+    <owl:NamedIndividual rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#BlueSquare">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RLdm5wMMN89kkzvZY3DYAk"/>
+        <rdfs:label xml:lang="ko">블루스퀘어</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#CharlotteTheater -->
+
+    <owl:NamedIndividual rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#CharlotteTheater">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RLdm5wMMN89kkzvZY3DYAk"/>
+        <rdfs:label xml:lang="ko">샤롯데씨어터</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#LesMiserables -->
+
+    <owl:NamedIndividual rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#LesMiserables">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R7tKT0WRhsR1fgP3MpWJsOX"/>
+        <webprotege:RBB0eHzgSPRwpTD2BS6Bium rdf:resource="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#BlueSquare"/>
+        <webprotege:RClBMOPaBShii6OzewDhPEJ rdf:resource="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#ActorB"/>
+        <webprotege:RCsd3diJIePADybfDz3m44E>레미제라블</webprotege:RCsd3diJIePADybfDz3m44E>
+        <rdfs:label xml:lang="ko">레미제라블</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#PhantomOfTheOpera -->
+
+    <owl:NamedIndividual rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#PhantomOfTheOpera">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R7tKT0WRhsR1fgP3MpWJsOX"/>
+        <webprotege:RBB0eHzgSPRwpTD2BS6Bium rdf:resource="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#CharlotteTheater"/>
+        <webprotege:RClBMOPaBShii6OzewDhPEJ rdf:resource="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#ActorA"/>
+        <webprotege:RCsd3diJIePADybfDz3m44E>오페라의 유령</webprotege:RCsd3diJIePADybfDz3m44E>
+        <rdfs:label xml:lang="ko">오페라의 유령</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#Ticket1 -->
+
+    <owl:NamedIndividual rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#Ticket1">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R92Gma3jduIxJMpCX1IPtLq"/>
+        <ticketFor rdf:resource="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#PhantomOfTheOpera"/>
+        <webprotege:R7rThThQmUrXvESv38Kg0Gv rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">45000</webprotege:R7rThThQmUrXvESv38Kg0Gv>
+        <rdfs:label xml:lang="ko">티켓1</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#Ticket2 -->
+
+    <owl:NamedIndividual rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#Ticket2">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R92Gma3jduIxJMpCX1IPtLq"/>
+        <ticketFor rdf:resource="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#LesMiserables"/>
+        <webprotege:R7rThThQmUrXvESv38Kg0Gv rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">120000</webprotege:R7rThThQmUrXvESv38Kg0Gv>
+        <rdfs:label xml:lang="ko">티켓2</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // General axioms
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -265,6 +380,19 @@
             <rdf:Description rdf:about="http://webprotege.stanford.edu/RCHRQnmGtRhNDrdwWWQGj7L"/>
             <rdf:Description rdf:about="http://webprotege.stanford.edu/RLdm5wMMN89kkzvZY3DYAk"/>
         </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+        <owl:distinctMembers rdf:parseType="Collection">
+            <rdf:Description rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#ActorA"/>
+            <rdf:Description rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#ActorB"/>
+            <rdf:Description rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#BlueSquare"/>
+            <rdf:Description rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#CharlotteTheater"/>
+            <rdf:Description rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#LesMiserables"/>
+            <rdf:Description rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#PhantomOfTheOpera"/>
+            <rdf:Description rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#Ticket1"/>
+            <rdf:Description rdf:about="urn:webprotege:ontology:0529e64b-ea02-48c8-8cbc-bd2d8f15c2e6#Ticket2"/>
+        </owl:distinctMembers>
     </rdf:Description>
 </rdf:RDF>
 

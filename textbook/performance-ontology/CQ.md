@@ -42,27 +42,36 @@
 - Functional 특성은 일부러 체크하지 않았습니다. "티켓 한 장은 공연 하나"라는 규칙은 M3에서 카디널리티(exactly 1)로 표현합니다.
 - 새로 만든 속성의 ID는 `…#ticketFor`이고, 기존 요소들은 WebProtégé가 만든 무작위 ID(`R92Gma…` 등)입니다. 동작에는 차이가 없습니다.
 
-### M3. 제약 (카디널리티)
-| 클래스 | 제약 | 의미 | 관련 슬라이드 |
-|---|---|---|---|
-| Performance | takesPlaceAt **exactly 1** Venue | 공연 장소는 정확히 1곳 | 28쪽 5단계, 42쪽 OWL |
-| Performance | hasPerformer **min 1** Artist | 공연에는 출연자가 최소 1명 | 28쪽 5단계 |
-| Ticket | ticketFor **exactly 1** Performance | 티켓 한 장은 공연 하나에 대한 것 | CQ3 |
+### M3. 제약 (카디널리티) ✅ 완료
+| 클래스 | 제약 | 의미 | 관련 슬라이드 | 상태 |
+|---|---|---|---|---|
+| Performance | takesPlaceAt **exactly 1** Venue | 공연 장소는 정확히 1곳 | 28쪽 5단계, 42쪽 OWL | ✅ 추가됨 |
+| Performance | hasPerformer **min 1** Artist | 공연에는 출연자가 최소 1명 | 28쪽 5단계 | ✅ 추가됨 |
+| Ticket | ticketFor **exactly 1** Performance | 티켓 한 장은 공연 하나에 대한 것 | CQ3 | ✅ 추가됨 |
+
+- 세 제약 모두 클래스의 **SubClass Of**에 넣었습니다. ("Performance는 '장소가 정확히 1곳인 것'의 하위 클래스")
+- OWL 파일에는 `qualifiedCardinality`(정확히) / `minQualifiedCardinality`(최소)로 저장됩니다. "qualified"는 대상 클래스(Venue, Artist, Performance)까지 지정했다는 뜻입니다.
+- **주의 (열린 세계 가정)**: 값이 없어도 오류가 아닙니다. 또 "정확히 1곳"인 공연에 장소 두 개를 넣으면, 추론기는 모순 대신 "두 장소가 같은 곳"이라고 추론합니다. → M4에서 공연장들을 **서로 다른 개체(Different Individuals)**로 선언해야 합니다.
 
 ---
 
-## 4. 검증용 데이터 (M4에서 입력할 인스턴스)
+## 4. 검증용 데이터 (M4) ✅ 입력 완료
 
-| 인스턴스 | 클래스 | 속성 값 |
-|---|---|---|
-| 오페라의유령 | Musical | hasTitle "오페라의 유령", hasPerformer 배우A, takesPlaceAt 샤롯데씨어터 |
-| 레미제라블 | Musical | hasTitle "레미제라블", hasPerformer 배우B, takesPlaceAt 블루스퀘어 |
-| 배우A | Artist | — |
-| 배우B | Artist | — |
-| 샤롯데씨어터 | Venue | — |
-| 블루스퀘어 | Venue | — |
-| 티켓1 | Ticket | ticketFor 오페라의유령, hasPrice 45000 |
-| 티켓2 | Ticket | ticketFor 레미제라블, hasPrice 120000 |
+이름(ID)은 영어로 짓고, 화면에 보일 한글 이름은 `rdfs:label`(언어 `ko`)로 붙입니다.
+
+| ID | 한글 라벨 | 클래스 | 속성 값 |
+|---|---|---|---|
+| CharlotteTheater | 샤롯데씨어터 | Venue | — |
+| BlueSquare | 블루스퀘어 | Venue | — |
+| ActorA | 배우A | Artist | — |
+| ActorB | 배우B | Artist | — |
+| PhantomOfTheOpera | 오페라의 유령 | Musical | hasTitle "오페라의 유령", hasPerformer ActorA, takesPlaceAt CharlotteTheater |
+| LesMiserables | 레미제라블 | Musical | hasTitle "레미제라블", hasPerformer ActorB, takesPlaceAt BlueSquare |
+| Ticket1 | 티켓1 | Ticket | ticketFor PhantomOfTheOpera, hasPrice 45000 |
+| Ticket2 | 티켓2 | Ticket | ticketFor LesMiserables, hasPrice 120000 |
+
+- 추가로 **서로 다른 개체(Different Individuals)** 선언: CharlotteTheater ≠ BlueSquare, ActorA ≠ ActorB, PhantomOfTheOpera ≠ LesMiserables, Ticket1 ≠ Ticket2 (M3의 열린 세계 가정 주의 참고)
+- 입력 순서: 장소·배우(연결 없음) → 뮤지컬(장소·배우와 연결) → 티켓(뮤지컬과 연결) → 서로 다른 개체 선언
 
 ---
 
@@ -82,9 +91,9 @@ M5에서는 이 질문들을 SPARQL(또는 Protégé의 DL Query)로 바꿔 실�
 ## 6. 진행 상황
 
 - [x] M1. 역량 질문 정하기
-- [x] M2. 빠진 클래스·속성 추가 (ticketFor) — 추론기(HermiT) 확인 남음
-- [ ] M3. 제약 추가 (카디널리티 3개)
-- [ ] M4. 인스턴스 입력
+- [x] M2. 빠진 클래스·속성 추가 (ticketFor) — HermiT 일관성 확인 완료
+- [x] M3. 제약 추가 (카디널리티 3개)
+- [x] M4. 인스턴스 입력 — 장소·배우 4개, 뮤지컬 2개(출연·장소·제목), 티켓 2장(공연·가격), 8개 모두 서로 다른 개체(owl:AllDifferent)
 - [ ] M5. 검증 (HermiT 추론 + CQ 질의)
 - [ ] M6. 문서화 (한글 라벨·설명)
 - [ ] M7. 시연 준비
