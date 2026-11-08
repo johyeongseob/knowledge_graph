@@ -1,9 +1,6 @@
 # Protégé 설치 프로그램
 Protege-*/
 
-# 인코딩 깨진 원본 txt (.md로 정리됨)
-지식그래프_*.txt
-
 # OS / 편집기 자동 생성 파일
 Thumbs.db
 desktop.ini

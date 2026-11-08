@@ -170,6 +170,111 @@ pre.code .c{color:#7D8B97}
 .ex-ar{font-size:14px;color:var(--accent);font-weight:700;margin:2px 0}
 .ex-a{font-size:14.5px;line-height:1.5;font-weight:700;color:var(--accent-ink)}
 
+.tocard{cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s}
+.tocard:hover{border-color:var(--accent);box-shadow:0 6px 18px rgba(14,107,92,.12);transform:translateY(-2px)}
+
+.mk{font-style:normal;flex:none;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:700;vertical-align:middle;margin-left:4px;font-family:"Pretendard",sans-serif}
+.map{font-size:13.5px!important;color:var(--accent-ink)!important;margin-top:6px;font-weight:600}
+
+.yr-in{font-size:11.5px;padding:1px 8px;margin-left:4px;vertical-align:1px}
+.cite{display:flex;gap:10px;font-size:12.5px;line-height:1.4;color:#4A5461}
+.cite b{flex:none;color:var(--warm);font-weight:800;width:34px}
+
+.ytl{display:grid;grid-template-columns:repeat(8,1fr);position:relative;padding-top:18px}
+.ytl::before{content:"";position:absolute;left:6px;right:6px;top:5px;height:2px;background:linear-gradient(90deg,#D6CFC2,var(--accent))}
+.ytl>div{position:relative;display:flex;flex-direction:column;gap:2px;padding-right:6px}
+.ytl>div::before{content:"";position:absolute;top:-18px;left:0;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.ytl>div.now::before{background:var(--accent)}
+.ytl b{font-size:17px;font-weight:800;color:var(--accent-ink)}
+.ytl span{font-size:12.5px;line-height:1.35;color:#4A5461}
+
+.golink{cursor:pointer;transition:background .15s,border-color .15s,color .15s}
+.divider .toc span.golink:hover{background:#1F3A3A;border-color:var(--dark-accent);color:#fff}
+.goal .ref.golink:hover{background:var(--accent);color:#fff}
+
+.card-mini{display:flex;flex-direction:column;gap:4px;margin-top:6px}
+.card-mini>div{display:grid;grid-template-columns:62px 96px 1fr;align-items:center;gap:8px;font-size:14px;background:#F4F1EA;border-radius:8px;padding:3px 10px}
+.card-mini .pill{font-size:12.5px;padding:3px 0;text-align:center}
+.card-mini b{color:var(--accent-ink)}
+.card-mini span:last-child{color:#4A5461}
+
+.hier{color:var(--warm)!important}
+.nonhier{color:var(--accent)!important}
+
+.pick{position:relative;display:inline-flex}
+.pick-note{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:3px;white-space:nowrap;font-size:12.5px;font-weight:700;color:var(--accent-ink)}
+
+.steps8 .card h3{font-size:18px}
+.steps8 .card p{font-size:15px;line-height:1.5}
+
+.linkbtn{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:6px 14px;border-radius:999px;border:1.5px solid var(--accent);background:#fff;color:var(--accent-ink);font-size:13.5px;font-weight:700;cursor:pointer;transition:background .15s,color .15s,transform .15s;box-shadow:0 1px 0 rgba(14,107,92,.15)}
+.linkbtn .lb-ar{transition:transform .15s}
+.linkbtn:hover{background:var(--accent);color:#fff}
+.linkbtn:hover .lb-ar{transform:translateX(3px)}
+
+.mini-tbl{border-collapse:collapse;font-size:13.5px;margin:4px 0 2px;background:#fff}
+.mini-tbl th,.mini-tbl td{border:1px solid #DDD8CC;padding:4px 10px;text-align:left}
+.mini-tbl th{background:#EFEBE2;font-weight:700}
+.kgline{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.kgline .kn{display:inline-flex;flex-direction:column;align-items:center;background:#fff;border:2px solid var(--accent);border-radius:999px;padding:4px 16px;font-weight:800;font-size:16px;line-height:1.2}
+.kgline .kn small{font-size:12px;font-weight:700;color:var(--warm)}
+.kgline .ke{font-size:15px;font-weight:700;color:var(--accent)}
+.kgline .kv{background:var(--warm-soft);border-radius:8px;padding:8px 14px;font-weight:700;color:#7A3518;font-size:16px}
+
+.gloss{display:flex;flex-direction:column;gap:6px;border-left:2px solid #DDD5C6;padding-left:16px}
+.gloss>div{display:flex;flex-direction:column;gap:1px}
+.gloss b{font-size:13.5px;color:var(--accent-ink)}
+.gloss span{font-size:12.5px;line-height:1.45;color:#4A5461}
+.gloss em{font-style:normal;font-weight:700;color:var(--ink)}
+
+.goal.star{border-color:#E2C27A;box-shadow:inset 3px 0 0 #D9A436}
+.goal.star h4::after{content:"★ 핵심";margin-left:8px;font-size:12px;font-weight:800;color:#B07D12;background:#FBF1D9;border-radius:999px;padding:2px 8px;vertical-align:2px}
+.divider .toc span.star{border-color:#C9A24A}
+.divider .toc span.star::after{content:" ★";color:#E8C15C}
+
+.secb{font-size:12.5px;font-weight:800;color:var(--accent-ink);border:1.5px solid var(--accent);background:#fff;border-radius:999px;padding:2px 10px;white-space:nowrap}
+.secb.golink:hover{background:var(--accent);color:#fff}
+
+.gloss5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;border-top:1px solid #DDD5C6;padding-top:10px}
+.gloss5>div{display:flex;flex-direction:column;gap:1px}
+.gloss5 b{font-size:14px;color:var(--accent-ink);font-weight:800}
+.gloss5 i{font-style:normal;font-size:11.5px;color:var(--muted);font-weight:600}
+.gloss5 span{font-size:12.5px;line-height:1.4;color:#36404D;margin-top:2px}
+
+.tbl-tight th,.tbl-tight td{padding:9px 16px}
+
+.sysgrid{display:grid;grid-template-columns:1fr 1fr .8fr;gap:18px}
+.syscol{display:flex;flex-direction:column;gap:8px}
+.syscol-h{font-size:15px;font-weight:800;color:var(--accent-ink);padding-bottom:6px;border-bottom:2px solid var(--accent)}
+.syscol-h small{font-size:12px;font-weight:600;color:var(--muted);margin-left:6px}
+.sys{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.sys-h{display:flex;justify-content:space-between;align-items:baseline;gap:6px;flex-wrap:wrap}
+.sys-h b{font-size:15.5px}
+.stags{display:flex;gap:4px;flex-wrap:wrap}
+.stag{font-size:11px;font-weight:700;color:var(--muted);background:#EFEBE2;border-radius:999px;padding:1px 7px;white-space:nowrap}
+.sys p{font-size:13px;line-height:1.45;color:#4A5461;margin-top:3px}
+
+.codeexp{display:flex;flex-direction:column;gap:3px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:8px 14px}
+.codeexp>div{display:grid;grid-template-columns:200px 1fr;gap:10px;align-items:baseline;font-size:12.5px;line-height:1.4}
+.codeexp code{font-family:"JetBrains Mono",Consolas,monospace;font-size:12px;color:var(--accent-ink);background:var(--accent-soft);border-radius:5px;padding:1px 6px;justify-self:start;white-space:nowrap}
+.codeexp span{color:#36404D}
+
+.eg1{font-size:13.5px!important;line-height:1.45!important;color:var(--accent-ink)!important;margin-top:8px;background:#F4F1EA;border-radius:8px;padding:6px 10px}
+.card.accent .eg1{background:#fff}
+.eg1 .ex-l{margin-right:6px}
+
+.abbr{margin-top:auto;padding-top:10px;border-top:1px dashed #D6CFC2;display:flex;flex-direction:column;gap:1px}
+.abbr span{font-size:13.5px;color:var(--ink);font-family:"Pretendard",sans-serif}
+.abbr span b{color:var(--accent)}
+.abbr small{font-size:12px;color:var(--muted)}
+
+.journey{display:grid;grid-template-columns:repeat(6,1fr);gap:22px}
+.journey>div{position:relative;display:flex;flex-direction:column;gap:2px;background:#F4F1EA;border-radius:10px;padding:8px 10px}
+.journey>div:not(:last-child)::after{content:"→";position:absolute;right:-17px;top:50%;transform:translateY(-50%);color:var(--accent);font-weight:800}
+.journey>div.now{background:var(--accent-soft)}
+.journey b{font-size:13.5px;color:var(--accent-ink)}
+.journey span{font-size:12px;line-height:1.4;color:#4A5461}
+
 /* chapter progress (top-right) */
 .chnav{position:absolute;top:16px;right:72px;display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-size:12.5px;z-index:2}
 .chnav ol{list-style:none;display:flex;align-items:center;gap:2px}
@@ -260,7 +365,7 @@ pre.code .c{color:#7D8B97}
   <div class="chno">01</div>
   <h1>지식그래프에 대하여</h1>
   <p class="intro">방대한 데이터 속에서 어떻게 ‘가치’를 찾아낼까?<br>지식그래프는 지식을 통합·구조화하고 새로운 지식을 추론해 <b style="color:#fff">비즈니스 가치</b>로 연결한다.</p>
-  <div class="toc"><span><b>1.1</b>지식그래프란?</span><span><b>1.2</b>AI와 지식그래프의 역사</span><span><b>1.3</b>거대언어모델과 지식그래프</span></div>
+  <div class="toc"><span class="star"><b>1.1</b>지식그래프란?</span><span class="star"><b>1.2</b>AI와 지식그래프의 역사</span><span><b>1.3</b>거대언어모델과 지식그래프</span></div>
 </section>
 
 <section class="slide" data-ch="1장 · 지식그래프에 대하여">
@@ -269,8 +374,8 @@ pre.code .c{color:#7D8B97}
     <div class="g-5-7 fill">
       <div class="card accent qbox"><span class="tag">핵심 질문</span><p class="q">쏟아지는 데이터 속에서<br>어떻게 ‘가치’를<br>찾아낼 수 있을까?</p><p class="qs">데이터를 의미 기반으로 조직하고 연결해, 지식 기반의 의사결정으로 잇는 도구 — 지식그래프에서 답을 찾는다.</p></div>
       <div class="goals">
-        <div class="goal"><span class="num">1</span><div><h4>지식그래프의 정의와 구성 요소</h4><p>개체·관계·삼중항, 그리고 노드·엣지·속성·라벨</p></div><span class="ref">1.1</span></div>
-        <div class="goal"><span class="num">2</span><div><h4>AI 역사 속 지식그래프의 흐름</h4><p>기호 기반 → 기계학습 → 시맨틱 웹 → LLM 융합, 그리고 RDF·OWL·SPARQL</p></div><span class="ref">1.2</span></div>
+        <div class="goal star"><span class="num">1</span><div><h4>지식그래프의 정의와 구성 요소</h4><p>개체·관계·삼중항, 그리고 노드·엣지·속성·라벨</p></div><span class="ref">1.1</span></div>
+        <div class="goal star"><span class="num">2</span><div><h4>AI 역사 속 지식그래프의 흐름</h4><p>기호 기반 → 기계학습 → 시맨틱 웹 → LLM 융합, 그리고 RDF·OWL·SPARQL</p></div><span class="ref">1.2</span></div>
         <div class="goal"><span class="num">3</span><div><h4>LLM의 한계와 지식그래프의 보완</h4><p>왜 LLM 혼자로는 부족하고, 어떻게 결합하는가</p></div><span class="ref">1.3 – 1.3.1</span></div>
         <div class="goal"><span class="num">4</span><div><h4>LLM으로 지식그래프 만들고 관리하기</h4><p>추출·분류·연결·통합, 그리고 완성·업데이트·품질 관리</p></div><span class="ref">1.3.2 – 1.3.3</span></div>
       </div>
@@ -406,7 +511,7 @@ pre.code .c{color:#7D8B97}
         <p style="margin-top:10px"><b style="color:var(--warm)">한계</b> 지식그래프는 텍스트 외 정보에 취약하고 누락된 사실도 존재</p>
         <p style="margin-top:8px"><b>보완</b> LLM으로 텍스트에서 개체·관계를 추출하고 누락된 사실을 보완</p>
       </div>
-      <div class="card accent" style="display:flex;flex-direction:column">
+      <div class="card" style="display:flex;flex-direction:column">
         <span class="tag">LLM ⇄ KG</span><h3>시너지 LLM + 지식그래프<small>Synergized LLMs + KGs</small></h3>
         <p style="margin-top:10px">두 기술의 장점을 동시에 살림</p>
         <p style="margin-top:8px">AI가 <b>더 정확하고, 설명 가능하며, 신뢰할 수 있게</b> 됨</p>
@@ -481,10 +586,16 @@ pre.code .c{color:#7D8B97}
 <section class="slide" data-ch="2장 · 지식그래프의 활용">
   <header><span class="sec">2.1 GOOGLE</span><h2>초기 검색엔진: 키워드 기반 검색</h2></header>
   <div class="body">
-    <div class="g3 fill">
-      <div class="card"><span class="tag">1</span><h3>TF-IDF</h3><p>문서 안에서 <b>자주</b> 나오고(TF), 전체 문서에서는 <b>드물게</b> 나오는(IDF) 단어가 중요하다</p><p style="margin-top:8px">TF × IDF로 흔한 단어를 걸러내고 핵심 키워드를 가진 문서를 상위 노출</p></div>
-      <div class="card"><span class="tag">2</span><h3>BM25</h3><p><b>단어 빈도 포화</b>: 아무리 많이 나와도 점수가 한계치에 수렴</p><p style="margin-top:8px"><b>문서 길이 정규화</b>: 짧은 문서에 검색어가 집중되면 더 높은 점수</p></div>
-      <div class="card"><span class="tag">3</span><h3>PageRank</h3><p>웹페이지 간 <b>링크 관계</b>를 분석하는 구글 창업자들의 알고리즘</p><p style="margin-top:8px">논문 인용처럼, 좋은 페이지일수록 다른 페이지로부터 링크를 많이 받는다는 가정</p></div>
+    <div data-eqex class="g3 fill">
+      <div class="card ex-card"><div class="trow"><span class="tag" style="margin:0">1</span><span class="yr" title="Spärck Jones (1972), A statistical interpretation of term specificity and its application in retrieval">1972 · Spärck Jones</span></div><h3 style="margin-top:10px">TF-IDF</h3><p>문서 안에서 <b>자주</b> 나오고(TF), 전체 문서에서는 <b>드물게</b> 나오는(IDF) 단어가 중요하다</p><p style="margin-top:8px">TF × IDF로 흔한 단어를 걸러내고 핵심 키워드를 가진 문서를 상위 노출</p>
+        <div class="ex"><span class="ex-l">용어</span><div class="ex-b"><b>Term Frequency – Inverse Document Frequency</b><br>단어 중요도 = 문서 안 빈도 × 전체에서의 희귀도</div>
+          <span class="ex-l" style="margin-top:8px">예시</span><div class="ex-b">‘의’ — 모든 문서에 나옴 → 점수 <b>낮음</b><br>‘온톨로지’ — 이 문서에만 많이 나옴 → 점수 <b style="color:var(--accent-ink)">높음</b></div></div></div>
+      <div class="card ex-card"><div class="trow"><span class="tag" style="margin:0">2</span><span class="yr" title="Robertson 외 (1994), Okapi at TREC-3">1994 · Robertson 외 (Okapi)</span></div><h3 style="margin-top:10px">BM25</h3><p><b>단어 빈도 포화</b>: 아무리 많이 나와도 점수가 한계치에 수렴</p><p style="margin-top:8px"><b>문서 길이 정규화</b>: 짧은 문서에 검색어가 집중되면 더 높은 점수</p>
+        <div class="ex"><span class="ex-l">용어</span><div class="ex-b"><b>Best Matching 25</b><br>TF-IDF를 다듬은 검색 점수 공식 (25번째 버전)</div>
+          <span class="ex-l" style="margin-top:8px">예시</span><div class="ex-b">‘지식그래프’ 10번 vs 100번 → 점수 차이 <b>크지 않음</b><br>같은 10번이면 짧은 문서가 <b style="color:var(--accent-ink)">더 높음</b></div></div></div>
+      <div class="card ex-card"><div class="trow"><span class="tag" style="margin:0">3</span><span class="yr" title="Brin &amp; Page (1998), The Anatomy of a Large-Scale Hypertextual Web Search Engine">1998 · Brin &amp; Page</span></div><h3 style="margin-top:10px">PageRank</h3><p>웹페이지 간 <b>링크 관계</b>를 분석하는 구글 창업자들의 알고리즘</p><p style="margin-top:8px">논문 인용처럼, 좋은 페이지일수록 다른 페이지로부터 링크를 많이 받는다는 가정</p>
+        <div class="ex"><span class="ex-l">용어</span><div class="ex-b"><b>Page + Rank</b> (창업자 래리 페이지의 이름)<br>링크를 ‘추천 투표’로 보고 페이지 중요도를 계산</div>
+          <span class="ex-l" style="margin-top:8px">예시</span><div class="ex-b">유명 언론사 1곳의 링크 &gt; 이름 없는 페이지 여러 곳의 링크<br>→ <b style="color:var(--accent-ink)">누가 추천했는지</b>도 중요</div></div></div>
     </div>
     <div class="pills"><span class="label">기존 방식의 한계</span><span class="pill warm">의미 파악의 부재</span><span class="pill warm">사용자 의도 미반영</span><span class="pill warm">정보 연결 부족</span></div>
   </div>
@@ -495,19 +606,27 @@ pre.code .c{color:#7D8B97}
     <p class="sub">구글은 검색엔진에 지식그래프를 도입해 검색 품질을 끌어올렸다 — 문자열이 아니라 ‘사물’을 찾는다</p></header>
   <div class="body">
     <div class="g-5-7 fill">
-      <div class="kpanel">
-        <div class="t">포레스트 검프</div>
-        <div class="st">1994 · 드라마/로맨스 · 영화</div>
-        <div class="row"><b>감독:</b> 로버트 저메키스</div>
-        <div class="row"><b>출연:</b> 톰 행크스, 로빈 라이트</div>
-        <div class="row"><b>원작:</b> 윈스턴 그룸 『포레스트 검프』</div>
-        <div class="rel"><span>톰 행크스</span><span>캐스트 어웨이</span><span>로버트 저메키스</span></div>
-        <div style="font-size:11px;color:#9AA0A6;margin-top:10px">지식 패널 예시 (설명용 모형)</div>
+      <div style="display:flex;flex-direction:column;gap:12px;min-height:0">
+        <div class="kpanel" style="padding:16px 20px">
+          <div class="t">포레스트 검프 <span class="mk">①</span></div>
+          <div class="st">1994 · 드라마/로맨스 · 영화</div>
+          <div class="row"><b>감독:</b> 로버트 저메키스 <span class="mk">②</span></div>
+          <div class="row"><b>출연:</b> 톰 행크스, 로빈 라이트</div>
+          <div class="row"><b>원작:</b> 윈스턴 그룸 『포레스트 검프』</div>
+          <div class="rel" style="align-items:center"><i class="mk" style="margin:0">③</i><span>톰 행크스</span><span>캐스트 어웨이</span><span>로버트 저메키스</span></div>
+        </div>
+        <div class="card tight fill" style="background:#F4F1EA;border-color:#E6E0D3;display:flex;flex-direction:column;justify-content:center">
+          <span class="ex-l">패널 뒤의 지식그래프 · 패널 한 줄 = 트리플 하나</span>
+<div class="tree" style="font-size:13px;line-height:1.7">(포레스트 검프, <b>감독</b>, 로버트 저메키스)
+(포레스트 검프, <b>출연</b>, 톰 행크스)
+(포레스트 검프, <b>원작</b>, 『포레스트 검프』 소설)</div>
+        </div>
       </div>
-      <div class="vlist" style="justify-content:center">
-        <div class="card"><h3>① 지식그래프 패널</h3><p>검색어와 관련된 다양한 정보를 <b>구조화된 요약</b> 형태로 제공</p></div>
-        <div class="card"><h3>② 요약 정보 제공</h3><p>검색어의 주요 정보와 연관 맥락을 통합해 요약</p></div>
-        <div class="card"><h3>③ 관련 정보 연결</h3><p>검색어와 관련된 개체들과의 <b>관계</b>를 시각화</p></div>
+      <div style="display:flex;flex-direction:column;gap:8px;justify-content:center">
+        <div class="card tight"><h3>① 지식그래프 패널</h3><p>검색어와 관련된 다양한 정보를 <b>구조화된 요약</b> 형태로 제공</p><p class="map">패널에서 → 검색 결과 옆에 뜨는 카드 전체</p></div>
+        <div class="card tight"><h3>② 요약 정보 제공</h3><p>검색어의 주요 정보와 연관 맥락을 통합해 요약</p><p class="map">패널에서 → 개봉연도·장르·감독·출연·원작</p></div>
+        <div class="card tight"><h3>③ 관련 정보 연결</h3><p>검색어와 관련된 개체들과의 <b>관계</b>를 시각화</p><p class="map">패널에서 → 톰 행크스의 다른 영화, 같은 감독으로 이동</p></div>
+        <div class="callout" style="font-size:14.5px;padding:12px 18px"><b>2012 · 구글 지식그래프 발표</b> — “Things, not strings”: 단어가 아닌 <b>사물과 관계</b>를 이해</div>
       </div>
     </div>
   </div>
@@ -518,10 +637,13 @@ pre.code .c{color:#7D8B97}
     <p class="sub">사용자의 행동이나 관심사에 맞춰 정보를 제공하는 추천 시스템은 전자상거래 플랫폼의 핵심 기능</p></header>
   <div class="body">
     <div style="font-size:15px;font-weight:700;color:var(--muted)">전통적인 추천 알고리즘</div>
-    <div class="g3 fill">
-      <div class="card"><h3>연관 분석</h3><p>“A 상품을 산 고객은 B 상품도 샀다”는 규칙을 도출해 추천</p></div>
-      <div class="card"><h3>협업 필터링</h3><p>비슷한 행동을 보이는 사용자들의 데이터를 기반으로 추천</p></div>
-      <div class="card"><h3>SVD 잠재요인 모델</h3><p>사용자–상품 상호작용 행렬을 분해해 숨은 선호도를 수치화</p></div>
+    <div data-eqex class="g3 fill">
+      <div class="card ex-card"><div class="trow"><span class="yr">1993 · Agrawal 외</span></div><h3 style="margin-top:10px">연관 분석</h3><p>“A 상품을 산 고객은 B 상품도 샀다”는 규칙을 도출해 추천</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">라면을 산 고객의 70%가 계란도 구매</div><div class="ex-ar">↓</div><div class="ex-a">라면을 담으면 → ‘계란’ 추천</div></div></div>
+      <div class="card ex-card"><div class="trow"><span class="yr">1994 · GroupLens</span></div><h3 style="margin-top:10px">협업 필터링</h3><p>비슷한 행동을 보이는 사용자들의 데이터를 기반으로 추천</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">나: 해리 포터, 반지의 제왕<br>나와 비슷한 B: 해리 포터, 반지의 제왕, <b>나니아 연대기</b></div><div class="ex-ar">↓</div><div class="ex-a">나에게 → ‘나니아 연대기’ 추천</div></div></div>
+      <div class="card ex-card"><div class="trow"><span class="yr">2009 · Koren 외</span></div><h3 style="margin-top:10px">SVD 잠재요인 모델</h3><p>사용자–상품 상호작용 행렬을 분해해 숨은 선호도를 수치화</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">평점표에서 숨은 취향 요인을 찾아냄<br>나: 액션 0.9 · 로맨스 0.1 / 안 본 영화 X: 액션 0.8</div><div class="ex-ar">↓</div><div class="ex-a">예상 평점 높음 → 영화 X 추천</div></div></div>
     </div>
     <div class="pills"><span class="label">한계</span><span class="pill warm">설명 가능성 부족</span><span class="pill warm">콜드 스타트 문제</span><span class="pill warm">의미 기반 연결 부족</span><span class="pill warm">속성 정보 활용 미흡</span></div>
   </div>
@@ -546,14 +668,18 @@ pre.code .c{color:#7D8B97}
     <p class="sub">지식그래프는 보안 위협 대응과 사기 탐지 분야의 핵심 기술로 쓰인다</p></header>
   <div class="body">
     <div class="g2 fill">
-      <div class="card">
-        <span class="tag warm">전통적인 방법</span>
+      <div class="card" style="display:flex;flex-direction:column">
+        <span class="tag warm" style="align-self:flex-start">전통적인 방법</span>
         <ul>
-          <li><b>규칙 기반</b>: 전문가가 정의한 규칙으로 이상 거래 탐지</li>
-          <li><b>통계적 이상 탐지</b>: 평소 패턴에서 벗어난 거래를 이상으로 간주</li>
-          <li><b>머신러닝</b>: 지도학습으로 사기 패턴 예측</li>
+          <li><b>규칙 기반</b>: 전문가가 정의한 규칙으로 이상 거래 탐지 <span class="yr yr-in">1999</span></li>
+          <li><b>통계적 이상 탐지</b>: 평소 패턴에서 벗어난 거래를 이상으로 간주 <span class="yr yr-in">1987</span></li>
+          <li><b>머신러닝</b>: 지도학습으로 사기 패턴 예측 <span class="yr yr-in">1994</span></li>
         </ul>
         <div class="callout warm" style="margin-top:14px;font-size:15.5px">정적인 규칙·수치 패턴에 의존해 행위 사이의 <b style="color:#7A3518">숨은 관계</b>를 찾기 어렵다</div>
+        <div class="ex" style="margin-top:auto"><span class="ex-l">대표 논문 · 시스템</span>
+          <div class="cite"><b>1987</b><span>Denning, “An Intrusion-Detection Model”, IEEE TSE — 평소 행동 프로필에서 벗어나면 이상으로 보는 통계적 탐지의 고전</span></div>
+          <div class="cite"><b>1994</b><span>Ghosh · Reilly, “Credit Card Fraud Detection with a Neural-Network”, HICSS — 신용카드 사기를 신경망으로 학습</span></div>
+          <div class="cite"><b>1999</b><span>Roesch, “Snort: Lightweight Intrusion Detection for Networks”, LISA — 규칙(시그니처)으로 공격을 잡는 대표 시스템</span></div></div>
       </div>
       <div class="card accent">
         <span class="tag">보안 지식 플랫폼</span>
@@ -583,7 +709,7 @@ pre.code .c{color:#7D8B97}
       <div class="card tight"><h3>Gotham<small>작전·첩보 플랫폼</small></h3><p>테러범 위치, 인신매매 경로, 금융 사기 네트워크를 시각화·추론</p></div>
       <div class="card tight"><h3>Foundry<small>기업용 데이터 통합</small></h3><p>재무·인사·물류·재고를 하나의 온톨로지로 연결해 협업과 지연 파악</p></div>
       <div class="card tight"><h3>Apollo<small>SaaS 배포 플랫폼</small></h3><p>다른 팔란티어 플랫폼을 자동으로 업데이트·유지</p></div>
-      <div class="card tight accent"><h3>AIP<small>AI Platform</small></h3><p>LLM이 온톨로지 기반 지식그래프로 기업 데이터를 정확히 분석</p></div>
+      <div class="card tight"><h3>AIP<small>AI Platform</small></h3><p>LLM이 온톨로지 기반 지식그래프로 기업 데이터를 정확히 분석</p></div>
     </div>
   </div>
 </section>
@@ -591,15 +717,27 @@ pre.code .c{color:#7D8B97}
 <section class="slide" data-ch="2장 · 지식그래프의 활용">
   <header><span class="sec">CHAPTER 02 · 정리</span><h2>이번 장에서 배운 것</h2></header>
   <div class="body">
-    <table class="tbl">
-      <tr><th style="width:150px">기업 · 분야</th><th>기존 방식의 한계</th><th>지식그래프가 바꾼 것</th></tr>
-      <tr><td>Google · 검색</td><td>키워드 일치에 의존 — 의미·의도 파악 부재</td><td>문자열이 아닌 <b>사물</b>을 찾는 검색, 지식 패널과 관련 정보 연결</td></tr>
-      <tr><td>Amazon · 추천</td><td>설명력 부족, 콜드 스타트, 속성 활용 미흡</td><td>의미 경로로 후보를 확장하고 <b>추천 이유</b>까지 제시</td></tr>
-      <tr><td>Intuit · 보안</td><td>정적 규칙·수치 패턴 — 숨은 관계를 놓침</td><td>계정·기기·IP·거래를 연결한 <b>관계 기반 위협 탐지</b></td></tr>
+    <table class="tbl" style="font-size:15px">
+      <tr><th style="width:140px">기업 · 분야</th><th>기존 방식과 한계</th><th>지식그래프가 바꾼 것</th></tr>
+      <tr><td>Google · 검색</td><td>TF-IDF · BM25 · PageRank — 키워드 일치에 의존, 의미·의도 파악 부재</td><td>문자열이 아닌 <b>사물</b>을 찾는 검색 — 지식 패널의 한 줄이 곧 <b>트리플</b></td></tr>
+      <tr><td>Amazon · 추천</td><td>연관 분석 · 협업 필터링 · SVD — 설명력 부족, 콜드 스타트</td><td>의미 경로로 후보를 확장하고 <b>추천 이유</b>까지 제시</td></tr>
+      <tr><td>Intuit · 보안</td><td>규칙 · 통계 · 머신러닝 — 숨은 관계를 놓침</td><td>계정·기기·IP·거래를 연결한 <b>관계 기반 위협 탐지</b></td></tr>
       <tr><td>팔란티어 · 전략</td><td>조직 곳곳에 데이터가 흩어져 있음</td><td>온톨로지로 통합해 <b>의사결정의 기반 자산</b>으로 전환</td></tr>
     </table>
+    <div class="card tight" style="padding:14px 20px 16px">
+      <div style="font-size:13px;font-weight:700;color:var(--muted);margin-bottom:10px">이번 장에서 본 기술의 흐름</div>
+      <div class="ytl">
+        <div><b>1972</b><span>TF-IDF</span></div>
+        <div><b>1987</b><span>통계적 이상 탐지</span></div>
+        <div><b>1993</b><span>연관 분석</span></div>
+        <div><b>1994</b><span>BM25 · 협업 필터링</span></div>
+        <div><b>1998</b><span>PageRank</span></div>
+        <div><b>1999</b><span>규칙 기반 탐지 (Snort)</span></div>
+        <div><b>2009</b><span>SVD 행렬 분해</span></div>
+        <div class="now"><b>2012</b><span>구글 지식그래프</span></div>
+      </div>
+    </div>
     <div class="callout">네 사례의 공통점 — 데이터를 따로따로 보지 않고 <b>관계를 중심에 놓을 때</b> 의미·설명·통찰이 생긴다</div>
-    <div class="pills"><span class="label">핵심 키워드</span><span class="pill acc">TF-IDF · BM25 · PageRank</span><span class="pill acc">지식 패널</span><span class="pill acc">콜드 스타트</span><span class="pill acc">관계 기반 탐지</span><span class="pill acc">온톨로지 정렬</span></div>
   </div>
 </section>
 
@@ -608,7 +746,7 @@ pre.code .c{color:#7D8B97}
   <div class="chno">03</div>
   <h1>온톨로지: 지식그래프의 청사진</h1>
   <p class="intro">1장에서 개념을, 2장에서 가능성을 봤다면 이제 설계다.<br>지식그래프를 설계하기 위한 <b style="color:#fff">온톨로지</b>를 살펴본다.</p>
-  <div class="toc"><span><b>3.1</b>개념</span><span><b>3.2</b>활용</span><span><b>3.3</b>구축 과정</span><span><b>3.4</b>공연/전시 예시</span><span><b>3.5</b>편집 도구</span></div>
+  <div class="toc"><span class="star"><b>3.1</b>개념</span><span><b>3.2</b>활용</span><span class="star"><b>3.3</b>구축 과정</span><span><b>3.4</b>공연/전시 예시</span><span><b>3.5</b>편집 도구</span></div>
 </section>
 
 <section class="slide" data-ch="3장 · 온톨로지">
@@ -618,8 +756,8 @@ pre.code .c{color:#7D8B97}
       <div class="card accent qbox"><span class="tag">핵심 질문</span><p class="q">좋은 지식그래프를<br>만들려면 무엇부터<br>설계해야 할까?</p><p class="qs">건물에 설계도가 필요하듯, 지식그래프에는 개념과 관계를 정의한 청사진 — 온톨로지가 필요하다.</p></div>
       <div class="goals">
         <div class="goal"><span class="num">1</span><div><h4>온톨로지를 쓰는 이유</h4><p>의미 명확화 · 구조 정의 · 데이터 통합 · 추론 기반</p></div><span class="ref">3장 도입</span></div>
-        <div class="goal"><span class="num">2</span><div><h4>온톨로지의 정의와 구성 요소</h4><p>클래스·인스턴스·속성·관계, 지식그래프와의 대응</p></div><span class="ref">3.1 – 3.2</span></div>
-        <div class="goal"><span class="num">3</span><div><h4>구축 방법론과 8단계 절차</h4><p>도메인 이해부터 배포·유지보수까지</p></div><span class="ref">3.3</span></div>
+        <div class="goal star"><span class="num">2</span><div><h4>온톨로지의 정의와 구성 요소</h4><p>클래스·인스턴스·속성·관계, 지식그래프와의 대응</p></div><span class="ref">3.1 – 3.2</span></div>
+        <div class="goal star"><span class="num">3</span><div><h4>구축 방법론과 8단계 절차</h4><p>도메인 이해부터 배포·유지보수까지</p></div><span class="ref">3.3</span></div>
         <div class="goal"><span class="num">4</span><div><h4>공연/전시 예시와 Protégé</h4><p>Ontology Development 101을 실제 도메인에 적용</p></div><span class="ref">3.4 – 3.5</span></div>
       </div>
     </div>
@@ -629,11 +767,15 @@ pre.code .c{color:#7D8B97}
 <section class="slide" data-ch="3장 · 온톨로지">
   <header><span class="sec">3장</span><h2>지식그래프를 만들 때 온톨로지를 쓰는 이유</h2></header>
   <div class="body">
-    <div class="g2 fill" style="grid-template-rows:1fr 1fr">
-      <div class="card"><span class="num">1</span><h3 style="margin-top:10px">의미 명확화</h3><p>개체의 유형, 속성, 개체 간 관계를 정의해 데이터에 <b>의미</b>를 부여</p></div>
-      <div class="card"><span class="num">2</span><h3 style="margin-top:10px">구조 정의</h3><p>데이터의 <b>일관성</b>을 보장</p></div>
-      <div class="card"><span class="num">3</span><h3 style="margin-top:10px">데이터 통합</h3><p>서로 다른 데이터 소스를 <b>공통의 온톨로지</b>에 매핑</p></div>
-      <div class="card"><span class="num">4</span><h3 style="margin-top:10px">추론 기반 마련</h3><p>정의된 의미 관계로 추론 엔진이 새 지식을 자동 발견하거나 데이터의 일관성을 검증</p></div>
+    <div data-eqex class="g4 fill">
+      <div class="card ex-card"><span class="num" style="align-self:flex-start">1</span><h3 style="margin-top:10px">의미 명확화</h3><p>개체의 유형, 속성, 개체 간 관계를 정의해 데이터에 <b>의미</b>를 부여</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">그냥 글자: ‘톰 행크스’, ‘포레스트 검프’</div><div class="ex-ar">↓</div><div class="ex-a">톰 행크스는 <b>사람</b>, 포레스트 검프는 <b>영화</b>로 정의</div></div></div>
+      <div class="card ex-card"><span class="num" style="align-self:flex-start">2</span><h3 style="margin-top:10px">구조 정의</h3><p>데이터의 <b>일관성</b>을 보장</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">규칙: 영화의 감독은 1명 / 누군가 감독을 2명 입력</div><div class="ex-ar">↓</div><div class="ex-a">규칙 위반 → 잘못된 데이터로 알려줌</div></div></div>
+      <div class="card ex-card"><span class="num" style="align-self:flex-start">3</span><h3 style="margin-top:10px">데이터 통합</h3><p>서로 다른 데이터 소스를 <b>공통의 온톨로지</b>에 매핑</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">티켓 사이트는 ‘공연명’, 아티스트 DB는 ‘title’</div><div class="ex-ar">↓</div><div class="ex-a">둘 다 <b>제목(hasTitle)</b>으로 맞춰 하나의 그래프로</div></div></div>
+      <div class="card ex-card"><span class="num" style="align-self:flex-start">4</span><h3 style="margin-top:10px">추론 기반 마련</h3><p>정의된 의미 관계로 추론 엔진이 새 지식을 자동 발견하거나 데이터의 일관성을 검증</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">입력: 톰 행크스 –출연→ 포레스트 검프<br>규칙: ‘출연’과 ‘출연자’는 서로 반대 방향</div><div class="ex-ar">↓</div><div class="ex-a">자동 도출: 포레스트 검프 –출연자→ 톰 행크스</div></div></div>
     </div>
   </div>
 </section>
@@ -646,11 +788,15 @@ pre.code .c{color:#7D8B97}
       <p style="margin-top:8px;color:var(--muted)">— Thomas R. Gruber</p>
     </div>
     <p class="lead">구성원 간에 <b>합의된 개념(공통 어휘)</b>과 그 관계를, 컴퓨터가 이해할 수 있도록 <b>정형화된 형식</b>으로 정의·표현한 것</p>
-    <div class="g4 fill">
-      <div class="card tight"><h3>클래스</h3><p>같은 성질을 가진 것들의 범주</p></div>
-      <div class="card tight"><h3>인스턴스</h3><p>개별적이고 구체적인 실체</p></div>
-      <div class="card tight"><h3>속성</h3><p>클래스·인스턴스의 특정한 성질</p></div>
-      <div class="card tight"><h3>관계</h3><p>클래스·인스턴스 간 상호작용</p></div>
+    <div data-eqex class="g4 fill">
+      <div class="card tight ex-card"><h3>클래스</h3><p>같은 성질을 가진 것들의 범주</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-a">영화 · 사람 · 공연장</div><div class="ex-b" style="margin-top:4px">→ 같은 성질끼리 묶은 이름표</div></div></div>
+      <div class="card tight ex-card"><h3>인스턴스</h3><p>개별적이고 구체적인 실체</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-a">포레스트 검프 · 톰 행크스</div><div class="ex-b" style="margin-top:4px">→ ‘영화’, ‘사람’ 클래스에 속한 실제 하나</div></div></div>
+      <div class="card tight ex-card"><h3>속성</h3><p>클래스·인스턴스의 특정한 성질</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-a">포레스트 검프의 개봉연도 = 1994</div><div class="ex-b" style="margin-top:4px">→ 하나의 개체에 붙는 값</div></div></div>
+      <div class="card tight ex-card"><h3>관계</h3><p>클래스·인스턴스 간 상호작용</p>
+        <div class="ex"><span class="ex-l">예시</span><div class="ex-a">톰 행크스 –출연→ 포레스트 검프</div><div class="ex-b" style="margin-top:4px">→ 두 개체를 잇는 연결</div></div></div>
     </div>
   </div>
 </section>
@@ -682,16 +828,24 @@ pre.code .c{color:#7D8B97}
 <section class="slide" data-ch="3장 · 온톨로지">
   <header><span class="sec">3.3</span><h2>온톨로지 구축 과정 8단계</h2></header>
   <div class="body">
-    <div class="pills"><span class="label">대표 방법론</span><span class="pill">TOVE</span><span class="pill">METHONTOLOGY</span><span class="pill">CYC</span><span class="pill">OTK</span><span class="pill acc">Ontology Development 101</span><span style="font-size:14px;color:var(--muted);margin-left:6px">도메인과 개발 여건에 따라 선택</span></div>
-    <div class="g4 fill" style="grid-template-rows:1fr 1fr">
-      <div class="card tight"><span class="num">1</span><h3 style="margin-top:8px">도메인 이해</h3><p>개념, 사용 목적, 기존 온톨로지, 용어 파악</p></div>
-      <div class="card tight"><span class="num">2</span><h3 style="margin-top:8px">범위 결정</h3><p>다룰 개념과 범위를 명확히 정의</p></div>
-      <div class="card tight"><span class="num">3</span><h3 style="margin-top:8px">개체 탐색</h3><p>용어 수집, 인스턴스 탐색, 기존 온톨로지 재사용</p></div>
-      <div class="card tight"><span class="num">4</span><h3 style="margin-top:8px">클래스·속성 정의</h3><p>공통 개념을 모아 클래스와 속성 정의</p></div>
-      <div class="card tight"><span class="num">5</span><h3 style="margin-top:8px">관계 정의</h3><p>계층 관계(상하·포함)와 비계층 관계(인과·행위)</p></div>
-      <div class="card tight"><span class="num">6</span><h3 style="margin-top:8px">표현 및 구현</h3><p>온톨로지 언어·도구로 형식화</p></div>
-      <div class="card tight"><span class="num">7</span><h3 style="margin-top:8px">검증 및 평가</h3><p>도메인 지식을 정확히 표현하는지 테스트</p></div>
-      <div class="card tight"><span class="num">8</span><h3 style="margin-top:8px">배포·유지보수</h3><p>활용하며 필요에 따라 업데이트</p></div>
+    <div class="pills"><span class="label">대표 방법론</span><span class="pill">TOVE</span><span class="pill">METHONTOLOGY</span><span class="pill">CYC</span><span class="pill">OTK</span><span class="pick"><span class="pill acc">✓ Ontology Development 101</span><span class="pick-note">↓ 이 책은 이 방법을 선택 (3.4 예시)</span></span></div>
+    <div data-eqex class="g4 fill steps8" style="grid-template-rows:1fr 1fr;gap:12px">
+      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">1</span><h3 style="margin-top:6px">도메인 이해</h3><p>개념, 사용 목적, 기존 온톨로지, 용어 파악</p>
+        <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>영화 전문가 인터뷰, 기존 영화 DB 살펴보기</div></div></div>
+      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">2</span><h3 style="margin-top:6px">범위 결정</h3><p>다룰 개념과 범위를 명확히 정의</p>
+        <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>“이 배우가 나온 영화는?”에 답할 수 있게</div></div></div>
+      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">3</span><h3 style="margin-top:6px">개체 탐색</h3><p>용어 수집, 인스턴스 탐색, 기존 온톨로지 재사용</p>
+        <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>영화, 배우, 감독, 장르… 용어 모으기</div></div></div>
+      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">4</span><h3 style="margin-top:6px">클래스·속성 정의</h3><p>공통 개념을 모아 클래스와 속성 정의</p>
+        <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>‘영화’ 클래스 + ‘개봉연도’ 속성</div></div></div>
+      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">5</span><h3 style="margin-top:6px">관계 정의</h3><p><b class="hier">계층 관계</b>(상하·포함)와 <b class="nonhier">비계층 관계</b>(인과·행위)</p>
+        <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span><b class="hier">배우 ⊂ 사람</b><br><b class="nonhier">배우 –출연→ 영화</b></div></div></div>
+      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">6</span><h3 style="margin-top:6px">표현 및 구현</h3><p>온톨로지 언어·도구로 형식화</p>
+        <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>Protégé로 OWL 파일 만들기</div></div></div>
+      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">7</span><h3 style="margin-top:6px">검증 및 평가</h3><p>도메인 지식을 정확히 표현하는지 테스트</p>
+        <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>“톰 행크스 출연작은?” 물어서 답 확인</div></div></div>
+      <div class="card tight ex-card" style="padding:13px 16px"><span class="num" style="align-self:flex-start">8</span><h3 style="margin-top:6px">배포·유지보수</h3><p>활용하며 필요에 따라 업데이트</p>
+        <div class="ex" style="padding:6px 10px"><div class="ex-b" style="font-size:13.5px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>새 개봉작 추가, 바뀐 내용은 버전으로 기록</div></div></div>
     </div>
   </div>
 </section>
@@ -701,19 +855,19 @@ pre.code .c{color:#7D8B97}
     <p class="sub">공연 정보, 아티스트, 장소, 티켓 판매, 관객 피드백을 가치 있는 정보로 — Ontology Development 101 (Noy, 2001) 적용</p></header>
   <div class="body">
     <div class="g2 fill" style="grid-template-rows:auto 1fr">
-      <div class="card tight"><span class="tag">1단계 · 도메인 이해</span><p>도메인 전문가 인터뷰, 관련 문서·데이터 분석, 기존 문화예술 온톨로지 분석</p></div>
-      <div class="card tight"><span class="tag">2단계 · 범위 결정</span><p>온톨로지 활용 목적 정의, <b>역량 질문(Competency Question)</b> 정의</p></div>
+      <div class="card tight"><span class="tag">1단계 · 도메인 이해</span><p>도메인 전문가 인터뷰, 관련 문서·데이터 분석, 기존 문화예술 온톨로지 분석</p><div class="ex" style="margin-top:10px;padding:9px 12px"><div class="ex-b" style="font-size:14px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>공연 기획자 인터뷰 → “공연마다 출연진·공연장·회차가 있다”는 구조 파악</div></div></div>
+      <div class="card tight"><span class="tag">2단계 · 범위 결정</span><p>온톨로지 활용 목적 정의, <b>역량 질문(Competency Question)</b> 정의</p><div class="ex" style="margin-top:10px;padding:9px 12px"><div class="ex-b" style="font-size:14px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>역량 질문: “이번 주 샤롯데씨어터에서 하는 뮤지컬은?”</div></div></div>
       <div class="card tight"><span class="tag">3단계 · 개체 탐색</span><p style="margin-bottom:8px">핵심 용어 추출, 동의어 정리, 접근법 선택(하향식·상향식·중간 확장식)</p>
         <ul style="font-size:14.5px">
           <li><b>공연/전시</b>: 연극, 뮤지컬, 콘서트, 오페라, 발레, 전시회</li>
           <li><b>참여자</b>: 아티스트, 배우, 가수, 연주자, 무용수, 감독</li>
           <li><b>장소</b>: 극장, 콘서트홀, 미술관, 갤러리, 박물관</li>
           <li><b>속성</b>: 장르, 가격, 좌석 등급, 관람 등급, 할인</li>
-        </ul></div>
+        </ul><div class="ex" style="margin-top:10px;padding:9px 12px"><div class="ex-b" style="font-size:14px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>동의어 정리: 극장 · 공연장 · 홀 → ‘장소(Venue)’ 하나로</div></div></div>
       <div class="card tight"><span class="tag">4단계 · 클래스 및 속성 정의</span><p>온톨로지의 기본 골격 만들기</p>
-        <ul style="margin-top:8px">
-          <li>클래스 정의</li><li>클래스 계층 구조 설계</li><li>속성 정의</li><li>속성의 <b>정의역(domain)</b>과 <b>치역(range)</b> 정의</li>
-        </ul></div>
+        <p style="margin-top:6px;font-size:15px">클래스 정의 · 클래스 계층 구조 설계 · 속성 정의 · 속성의 <b>정의역(domain)</b>과 <b>치역(range)</b> 정의</p>
+        <div class="ex" style="margin-top:10px;padding:10px 12px"><div class="ex-b"><b>정의역</b> = 이 속성을 <b>가질 수 있는</b> 쪽 · <b>치역</b> = 값으로 <b>올 수 있는</b> 쪽</div>
+          <div class="ex-a" style="font-size:14px;margin-top:4px">예) 출연자(hasPerformer): 정의역 <u>공연</u> → 치역 <u>아티스트</u></div></div></div>
     </div>
   </div>
 </section>
@@ -722,14 +876,18 @@ pre.code .c{color:#7D8B97}
   <header><span class="sec">3.4 예시</span><h2>‘공연/전시 서비스’ 온톨로지 구축 ② 5–8단계</h2></header>
   <div class="body">
     <div class="g2 fill">
-      <div class="card"><span class="tag">5단계 · 관계 정의</span><p>객체 속성을 상세화하고 속성의 특성과 제약 조건을 정의</p>
-        <div class="pills" style="margin-top:12px"><span class="pill acc">최소 카디널리티</span><span class="pill acc">최대 카디널리티</span><span class="pill acc">정확 카디널리티</span></div>
-        <p style="margin-top:10px;font-size:15px">예) 공연은 장소를 정확히 1개 가진다</p></div>
-      <div class="card"><span class="tag">6단계 · 표현 및 구현</span><p>클래스·속성·관계를 컴퓨터가 처리할 수 있는 <b>표준 형식</b>으로 변환해 온톨로지 파일 생성</p></div>
-      <div class="card"><span class="tag">7단계 · 검증 및 평가</span><p>기술적으로 올바르고, 논리적으로 일관되며, 요구사항을 충족하는지 평가</p>
-        <div class="pills" style="margin-top:12px"><span class="pill">일관성</span><span class="pill">완전성</span><span class="pill">정확성</span><span class="pill">품질 기준</span></div></div>
-      <div class="card"><span class="tag">8단계 · 배포 및 유지보수</span><p>실제 시스템에 적용하고, 변하는 도메인 지식과 요구에 맞춰 관리</p>
-        <div class="pills" style="margin-top:12px"><span class="pill">배포</span><span class="pill">문서화</span><span class="pill">버전 관리</span></div></div>
+      <div class="card" style="padding:16px 20px"><span class="tag">5단계 · 관계 정의</span><p>객체 속성을 상세화하고 속성의 특성과 제약 조건을 정의</p>
+        <p style="margin-top:8px;font-size:14px;color:var(--muted)">카디널리티 = 관계로 연결될 수 있는 <b>개수</b>의 제한</p>
+        <div class="card-mini">
+          <div><span class="pill acc">최소</span><b>적어도 n개</b><span>공연에는 출연자가 최소 1명</span></div>
+          <div><span class="pill acc">최대</span><b>많아야 n개</b><span>공연의 관람 등급은 최대 1개</span></div>
+          <div><span class="pill acc">정확</span><b>꼭 n개</b><span>공연 장소는 정확히 1곳</span></div>
+        </div></div>
+      <div class="card" style="padding:16px 20px"><span class="tag">6단계 · 표현 및 구현</span><p>클래스·속성·관계를 컴퓨터가 처리할 수 있는 <b>표준 형식</b>으로 변환해 온톨로지 파일 생성</p><div class="ex" style="margin-top:10px;padding:9px 12px"><div class="ex-b" style="font-size:14px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>Protégé에서 ‘공연’ 클래스와 ‘출연자’ 속성을 입력 → .owl 파일로 저장</div></div></div>
+      <div class="card" style="padding:16px 20px"><span class="tag">7단계 · 검증 및 평가</span><p>기술적으로 올바르고, 논리적으로 일관되며, 요구사항을 충족하는지 평가</p>
+        <div class="pills" style="margin-top:12px"><span class="pill">일관성</span><span class="pill">완전성</span><span class="pill">정확성</span><span class="pill">품질 기준</span></div><div class="ex" style="margin-top:12px;padding:9px 12px"><div class="ex-b" style="font-size:14px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>추론기로 모순 검사 · “이 공연의 출연자는?”에 답하는지 확인</div></div></div>
+      <div class="card" style="padding:16px 20px"><span class="tag">8단계 · 배포 및 유지보수</span><p>실제 시스템에 적용하고, 변하는 도메인 지식과 요구에 맞춰 관리</p>
+        <div class="pills" style="margin-top:12px"><span class="pill">배포</span><span class="pill">문서화</span><span class="pill">버전 관리</span></div><div class="ex" style="margin-top:12px;padding:9px 12px"><div class="ex-b" style="font-size:14px"><span class="ex-l" style="margin:0 6px 0 0">예시</span>티켓 예매 앱에 연결 · 새 장르 추가 시 v1.1로 기록</div></div></div>
     </div>
   </div>
 </section>
@@ -738,10 +896,11 @@ pre.code .c{color:#7D8B97}
   <header><span class="sec">3.5</span><h2>온톨로지 편집 도구: Protégé</h2></header>
   <div class="body">
     <div class="g-5-7 fill">
-      <div class="card accent" style="display:flex;flex-direction:column;justify-content:center;padding:28px 30px">
+      <div class="card accent" style="display:flex;flex-direction:column;padding:28px 30px">
         <h3 style="font-size:30px">Protégé</h3>
         <p style="font-size:18px;margin-top:6px">스탠퍼드 대학에서 개발한 <b>무료 오픈소스</b> 온톨로지 편집기</p>
         <ul style="margin-top:16px"><li>Java 기반 — Windows·macOS·Linux에서 실행</li><li><b>플러그인 아키텍처</b>로 확장성이 뛰어남</li><li>복잡한 온톨로지 설계와 지능형 시스템 구축에 활용</li><li>웹에서 함께 편집하는 <b>WebProtégé</b>도 제공</li></ul>
+        <div class="ex" style="margin-top:auto;padding:12px 14px"><span class="ex-l">플러그인 아키텍처란?</span><div class="ex-b" style="font-size:14px">본체는 그대로 두고 필요한 기능을 <b>부품처럼 끼워 넣는</b> 구조<br>예) HermiT 추론기, OntoGraf 그래프 시각화, SPARQL 질의 탭</div></div>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
         <div class="code-cap" style="margin:0">주요 작업 화면</div>
@@ -761,12 +920,13 @@ pre.code .c{color:#7D8B97}
 <section class="slide" data-ch="3장 · 온톨로지">
   <header><span class="sec">CHAPTER 03 · 정리</span><h2>이번 장에서 배운 것</h2></header>
   <div class="body">
-    <div class="rclist fill">
-      <div class="rc"><span class="ck">✓</span><p>온톨로지는 구성원이 <b>합의한 개념과 관계</b>를 컴퓨터가 이해하도록 정형화한 명세 — 지식그래프의 <b>청사진</b></p></div>
-      <div class="rc"><span class="ck">✓</span><p>쓰는 이유: <b>의미 명확화 · 구조 정의 · 데이터 통합 · 추론 기반</b> 마련</p></div>
-      <div class="rc"><span class="ck">✓</span><p>클래스 ↔ 라벨, 인스턴스 ↔ 노드, 관계 ↔ 엣지, 속성 ↔ 속성으로 지식그래프와 대응</p></div>
-      <div class="rc"><span class="ck">✓</span><p>구축 8단계: 도메인 이해 → 범위 결정(<b>역량 질문</b>) → 개체 탐색 → 클래스·속성 → 관계 → 구현 → 검증 → 배포</p></div>
-      <div class="rc"><span class="ck">✓</span><p>방법론은 TOVE·METHONTOLOGY·CYC·OTK·<b>Ontology Development 101</b> 등, 구현 도구는 <b>Protégé</b></p></div>
+    <div class="rclist fill" style="gap:8px">
+      <div class="rc" style="padding:11px 18px"><span class="ck">✓</span><p style="font-size:16px">온톨로지는 구성원이 <b>합의한 개념과 관계</b>를 컴퓨터가 이해하도록 정형화한 명세 — 지식그래프의 <b>청사진</b></p></div>
+      <div class="rc" style="padding:11px 18px"><span class="ck">✓</span><p style="font-size:16px">쓰는 이유: <b>의미 명확화</b>(톰 행크스 = 사람) · <b>구조 정의</b>(감독은 1명) · <b>데이터 통합</b>(공연명 = title) · <b>추론</b>(역관계로 자동 도출)</p></div>
+      <div class="rc" style="padding:11px 18px"><span class="ck">✓</span><p style="font-size:16px">구성 요소 <b>클래스 · 인스턴스 · 속성 · 관계</b>는 지식그래프의 라벨 · 노드 · 속성 · 엣지와 대응</p></div>
+      <div class="rc" style="padding:11px 18px"><span class="ck">✓</span><p style="font-size:16px">관계는 <b class="hier">계층</b>(배우 ⊂ 사람)과 <b class="nonhier">비계층</b>(배우 –출연→ 영화) — <b>정의역·치역</b>과 <b>카디널리티</b>(최소·최대·정확)로 규칙을 정한다</p></div>
+      <div class="rc" style="padding:11px 18px"><span class="ck">✓</span><p style="font-size:16px">구축 8단계는 처음 정한 <b>역량 질문</b>(2단계)으로 마지막에 검증(7단계) — 이 책은 <b>Ontology Development 101</b>을 선택</p></div>
+      <div class="rc" style="padding:11px 18px"><span class="ck">✓</span><p style="font-size:16px">구현 도구는 <b>Protégé</b> — 플러그인(HermiT · OntoGraf · SPARQL)으로 기능을 확장</p></div>
     </div>
     <div class="pills"><span class="label">핵심 키워드</span><span class="pill acc">청사진</span><span class="pill acc">클래스 · 인스턴스</span><span class="pill acc">정의역 · 치역</span><span class="pill acc">카디널리티</span><span class="pill acc">역량 질문</span><span class="pill acc">Protégé</span></div>
   </div>
@@ -797,7 +957,7 @@ pre.code .c{color:#7D8B97}
   <div class="chno">04</div>
   <h1>지식그래프 생명주기</h1>
   <p class="intro">다양한 데이터에서 지식을 추출해 지식그래프를 <b style="color:#fff">구축 · 저장 · 관리 · 활용</b>하는 전체 과정</p>
-  <div class="toc"><span><b>4.1</b>수집·전처리</span><span><b>4.2</b>구축</span><span><b>4.3</b>저장·호스팅</span><span><b>4.4</b>관리·큐레이션</span><span><b>4.5</b>활용·추론</span></div>
+  <div class="toc"><span><b>4.1</b>수집·전처리</span><span class="star"><b>4.2</b>구축</span><span class="star"><b>4.3</b>저장·호스팅</span><span><b>4.4</b>관리·큐레이션</span><span><b>4.5</b>활용·추론</span></div>
 </section>
 
 <section class="slide" data-ch="4장 · 지식그래프 생명주기">
@@ -807,8 +967,8 @@ pre.code .c{color:#7D8B97}
       <div class="card accent qbox"><span class="tag">핵심 질문</span><p class="q">지식그래프는<br>어떻게 만들어지고,<br>어떻게 살아 움직일까?</p><p class="qs">데이터를 모으는 순간부터 새로운 지식을 추론하기까지, 지식그래프의 한살이를 단계별로 따라간다.</p></div>
       <div class="goals">
         <div class="goal"><span class="num">1</span><div><h4>생명주기 큰 그림과 데이터 준비</h4><p>구축·저장·관리·활용 4단계, 수집과 전처리</p></div><span class="ref">4장 개요 · 4.1</span></div>
-        <div class="goal"><span class="num">2</span><div><h4>데이터 유형별 구축 기법</h4><p>비정형은 NER·RE·EE·EL, 정형·반정형은 매핑</p></div><span class="ref">4.2</span></div>
-        <div class="goal"><span class="num">3</span><div><h4>저장 방식과 질의 언어</h4><p>RDF 트리플 저장소 vs 속성 그래프, SPARQL vs Cypher</p></div><span class="ref">4.3</span></div>
+        <div class="goal star"><span class="num">2</span><div><h4>데이터 유형별 구축 기법</h4><p>비정형은 NER·RE·EE·EL, 정형·반정형은 매핑</p></div><span class="ref">4.2</span></div>
+        <div class="goal star"><span class="num">3</span><div><h4>저장 방식과 질의 언어</h4><p>RDF 트리플 저장소 vs 속성 그래프, SPARQL vs Cypher</p></div><span class="ref">4.3</span></div>
         <div class="goal"><span class="num">4</span><div><h4>관리, 그리고 활용과 추론</h4><p>품질·스키마·버전·보안, 규칙 기반과 임베딩 기반 추론</p></div><span class="ref">4.4 – 4.5</span></div>
       </div>
     </div>
@@ -819,10 +979,10 @@ pre.code .c{color:#7D8B97}
   <header><span class="sec">4장 개요</span><h2>생명주기의 네 단계</h2></header>
   <div class="body" style="justify-content:center">
     <div class="flow">
-      <div class="step" style="padding:24px 20px"><span class="tag">Construction</span><h4 style="font-size:21px">구축</h4><p style="font-size:15.5px">데이터 소스에서 정보를 추출하고 구조화해 유용한 지식을 생성</p></div>
-      <div class="step" style="padding:24px 20px"><span class="tag">Storage / Hosting</span><h4 style="font-size:21px">저장 및 호스팅</h4><p style="font-size:15.5px">지식그래프의 특징에 맞는 데이터베이스 기술을 선택</p></div>
-      <div class="step" style="padding:24px 20px"><span class="tag">Curation</span><h4 style="font-size:21px">관리 및 큐레이션</h4><p style="font-size:15.5px">품질 평가, 정제, 보강, 스키마·버전 관리, 보안·접근 통제</p></div>
-      <div class="step" style="padding:24px 20px;background:var(--accent-soft);border-color:#C3DDD5"><span class="tag">Consumption</span><h4 style="font-size:21px">활용 및 추론</h4><p style="font-size:15.5px">실제 애플리케이션에서 활용하고 새로운 지식을 추론</p></div>
+      <div class="step" style="padding:24px 20px"><div class="trow"><span class="tag" style="margin:0">Construction</span><span class="secb" data-gosec="4.1">4.1–4.2</span></div><h4 style="font-size:21px;margin-top:10px">구축</h4><p style="font-size:15.5px">데이터 소스에서 정보를 추출하고 구조화해 유용한 지식을 생성</p></div>
+      <div class="step" style="padding:24px 20px"><div class="trow"><span class="tag" style="margin:0">Storage / Hosting</span><span class="secb" data-gosec="4.3">4.3</span></div><h4 style="font-size:21px;margin-top:10px">저장 및 호스팅</h4><p style="font-size:15.5px">지식그래프의 특징에 맞는 데이터베이스 기술을 선택</p></div>
+      <div class="step" style="padding:24px 20px"><div class="trow"><span class="tag" style="margin:0">Curation</span><span class="secb" data-gosec="4.4">4.4</span></div><h4 style="font-size:21px;margin-top:10px">관리 및 큐레이션</h4><p style="font-size:15.5px">품질 평가, 정제, 보강, 스키마·버전 관리, 보안·접근 통제</p></div>
+      <div class="step" style="padding:24px 20px"><div class="trow"><span class="tag" style="margin:0">Consumption</span><span class="secb" data-gosec="4.5">4.5</span></div><h4 style="font-size:21px;margin-top:10px">활용 및 추론</h4><p style="font-size:15.5px">실제 애플리케이션에서 활용하고 새로운 지식을 추론</p><span data-goch="5" class="linkbtn">5장에서 자세히 <span class="lb-ar">→</span></span></div>
     </div>
     <div class="callout" style="margin-top:24px">한 번 만들고 끝나는 것이 아니라, 활용 결과가 다시 관리·보강으로 돌아가는 <b>순환 구조</b></div>
   </div>
@@ -830,20 +990,20 @@ pre.code .c{color:#7D8B97}
 
 <section class="slide" data-ch="4장 · 지식그래프 생명주기">
   <header><span class="sec">4.1</span><h2>데이터 수집 및 전처리</h2></header>
-  <div class="body">
-    <div class="card accent"><span class="tag">4.1.1 데이터 수집</span><p class="lead" style="font-size:18px">신뢰할 수 있는 데이터를 위해 먼저 <b>수집 범위를 설정</b>하고 <b>수집 대상을 선정</b>한다</p></div>
+  <div class="body" style="gap:12px">
+    <div class="card accent" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center;padding:14px 20px"><div><span class="tag" style="margin-bottom:6px">4.1.1 데이터 수집</span><p class="lead" style="font-size:16.5px">신뢰할 수 있는 데이터를 위해 먼저 <b>수집 범위를 설정</b>하고 <b>수집 대상을 선정</b>한다</p></div><p class="eg1" style="margin:0"><span class="ex-l">예</span>공연 서비스라면 — 범위: 국내 뮤지컬·콘서트(2020년~) · 대상: 예매 사이트, 공연장 홈페이지, 보도자료</p></div>
     <div style="font-size:15px;font-weight:700;color:var(--muted)">4.1.2 데이터 정제 및 전처리</div>
-    <div class="g3 fill" style="grid-template-columns:repeat(5,1fr)">
-      <div class="card tight ex-card"><span class="num">1</span><h3 style="margin-top:8px">토큰화</h3><p>Tokenization<br>텍스트를 의미 단위로 분할</p>
-        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">톰 행크스는 영화에 출연했다</div><div class="ex-ar">↓</div><div class="ex-a">[톰 행크스] [는] [영화] [에] [출연] [했다]</div></div></div>
-      <div class="card tight ex-card"><span class="num">2</span><h3 style="margin-top:8px">정제</h3><p>Cleaning<br>태그·특수문자 등 노이즈 제거</p>
-        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">&lt;p&gt;출연했다!!! 😊&lt;/p&gt;</div><div class="ex-ar">↓</div><div class="ex-a">출연했다</div></div></div>
-      <div class="card tight ex-card"><span class="num">3</span><h3 style="margin-top:8px">어간·표제어 추출</h3><p>Stemming &amp; Lemmatization<br>여러 형태를 기본형으로 통일</p>
-        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">출연했다 · 출연하는 · 출연한</div><div class="ex-ar">↓</div><div class="ex-a">출연하다</div><div class="ex-b" style="margin-top:6px">running · ran → run</div></div></div>
-      <div class="card tight ex-card"><span class="num">4</span><h3 style="margin-top:8px">불용어 처리</h3><p>Stop word removal<br>의미 없는 고빈도 단어 제거</p>
-        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">[톰 행크스] [는] [영화] [에] [출연]</div><div class="ex-ar">↓</div><div class="ex-a">[톰 행크스] [영화] [출연]</div></div></div>
-      <div class="card tight ex-card"><span class="num">5</span><h3 style="margin-top:8px">상호 참조 해결</h3><p>Co-reference resolution<br>대명사가 가리키는 개체 찾기</p>
-        <div class="ex"><span class="ex-l">예시</span><div class="ex-b">톰 행크스는 배우다. <u>그</u>는 1994년 영화에 출연했다.</div><div class="ex-ar">↓</div><div class="ex-a">그 = 톰 행크스</div></div></div>
+    <div data-eqex class="g3 fill" style="grid-template-columns:repeat(5,1fr)">
+      <div class="card tight ex-card" style="padding:12px 14px"><span class="num">1</span><h3 style="margin-top:6px;font-size:17px">토큰화</h3><p>Tokenization<br>텍스트를 의미 단위로 분할</p>
+        <div class="ex" style="padding:9px 11px"><span class="ex-l">예시</span><div class="ex-b">톰 행크스는 영화에 출연했다</div><div class="ex-ar">↓</div><div class="ex-a">[톰 행크스] [는] [영화] [에] [출연] [했다]</div></div></div>
+      <div class="card tight ex-card" style="padding:12px 14px"><span class="num">2</span><h3 style="margin-top:6px;font-size:17px">정제</h3><p>Cleaning<br>태그·특수문자 등 노이즈 제거</p>
+        <div class="ex" style="padding:9px 11px"><span class="ex-l">예시</span><div class="ex-b">&lt;p&gt;출연했다!!! 😊&lt;/p&gt;</div><div class="ex-ar">↓</div><div class="ex-a">출연했다</div></div></div>
+      <div class="card tight ex-card" style="padding:12px 14px"><span class="num">3</span><h3 style="margin-top:6px;font-size:17px">어간·표제어 추출</h3><p>Stemming &amp; Lemmatization<br>여러 형태를 기본형으로 통일</p>
+        <div class="ex" style="padding:9px 11px"><span class="ex-l">예시</span><div class="ex-b">출연했다 · 출연하는 · 출연한</div><div class="ex-ar">↓</div><div class="ex-a">출연하다</div></div></div>
+      <div class="card tight ex-card" style="padding:12px 14px"><span class="num">4</span><h3 style="margin-top:6px;font-size:17px">불용어 처리</h3><p>Stop word removal<br>의미 없는 고빈도 단어 제거</p>
+        <div class="ex" style="padding:9px 11px"><span class="ex-l">예시</span><div class="ex-b">[톰 행크스] [는] [영화] [에] [출연]</div><div class="ex-ar">↓</div><div class="ex-a">[톰 행크스] [영화] [출연]</div></div></div>
+      <div class="card tight ex-card" style="padding:12px 14px"><span class="num">5</span><h3 style="margin-top:6px;font-size:17px">상호 참조 해결</h3><p>Co-reference resolution<br>대명사가 가리키는 개체 찾기</p>
+        <div class="ex" style="padding:9px 11px"><span class="ex-l">예시</span><div class="ex-b">톰 행크스는 배우다. <u>그</u>는 1994년 영화에 출연했다.</div><div class="ex-ar">↓</div><div class="ex-a">그 = 톰 행크스</div></div></div>
     </div>
   </div>
 </section>
@@ -851,16 +1011,20 @@ pre.code .c{color:#7D8B97}
 <section class="slide" data-ch="4장 · 지식그래프 생명주기">
   <header><span class="sec">4.2</span><h2>지식그래프 구축: 데이터 소스에 맞는 추출과 변환</h2>
     <p class="sub">정보를 추출·구조화해 기계가 이해할 수 있는 그래프로 만들고, 통합·분석·추론의 기반을 마련</p></header>
-  <div class="body">
+  <div class="body" style="gap:12px">
     <div class="g4">
-      <div class="card tight warm"><span class="tag warm">비정형</span><h3>자연어 텍스트</h3><p>뉴스, 문서, 보고서</p></div>
-      <div class="card tight"><span class="tag">반정형</span><h3>HTML · JSON · XML</h3><p>시스템 로그</p></div>
-      <div class="card tight"><span class="tag">정형</span><h3>데이터베이스 · CSV</h3><p>테이블 데이터</p></div>
-      <div class="card tight accent"><span class="tag">기존 KG</span><h3>DBpedia · Wikidata</h3><p>공개 지식그래프</p></div>
+      <div class="card tight" style="padding:11px 16px"><span class="tag">비정형</span><h3>자연어 텍스트</h3><p>뉴스, 문서, 보고서</p><p class="eg1" style="margin-top:5px"><span class="ex-l">예</span>기사 문장 “… 출연했다”</p></div>
+      <div class="card tight" style="padding:11px 16px"><span class="tag">반정형</span><h3>HTML · JSON · XML</h3><p>시스템 로그</p><p class="eg1" style="margin-top:5px"><span class="ex-l">예</span>{"title": "오페라의 유령"}</p></div>
+      <div class="card tight" style="padding:11px 16px"><span class="tag">정형</span><h3>데이터베이스 · CSV</h3><p>테이블 데이터</p><p class="eg1" style="margin-top:5px"><span class="ex-l">예</span>공연명 | 공연장 | 가격</p></div>
+      <div class="card tight" style="padding:11px 16px"><span class="tag">기존 KG</span><h3>DBpedia · Wikidata</h3><p>공개 지식그래프</p><p class="eg1" style="margin-top:5px"><span class="ex-l">예</span>Wikidata의 ‘톰 행크스’ 항목</p></div>
     </div>
     <div class="g2 fill">
-      <div class="card warm"><h3>비정형 → 정보 추출 (4.2.2)</h3><p>개체·관계·이벤트를 텍스트에서 찾아내고 기존 그래프에 연결<br><span style="color:var(--muted)">→ 다음 슬라이드</span></p></div>
-      <div class="card"><h3>정형·반정형 → 매핑 (4.2.3)</h3><p>원본 데이터의 구조와 지식그래프 <b>목표 스키마 간 변환 규칙</b>을 정의하는 것이 핵심</p></div>
+      <div class="card" style="display:flex;flex-direction:column"><h3>비정형 → 정보 추출 (4.2.2)</h3><p>개체·관계·이벤트를 텍스트에서 찾아내고 기존 그래프에 연결</p><span data-gosec="4.2.2" class="linkbtn" style="align-self:flex-start">4.2.2에서 자세히 <span class="lb-ar">→</span></span></div>
+      <div class="card" style="display:flex;flex-direction:column"><h3>정형·반정형 → 매핑 (4.2.3)</h3><p>원본 데이터의 구조와 지식그래프 <b>목표 스키마 간 변환 규칙</b>을 정의하는 것이 핵심</p>
+        <div class="ex" style="margin-top:auto;padding:10px 14px;gap:4px"><span class="ex-l">예시 · CSV 한 행 → 트리플</span>
+          <table class="mini-tbl"><tr><th>공연명</th><td>오페라의 유령</td><th>공연장</th><td>샤롯데씨어터</td></tr></table>
+          <div class="ex-ar">↓ ‘공연장’ 열 → 공연장소(takesPlaceAt)</div>
+          <div class="ex-a">(오페라의 유령, 공연장소, 샤롯데씨어터)</div></div></div>
     </div>
     <div class="callout">각 데이터 유형에 맞는 추출·변환 기술을 <b>선택하고 조합</b>하는 것이 성공의 열쇠</div>
   </div>
@@ -869,27 +1033,44 @@ pre.code .c{color:#7D8B97}
 <section class="slide" data-ch="4장 · 지식그래프 생명주기">
   <header><span class="sec">4.2.2</span><h2>비정형 데이터에서 정보 추출하기</h2></header>
   <div class="body">
-    <div class="card" style="font-size:22px;padding:18px 24px">
+    <div class="card" style="font-size:19px;padding:12px 22px">
       <span style="background:#E2EFEA;padding:2px 6px;border-radius:6px;font-weight:700">톰 행크스</span>는
       <span style="background:#F6E7DE;padding:2px 6px;border-radius:6px;font-weight:700">1994년</span> 영화
       <span style="background:#E2EFEA;padding:2px 6px;border-radius:6px;font-weight:700">포레스트 검프</span>에
       <span style="border-bottom:3px solid var(--accent);font-weight:700">출연했다</span>.
       <span style="font-size:13px;color:var(--muted);margin-left:10px">예시 문장</span>
     </div>
-    <div class="g4 fill">
+    <div class="g4">
       <div class="card tight"><span class="tag">NER</span><h3>개체 추출</h3><p>고유한 이름을 찾아 분류</p><p style="margin-top:8px;font-size:14.5px;color:var(--accent-ink)">톰 행크스 → 인물<br>포레스트 검프 → 영화</p></div>
       <div class="card tight"><span class="tag">RE</span><h3>관계 추출</h3><p>개체 사이 의미 관계를 정해진 유형으로 분류</p><p style="margin-top:8px;font-size:14.5px;color:var(--accent-ink)">(톰 행크스, 출연, 포레스트 검프)</p></div>
-      <div class="card tight"><span class="tag">EE</span><h3>이벤트 추출</h3><p>사건의 발생과 관련 정보를 구조화</p><p style="margin-top:8px;font-size:13.5px;color:var(--muted)">질의응답·생성 모델(템플릿)·그래프 기반 접근</p></div>
+      <div class="card tight"><span class="tag">EE</span><h3>이벤트 추출</h3><p>사건의 발생과 관련 정보를 구조화</p><p style="margin-top:8px;font-size:14.5px;color:var(--accent-ink)">사건: 영화 출연<br>누가 톰 행크스 · 언제 1994</p></div>
       <div class="card tight"><span class="tag">EL</span><h3>개체 연결</h3><p>기존 그래프의 고유 개체와 매핑해 중의성 해소</p><p style="margin-top:8px;font-size:14.5px;color:var(--accent-ink)">‘톰 행크스’ → 그래프의 고유 URI 노드</p></div>
+    </div>
+    <div class="card fill" style="display:flex;flex-direction:column;justify-content:center;gap:10px;padding:14px 22px;background:#F4F1EA;border-color:#E6E0D3">
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+        <span class="ex-l" style="margin:0">결과 · 문장 한 줄이 지식그래프 조각이 된다</span>
+        <div class="kgline">
+          <span class="kn">톰 행크스<small>인물</small></span><span class="ke">출연 →</span>
+          <span class="kn">포레스트 검프<small>영화</small></span><span class="ke">개봉연도 →</span>
+          <span class="kv">1994</span>
+        </div>
+      </div>
+      <div class="gloss5">
+        <div><b>NER</b><i>Named Entity Recognition</i><span>이름 붙은 개체(인물·영화)를 찾아 분류</span></div>
+        <div><b>RE</b><i>Relation Extraction</i><span>개체 사이의 관계를 뽑아냄</span></div>
+        <div><b>EE</b><i>Event Extraction</i><span>누가·언제·무엇을 한 사건을 뽑아냄</span></div>
+        <div><b>EL</b><i>Entity Linking</i><span>이름을 그래프의 실제 개체와 연결 — 동명이인 구별</span></div>
+        <div><b>URI</b><i>Uniform Resource Identifier</i><span>개체마다 붙는 웹 주소 형태의 고유 이름</span></div>
+      </div>
     </div>
   </div>
 </section>
 
 <section class="slide" data-ch="4장 · 지식그래프 생명주기">
-  <header><span class="sec">4.3.1 – 4.3.2</span><h2>저장 옵션: RDF 트리플 저장소 vs 속성 그래프 DB</h2>
+  <header><span class="sec">4.3.1</span><h2>저장 옵션: RDF 트리플 저장소 vs 속성 그래프 DB</h2>
     <p class="sub">적합한 DB를 고르고, 그래프를 적재하고, 질의·관리 환경을 설정하는 단계</p></header>
   <div class="body">
-    <table class="tbl">
+    <table class="tbl tbl-tight">
       <tr><th style="width:160px"></th><th>RDF 트리플 저장소</th><th>속성 그래프 DB (PGD)</th></tr>
       <tr><td>데이터 모델</td><td>모든 정보를 <b>[주어, 술어, 객체]</b> 트리플로 저장</td><td><b>노드 · 관계 · 속성(키–값) · 레이블</b>의 네 요소</td></tr>
       <tr><td>식별자</td><td>전역 고유 <b>URI</b>로 표현 → 데이터 통합·공유가 쉬움</td><td>DB 내부 ID, 노드·관계에 속성을 직접 부착</td></tr>
@@ -898,6 +1079,29 @@ pre.code .c{color:#7D8B97}
       <tr><td>대표 시스템</td><td>Ontotext GraphDB, Stardog, Apache Jena, OpenLink Virtuoso</td><td><b>Neo4j</b>, FalkorDB, NebulaGraph</td></tr>
     </table>
     <div class="callout"><b>Amazon Neptune</b>은 두 모델을 모두 지원 — 하나만 골라야 하는 것은 아니다</div>
+    <div class="g2">
+      <div class="ex" style="padding:10px 16px;gap:3px"><span class="ex-l">RDF · Resource Description Framework</span>
+        <div class="ex-b">모든 사실을 <b>주어–술어–목적어</b> 문장(트리플)으로 적는 방식</div>
+        <div class="ex-a" style="font-size:14px">(포레스트 검프, 개봉연도, 1994)</div></div>
+      <div class="ex" style="padding:10px 16px;gap:3px"><span class="ex-l">PGD · Property Graph Database</span>
+        <div class="ex-b">점(노드)과 선(관계)에 <b>정보(키–값)를 직접 붙이는</b> 그래프 DB</div>
+        <div class="ex-a" style="font-size:14px">(톰 행크스) –출연 {배역: 포레스트}→ (포레스트 검프)</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-ch="4장 · 지식그래프 생명주기">
+  <header><span class="sec">4.3.2</span><h2>대표 시스템 살펴보기</h2>
+    <p class="sub">지식그래프를 실제로 저장할 때 많이 쓰는 데이터베이스들</p></header>
+  <div class="body">
+    <div class="sysgrid fill">
+      <div class="syscol"><div class="syscol-h">RDF 트리플 저장소 <small>질의: SPARQL</small></div><div class="sys"><div class="sys-h"><b>Ontotext GraphDB</b><span class="stags"><span class="stag">상용 + 무료판</span></span></div><p>OWL·RDFS 추론에 강한 대표적인 RDF 저장소</p></div><div class="sys"><div class="sys-h"><b>Stardog</b><span class="stags"><span class="stag">상용</span></span></div><p>여러 DB를 가상으로 연결해 한 번에 질의하는 지식그래프 플랫폼</p></div><div class="sys"><div class="sys-h"><b>Apache Jena</b><span class="stags"><span class="stag">오픈소스</span></span></div><p>Java로 RDF를 다루는 도구 모음 — 저장소(TDB)와 SPARQL 서버(Fuseki) 포함</p></div><div class="sys"><div class="sys-h"><b>OpenLink Virtuoso</b><span class="stags"><span class="stag">오픈소스 + 상용</span></span></div><p>관계형 DB와 RDF를 함께 다룸 — DBpedia의 SPARQL 서버로 사용</p></div></div>
+      <div class="syscol"><div class="syscol-h">속성 그래프 DB <small>질의: Cypher 등</small></div><div class="sys"><div class="sys-h"><b>Neo4j</b><span class="stags"><span class="stag">오픈소스 + 상용</span><span class="stag">Cypher</span></span></div><p>가장 널리 쓰이는 속성 그래프 DB — Cypher를 만든 곳</p></div><div class="sys"><div class="sys-h"><b>FalkorDB</b><span class="stags"><span class="stag">오픈소스</span><span class="stag">Cypher</span></span></div><p>RedisGraph를 이어받은 빠른 그래프 DB — LLM·GraphRAG 활용을 강조</p></div><div class="sys"><div class="sys-h"><b>NebulaGraph</b><span class="stags"><span class="stag">오픈소스</span><span class="stag">nGQL</span></span></div><p>수천억 개 규모의 데이터를 여러 서버에 나눠 저장하는 분산 그래프 DB</p></div></div>
+      <div class="syscol"><div class="syscol-h">둘 다 지원</div><div class="sys"><div class="sys-h"><b>Amazon Neptune</b><span class="stags"><span class="stag">클라우드</span><span class="stag">SPARQL · Gremlin · openCypher</span></span></div><p>AWS가 운영해 주는 클라우드 그래프 DB — 설치·관리 부담이 적음</p></div>
+        <div class="ex" style="margin-top:auto;padding:12px 14px"><span class="ex-l">고르는 기준</span><div class="ex-b" style="font-size:13.5px">표준·추론·데이터 통합이 중요하면 <b>RDF</b><br>빠른 관계 탐색·직관적 모델링이면 <b>속성 그래프</b></div></div>
+      </div>
+    </div>
+    <div class="callout" style="font-size:15.5px">3장 실습에서 만든 <b>OWL 파일</b>은 RDF 형식이라, GraphDB나 Jena 같은 RDF 저장소에 바로 넣고 <b>SPARQL</b>로 질의할 수 있다</div>
   </div>
 </section>
 
@@ -906,28 +1110,26 @@ pre.code .c{color:#7D8B97}
     <p class="sub">같은 질문 — “아티스트 A가 출연한 뮤지컬의 제목은?”</p></header>
   <div class="body">
     <div class="g2 fill">
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div class="card tight"><h3>SPARQL</h3><p>RDF용 W3C 표준 질의 언어. 트리플 패턴으로 구성된 <b>그래프 패턴 매칭</b></p></div>
-<pre class="code"><span class="k">PREFIX</span> ex: &lt;http://example.org/&gt;
-
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="card tight" style="padding:10px 16px"><h3 style="margin:0">SPARQL <small style="display:inline;margin-left:6px">RDF용 W3C 표준 · 트리플 패턴을 맞춰 찾는 <b>그래프 패턴 매칭</b></small></h3></div>
+<pre class="code" style="font-size:13.5px;line-height:1.55;padding:12px 16px"><span class="k">PREFIX</span> ex: &lt;http://example.org/&gt;
 <span class="k">SELECT</span> ?title
 <span class="k">WHERE</span> {
   ?show  a              ex:Musical ;
          ex:hasPerformer ex:ArtistA ;
          ex:hasTitle     ?title .
 }</pre>
+        <div class="codeexp"><div><code>PREFIX ex:</code><span>‘ex:’를 긴 주소 http://example.org/ 의 줄임말로 쓰기</span></div><div><code>SELECT ?title</code><span><b>?title</b>(빈칸)에 들어갈 값을 보여 줘</span></div><div><code>?show a ex:Musical</code><span><b>?show</b>는 뮤지컬인 것 (a = ‘~의 한 종류’)</span></div><div><code>ex:hasPerformer ex:ArtistA</code><span>그 출연자가 아티스트 A이고</span></div><div><code>ex:hasTitle ?title</code><span>그 제목을 <b>?title</b>에 담아라</span></div><div><code>;  .</code><span><b>;</b> 같은 주어(?show)를 이어서 씀 · <b>.</b> 문장 끝</span></div></div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <div class="card tight"><h3>Cypher</h3><p>Neo4j의 선언적 질의 언어. SQL과 비슷하며 <b>GQL 표준</b>의 기반</p></div>
-<pre class="code"><span class="k">MATCH</span> (a:Artist {name: <span class="s">"A"</span>})
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="card tight" style="padding:10px 16px"><h3 style="margin:0">Cypher <small style="display:inline;margin-left:6px">Neo4j의 질의 언어 · SQL과 비슷하며 <b>GQL 표준</b>의 기반</small></h3></div>
+<pre class="code" style="font-size:13.5px;line-height:1.55;padding:12px 16px"><span class="k">MATCH</span> (a:Artist {name: <span class="s">"A"</span>})
       -[:PERFORMS_IN]-&gt;(m:Musical)
-<span class="k">RETURN</span> m.title
-
-<span class="c">// 노드는 ( ), 관계는 -[ ]-&gt;
-// 그림을 그리듯 패턴을 적는다</span></pre>
+<span class="k">RETURN</span> m.title</pre>
+        <div class="codeexp"><div><code>MATCH</code><span>이런 모양(패턴)을 그래프에서 찾아라</span></div><div><code>(a:Artist {name:"A"})</code><span>이름이 A인 Artist 노드 — 별명 <b>a</b></span></div><div><code>-[:PERFORMS_IN]-&gt;</code><span>‘출연한다’ 관계를 화살표 방향으로 따라가서</span></div><div><code>(m:Musical)</code><span>도착한 뮤지컬 노드 — 별명 <b>m</b></span></div><div><code>RETURN m.title</code><span>m의 제목을 돌려줘</span></div><div><code>( )  -[ ]-&gt;</code><span>노드는 동그라미 ( ), 관계는 화살표 -[ ]-&gt; — 그림 그리듯</span></div></div>
       </div>
     </div>
-    <div style="font-size:12.5px;color:var(--muted)">※ 이해를 돕기 위한 예시 쿼리</div>
+    <div style="font-size:12.5px;color:var(--muted)">※ 이해를 돕기 위한 예시 쿼리 · 두 질의의 결과는 같다: 아티스트 A가 출연한 뮤지컬의 제목 목록</div>
   </div>
 </section>
 
@@ -936,13 +1138,14 @@ pre.code .c{color:#7D8B97}
     <p class="sub">지식그래프의 핵심 가치는 정확하고 신뢰할 수 있는 정보 — 품질이 곧 애플리케이션의 성패</p></header>
   <div class="body">
     <div class="g3">
-      <div class="card"><span class="tag warm">과제</span><div class="pills"><span class="pill">정확성</span><span class="pill">완전성</span><span class="pill">일관성</span><span class="pill">적시성</span><span class="pill">비중복성</span></div></div>
-      <div class="card"><span class="tag">프로세스</span><div class="pills"><span class="pill">품질 평가</span><span class="pill">오류 탐지</span><span class="pill">정제</span><span class="pill">보강·완성</span></div></div>
-      <div class="card"><span class="tag">해결 방안</span><div class="pills"><span class="pill">데이터 거버넌스</span><span class="pill">제약 조건 검증</span><span class="pill">중복 탐지 도구</span></div></div>
+      <div class="card"><span class="tag warm">과제</span><div class="pills"><span class="pill">정확성</span><span class="pill">완전성</span><span class="pill">일관성</span><span class="pill">적시성</span><span class="pill">비중복성</span></div><p class="eg1"><span class="ex-l">예</span>‘톰 행크스’와 ‘Tom Hanks’가 서로 다른 노드 → 중복</p></div>
+      <div class="card"><span class="tag">프로세스</span><div class="pills"><span class="pill">품질 평가</span><span class="pill">오류 탐지</span><span class="pill">정제</span><span class="pill">보강·완성</span></div><p class="eg1"><span class="ex-l">예</span>중복 노드를 찾아 하나로 합침</p></div>
+      <div class="card"><span class="tag">해결 방안</span><div class="pills"><span class="pill">데이터 거버넌스</span><span class="pill">제약 조건 검증</span><span class="pill">중복 탐지 도구</span></div><p class="eg1"><span class="ex-l">예</span>“공연 장소는 1곳” 규칙으로 잘못된 입력 차단</p></div>
     </div>
     <div class="card accent fill" style="display:flex;flex-direction:column;justify-content:center">
       <h3>지식그래프 완성 (Knowledge Graph Completion)</h3>
       <p class="lead" style="font-size:19px">저장된 정보만 내주는 <b>수동적인 데이터베이스</b>가 아니라, 학습과 추론으로 스스로 지식을 확장해 가는 <b>능동적인 시스템</b>으로 발전할 가능성</p>
+      <p class="eg1"><span class="ex-l">예</span>‘포레스트 검프’의 감독이 비어 있으면 → 다른 사실들로부터 ‘로버트 저메키스’를 추론해 채움</p>
     </div>
   </div>
 </section>
@@ -955,12 +1158,12 @@ pre.code .c{color:#7D8B97}
       <div class="card">
         <span class="tag">RDFS</span><h3>RDF Schema</h3>
         <p>RDF의 기본 어휘 확장</p>
-        <ul style="margin-top:10px"><li>클래스·속성의 <b>계층 구조</b></li><li>속성의 <b>정의역·치역</b> 명시</li><li>기본적인 스키마 정의 기능</li></ul>
+        <ul style="margin-top:10px"><li>클래스·속성의 <b>계층 구조</b></li><li>속성의 <b>정의역·치역</b> 명시</li><li>기본적인 스키마 정의 기능</li></ul><p class="eg1"><span class="ex-l">예</span>뮤지컬 ⊂ 공연 · 출연자: 공연 → 아티스트</p>
       </div>
-      <div class="card accent">
+      <div class="card">
         <span class="tag">OWL</span><h3>Web Ontology Language</h3>
         <p>RDFS를 확장한 W3C 표준 — 더 풍부하고 정교한 표현</p>
-        <ul style="margin-top:10px"><li>클래스 간 다양한 관계 (예: Disjoint)</li><li>속성의 특성 (예: Functional, 역관계)</li><li><b>카디널리티 제약</b></li></ul>
+        <ul style="margin-top:10px"><li>클래스 간 다양한 관계 (예: Disjoint)</li><li>속성의 특성 (예: Functional, 역관계)</li><li><b>카디널리티 제약</b></li></ul><p class="eg1"><span class="ex-l">예</span>공연 ≠ 장소 · 감독은 1명 · 출연자 ⇄ 출연 · 장소는 정확히 1곳</p>
       </div>
     </div>
     <div class="callout">온톨로지 설계와 편집에는 3장의 <b>Protégé</b> 같은 도구를 사용한다</div>
@@ -973,11 +1176,11 @@ pre.code .c{color:#7D8B97}
   <div class="body">
     <div class="pills"><span class="label">핵심 기능</span><span class="pill acc">재현성</span><span class="pill acc">변경 추적·감사</span><span class="pill acc">오류 복구</span><span class="pill acc">동시 작업·협업</span><span class="pill acc">점진적 업데이트 관리</span></div>
     <div class="g3 fill" style="grid-template-columns:repeat(5,1fr)">
-      <div class="card tight"><h3>스냅샷</h3><p>특정 시점마다 그래프 전체의 복사본을 저장</p></div>
-      <div class="card tight"><h3>변경 로그</h3><p>초기 버전 이후의 모든 변경 작업을 로그로 기록</p></div>
-      <div class="card tight"><h3>델타</h3><p>버전 간 차이만 저장 — 스냅샷과 로그의 절충안</p></div>
-      <div class="card tight"><h3>이벤트 스트리밍</h3><p>소스의 변경을 감지해 그 부분만 반영</p></div>
-      <div class="card tight accent"><h3>시간적 KG</h3><p>각 트리플에 타임스탬프·유효기간을 명시</p></div>
+      <div class="card tight"><h3>스냅샷</h3><p>특정 시점마다 그래프 전체의 복사본을 저장</p><p class="eg1"><span class="ex-l">예</span>매달 1일 그래프 전체를 통째로 보관</p></div>
+      <div class="card tight"><h3>변경 로그</h3><p>초기 버전 이후의 모든 변경 작업을 로그로 기록</p><p class="eg1"><span class="ex-l">예</span>“7/3 공연 A 추가”, “7/5 가격 수정”…</p></div>
+      <div class="card tight"><h3>델타</h3><p>버전 간 차이만 저장 — 스냅샷과 로그의 절충안</p><p class="eg1"><span class="ex-l">예</span>6월 → 7월 사이 바뀐 30개만 저장</p></div>
+      <div class="card tight"><h3>이벤트 스트리밍</h3><p>소스의 변경을 감지해 그 부분만 반영</p><p class="eg1"><span class="ex-l">예</span>예매 사이트에 새 공연이 올라오면 즉시 추가</p></div>
+      <div class="card tight"><h3>시간적 KG</h3><p>각 트리플에 타임스탬프·유효기간을 명시</p><p class="eg1"><span class="ex-l">예</span>(오페라의 유령, 공연장소, 샤롯데씨어터) [2023.3 ~ 6]</p></div>
     </div>
   </div>
 </section>
@@ -986,13 +1189,13 @@ pre.code .c{color:#7D8B97}
   <header><span class="sec">4.4.4</span><h2>관리 및 큐레이션 ④ 보안 및 접근 통제</h2>
     <p class="sub">조직의 다양한 데이터를 통합·연결하는 만큼, 부적절한 접근을 막는 장치가 필수</p></header>
   <div class="body">
-    <div class="g3 fill" style="grid-template-rows:1fr 1fr">
-      <div class="card tight"><h3>RBAC<small>역할 기반 접근 통제</small></h3><p>역할에 따라 노드·관계·속성의 읽기/쓰기/수정/삭제 권한 부여</p></div>
-      <div class="card tight"><h3>ABAC<small>속성 기반 접근 통제</small></h3><p>사용자·자원 속성과 환경 조건으로 동적이고 세분화된 결정</p></div>
-      <div class="card tight"><h3>IAM 통합<small>신원 및 접근 관리</small></h3><p>조직의 기존 IAM과 연동해 일관된 인증·권한 정책 적용</p></div>
-      <div class="card tight"><h3>데이터 암호화</h3><p>저장된 데이터와 전송 중인 데이터를 암호화</p></div>
-      <div class="card tight"><h3>감사 및 모니터링</h3><p>누가, 언제, 어떤 데이터에 접근·변경했는지 기록</p></div>
-      <div class="card tight"><h3>익명화 · 가명화</h3><p>프라이버시 보호를 위한 비식별 처리</p></div>
+    <div class="g3 fill" style="grid-template-rows:auto 1fr">
+      <div class="card tight" style="display:flex;flex-direction:column"><h3>RBAC<small>역할 기반 접근 통제</small></h3><p>역할에 따라 노드·관계·속성의 읽기/쓰기/수정/삭제 권한 부여</p><p class="eg1"><span class="ex-l">예</span>관리자는 수정, 일반 직원은 조회만</p><div class="abbr"><span><b>R</b>ole-<b>B</b>ased <b>A</b>ccess <b>C</b>ontrol</span><small>Role = 역할 · Access Control = 접근 통제</small></div></div>
+      <div class="card tight" style="display:flex;flex-direction:column"><h3>ABAC<small>속성 기반 접근 통제</small></h3><p>사용자·자원 속성과 환경 조건으로 동적이고 세분화된 결정</p><p class="eg1"><span class="ex-l">예</span>인사팀 + 사내망 접속일 때만 급여 정보 열람</p><div class="abbr"><span><b>A</b>ttribute-<b>B</b>ased <b>A</b>ccess <b>C</b>ontrol</span><small>Attribute = 속성 (부서, 위치, 시간 등)</small></div></div>
+      <div class="card tight" style="display:flex;flex-direction:column"><h3>IAM 통합<small>신원 및 접근 관리</small></h3><p>조직의 기존 IAM과 연동해 일관된 인증·권한 정책 적용</p><p class="eg1"><span class="ex-l">예</span>회사 통합 계정 하나로 로그인</p><div class="abbr"><span><b>I</b>dentity and <b>A</b>ccess <b>M</b>anagement</span><small>Identity = 신원 (누구인지) · Management = 관리</small></div></div>
+      <div class="card tight"><h3>데이터 암호화</h3><p>저장된 데이터와 전송 중인 데이터를 암호화</p><p class="eg1"><span class="ex-l">예</span>저장 파일은 암호화, 전송은 HTTPS</p></div>
+      <div class="card tight"><h3>감사 및 모니터링</h3><p>누가, 언제, 어떤 데이터에 접근·변경했는지 기록</p><p class="eg1"><span class="ex-l">예</span>“3/2 김○○, 고객 노드 수정” 기록</p></div>
+      <div class="card tight"><h3>익명화 · 가명화</h3><p>프라이버시 보호를 위한 비식별 처리</p><p class="eg1"><span class="ex-l">예</span>고객 이름 ‘홍길동’ → ‘고객_0231’</p></div>
     </div>
   </div>
 </section>
@@ -1010,7 +1213,7 @@ pre.code .c{color:#7D8B97}
     <div class="g2 fill">
       <div class="card"><span class="tag">4.5.2.1</span><h3>규칙 기반 추론</h3><p>논리 규칙으로 새로운 사실을 <b>연역적으로</b> 추론</p>
         <p style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:14px;background:#F2EFE8;padding:10px 12px;border-radius:8px">(A 부모 B) ∧ (B 부모 C) → (A 조부모 C)</p></div>
-      <div class="card accent"><span class="tag">4.5.2.2</span><h3>임베딩 기반 추론 <small>KGE · KRL</small></h3><p>개체와 관계를 <b>저차원 연속 벡터 공간</b>에 매핑해 유사성으로 누락된 관계를 예측</p>
+      <div class="card"><span class="tag">4.5.2.2</span><h3>임베딩 기반 추론 <small>KGE · KRL</small></h3><p>개체와 관계를 <b>저차원 연속 벡터 공간</b>에 매핑해 유사성으로 누락된 관계를 예측</p>
         <p style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:14px;background:#fff;padding:10px 12px;border-radius:8px">예) TransE: 머리 + 관계 ≈ 꼬리</p></div>
     </div>
   </div>
@@ -1019,14 +1222,25 @@ pre.code .c{color:#7D8B97}
 <section class="slide" data-ch="4장 · 지식그래프 생명주기">
   <header><span class="sec">CHAPTER 04 · 정리</span><h2>이번 장에서 배운 것</h2></header>
   <div class="body">
-    <table class="tbl">
-      <tr><th style="width:150px">단계</th><th>핵심 내용</th><th style="width:330px">키워드</th></tr>
-      <tr><td>준비</td><td>수집 범위·대상을 정하고 텍스트를 정제</td><td>토큰화, 불용어, 상호 참조 해결</td></tr>
-      <tr><td>구축</td><td>데이터 유형에 맞는 추출·변환 기술을 선택하고 조합</td><td>NER · RE · EE · EL, 스키마 매핑</td></tr>
-      <tr><td>저장·호스팅</td><td>모델에 맞는 DB 선택 — 표준·상호운용성 vs 직관·탐색 속도</td><td>RDF + SPARQL, 속성 그래프 + Cypher</td></tr>
-      <tr><td>관리·큐레이션</td><td>신뢰할 수 있는 자산으로 유지하는 지속적인 관리</td><td>품질, RDFS·OWL, 버전, RBAC·ABAC</td></tr>
-      <tr><td>활용·추론</td><td>검색·추천·질의응답·통합에 활용하고 숨은 사실을 도출</td><td>규칙 기반 추론, 임베딩(KGE)</td></tr>
+    <table class="tbl tbl-tight" style="font-size:15px">
+      <tr><th style="width:150px">단계</th><th style="width:90px">절</th><th>핵심 내용</th><th style="width:330px">키워드</th></tr>
+      <tr><td>준비</td><td>4.1</td><td>수집 범위·대상을 정하고 텍스트의 노이즈를 정제</td><td>토큰화, 불용어, 상호 참조 해결</td></tr>
+      <tr><td>구축</td><td>4.2</td><td>비정형은 <b>정보 추출</b>, 정형·반정형은 <b>매핑</b>으로 트리플 생성</td><td>NER · RE · EE · EL, 스키마 매핑</td></tr>
+      <tr><td>저장·호스팅</td><td>4.3</td><td>RDF는 표준·추론, 속성 그래프는 관계에 정보 부착·빠른 탐색</td><td>RDF + SPARQL, PGD + Cypher, Neptune</td></tr>
+      <tr><td>관리·큐레이션</td><td>4.4</td><td>품질·스키마·버전·보안으로 믿을 수 있는 자산 유지</td><td>중복 탐지, RDFS·OWL, 델타, RBAC·ABAC</td></tr>
+      <tr><td>활용·추론</td><td>4.5</td><td>검색·추천·질의응답에 쓰고 숨은 사실을 도출 → <b>5장</b></td><td>규칙 기반 추론, 임베딩(KGE)</td></tr>
     </table>
+    <div class="card tight" style="padding:12px 18px">
+      <div style="font-size:13px;font-weight:700;color:var(--muted);margin-bottom:8px">한 문장의 여정 — 이번 장에서 따라간 예시</div>
+      <div class="journey">
+        <div><b>기사 문장</b><span>“톰 행크스는 … 출연했다”</span></div>
+        <div><b>준비</b><span>정제 · 토큰화</span></div>
+        <div><b>구축</b><span>NER · RE · EL</span></div>
+        <div><b>트리플</b><span>(톰 행크스, 출연, 포레스트 검프)</span></div>
+        <div><b>저장</b><span>RDF 저장소</span></div>
+        <div><b>질의</b><span>“톰 행크스 출연작은?” → 포레스트 검프</span></div>
+      </div>
+    </div>
     <div class="callout">지식그래프는 한 번 만들고 끝나는 데이터베이스가 아니라, 활용 → 관리 → 보강을 반복하며 <b>스스로 자라는 시스템</b></div>
   </div>
 </section>
@@ -1089,11 +1303,11 @@ pre.code .c{color:#7D8B97}
     <div class="card" style="font-size:20px;padding:14px 22px"><span class="tag" style="margin:0 10px 0 0">질의</span>“톰 행크스가 출연한 SF 영화는?”</div>
     <div class="g2">
       <div class="card"><span class="tag">2.1 Vector Search</span><p>문서에서 <b>의미 유사성</b>을 기준으로 관련 내용을 검색</p></div>
-      <div class="card accent"><span class="tag">2.2 Graph Search</span><p>지식그래프에서 <b>‘톰 행크스’ 노드</b>를 기준으로 출연 → 장르 = SF 경로를 탐색</p></div>
+      <div class="card"><span class="tag">2.2 Graph Search</span><p>지식그래프에서 <b>‘톰 행크스’ 노드</b>를 기준으로 출연 → 장르 = SF 경로를 탐색</p></div>
     </div>
     <div class="flow fill" style="grid-auto-columns:1fr">
       <div class="step"><span class="num">3</span><h4>정보 결합 및 LLM 입력</h4><p>두 검색 결과를 조합해 LLM에게 전달</p></div>
-      <div class="step" style="background:var(--accent-soft);border-color:#C3DDD5"><span class="num">4</span><h4>지식 기반 응답 생성</h4><p>단순한 언어 생성이 아니라, 질문과 연결된 <b>정확하고 설명 가능한</b> 응답</p></div>
+      <div class="step"><span class="num">4</span><h4>지식 기반 응답 생성</h4><p>단순한 언어 생성이 아니라, 질문과 연결된 <b>정확하고 설명 가능한</b> 응답</p></div>
     </div>
   </div>
 </section>
@@ -1112,7 +1326,7 @@ pre.code .c{color:#7D8B97}
       <div class="vlist">
         <div class="card tight"><div class="it"><span class="num">2</span><div><h4>지식그래프 임베딩</h4><p>노드와 관계를 저차원 밀집 벡터로 변환 — 의미가 비슷하면 벡터도 비슷</p></div></div></div>
         <div class="card tight"><div class="it"><span class="num">3</span><div><h4>협업 필터링·유사도 추론</h4><p>행동 이력 + 그래프의 의미 관계로 유사도 계산</p></div></div></div>
-        <div class="card tight accent"><div class="it"><span class="num">4</span><div><h4>추천 예측 모듈</h4><p>Top-N 후보 중 실제로 좋아할 가능성과 추천 순서를 결정</p></div></div></div>
+        <div class="card tight"><div class="it"><span class="num">4</span><div><h4>추천 예측 모듈</h4><p>Top-N 후보 중 실제로 좋아할 가능성과 추천 순서를 결정</p></div></div></div>
       </div>
     </div>
   </div>
@@ -1125,7 +1339,7 @@ pre.code .c{color:#7D8B97}
       <div class="step"><span class="num">1</span><h4>입력 이해</h4><p>질의·행동 이력에서 개체와 관계를 뽑아낸다</p></div>
       <div class="step"><span class="num">2</span><h4>그래프 연결</h4><p>뽑아낸 개체를 지식그래프의 노드와 매칭한다</p></div>
       <div class="step"><span class="num">3</span><h4>탐색·추론</h4><p>관계 경로를 따라가거나 임베딩으로 유사도를 계산한다</p></div>
-      <div class="step" style="background:var(--accent-soft);border-color:#C3DDD5"><span class="num">4</span><h4>결과 + 설명</h4><p>정확한 답과 함께 근거가 되는 관계망을 보여준다</p></div>
+      <div class="step"><span class="num">4</span><h4>결과 + 설명</h4><p>정확한 답과 함께 근거가 되는 관계망을 보여준다</p></div>
     </div>
     <div class="g3 fill">
       <div class="card tight"><h3>검색엔진</h3><p>개체·관계를 이해하고 그래프 질의(Cypher)로 정확한 문서를 찾는다</p></div>
@@ -1164,7 +1378,7 @@ pre.code .c{color:#7D8B97}
     <div class="g3">
       <div class="card"><span class="num">1</span><h3 style="margin-top:10px">구조화</h3><p>흩어진 데이터를 개체와 관계의 구조로 정리</p></div>
       <div class="card"><span class="num">2</span><h3 style="margin-top:10px">의미 관계 발견</h3><p>다양한 데이터 사이의 의미적 관계를 밝혀냄</p></div>
-      <div class="card accent"><span class="num">3</span><h3 style="margin-top:10px">AI가 이해하는 지식</h3><p>데이터를 인공지능 시스템이 <b>이해할 수 있는 지식</b>으로 전환</p></div>
+      <div class="card"><span class="num">3</span><h3 style="margin-top:10px">AI가 이해하는 지식</h3><p>데이터를 인공지능 시스템이 <b>이해할 수 있는 지식</b>으로 전환</p></div>
     </div>
     <div class="card fill" style="display:flex;flex-direction:column;justify-content:center;padding:28px 32px">
       <p class="lead">전 세계 유수의 기업들이 다양한 서비스에 지식그래프를 실제로 적용하며, 지식그래프는 이제 <b>경쟁력의 핵심 요소</b>로 자리 잡았다.</p>
@@ -1186,7 +1400,7 @@ pre.code .c{color:#7D8B97}
     <div class="g3 fill">
       <div class="card"><h3>LLM</h3><p>방대한 텍스트 학습으로 자연어 이해·생성에서 놀라운 성과</p></div>
       <div class="card"><h3>지식그래프</h3><p>정확하고 구조화된 지식, 명시적 관계를 바탕으로 한 논리적 추론</p></div>
-      <div class="card accent"><h3>Graph-RAG</h3><p>엔티티 간 관계와 의미망으로 깊이 있는 추론, <b>출처가 명확한</b> 신뢰할 수 있는 응답</p></div>
+      <div class="card"><h3>Graph-RAG</h3><p>엔티티 간 관계와 의미망으로 깊이 있는 추론, <b>출처가 명확한</b> 신뢰할 수 있는 응답</p></div>
     </div>
   </div>
 </section>
@@ -1210,12 +1424,12 @@ pre.code .c{color:#7D8B97}
   <header><span class="sec">SUMMARY</span><h2>한 장으로 정리</h2></header>
   <div class="body">
     <div class="g3 fill" style="grid-template-rows:1fr 1fr">
-      <div class="card tight"><span class="tag">01</span><p>지식그래프는 개체와 관계의 <b>삼중항</b>으로 지식을 표현하고, LLM의 약점을 보완한다</p></div>
-      <div class="card tight"><span class="tag">02</span><p>Google·Amazon·Intuit·팔란티어는 검색·추천·보안·전략에 이미 활용 중</p></div>
-      <div class="card tight"><span class="tag">03</span><p><b>온톨로지</b>는 지식그래프의 청사진 — 8단계로 설계하고 Protégé로 구현</p></div>
-      <div class="card tight"><span class="tag">04</span><p>구축 → 저장 → 관리 → 활용·추론의 <b>순환 생명주기</b></p></div>
-      <div class="card tight"><span class="tag">05</span><p>검색엔진·RAG·추천시스템 속에서 그래프 탐색이 정확성과 설명력을 더한다</p></div>
-      <div class="card tight accent"><span class="tag">06</span><p>산업 전반으로 확산 중, <b>Graph-RAG</b>로 LLM과 함께 신뢰할 수 있는 AI로</p></div>
+      <div class="card tight tocard" data-goch="1"><span class="tag">01</span><p>지식그래프는 개체와 관계의 <b>삼중항</b>으로 지식을 표현하고, LLM의 약점을 보완한다</p></div>
+      <div class="card tight tocard" data-goch="2"><span class="tag">02</span><p>Google·Amazon·Intuit·팔란티어는 검색·추천·보안·전략에 이미 활용 중</p></div>
+      <div class="card tight tocard" data-goch="3"><span class="tag">03</span><p><b>온톨로지</b>는 지식그래프의 청사진 — 8단계로 설계하고 Protégé로 구현</p></div>
+      <div class="card tight tocard" data-goch="4"><span class="tag">04</span><p>구축 → 저장 → 관리 → 활용·추론의 <b>순환 생명주기</b></p></div>
+      <div class="card tight tocard" data-goch="5"><span class="tag">05</span><p>검색엔진·RAG·추천시스템 속에서 그래프 탐색이 정확성과 설명력을 더한다</p></div>
+      <div class="card tight tocard" data-goch="6"><span class="tag">06</span><p>산업 전반으로 확산 중, <b>Graph-RAG</b>로 LLM과 함께 신뢰할 수 있는 AI로</p></div>
     </div>
     <div style="text-align:center;font-size:34px;font-weight:800;color:var(--accent-ink);margin-top:4px">Q &amp; A</div>
   </div>
@@ -1238,7 +1452,20 @@ pre.code .c{color:#7D8B97}
     nav.innerHTML=ol+'<span class="chpg"><small>이번 장</small>'+(groups[c].indexOf(i)+1)+' / '+groups[c].length+'</span>';
     s.appendChild(nav);
   });
-  [].forEach.call(document.querySelectorAll('[data-toc]'),function(t){var c=+t.dataset.toc;t.textContent='CHAPTER 0'+c+'  ·  p.'+(groups[c][0]+1)+'–'+(groups[c][groups[c].length-1]+1)});
+  [].forEach.call(document.querySelectorAll('[data-toc]'),function(t){var c=+t.dataset.toc;t.textContent='CHAPTER 0'+c+'  ·  p.'+(groups[c][0]+1)+'–'+(groups[c][groups[c].length-1]+1);var cd=t.closest('.card');cd.dataset.go=groups[c][0];cd.classList.add('tocard');cd.title=c+'장으로 이동'});
+  [].forEach.call(document.querySelectorAll('[data-goch]'),function(el){var c=+el.dataset.goch;if(groups[c]){el.dataset.go=groups[c][0];el.classList.add('golink');el.title=c+'장으로 이동'}});
+  [].forEach.call(document.querySelectorAll('[data-gosec]'),function(el){var c=parseInt(el.closest('.slide').dataset.ch,10);var to=findSec(c,el.dataset.gosec);if(to>=0){el.dataset.go=to;el.classList.add('golink');el.title=el.dataset.gosec+'절로 이동'}});
+  // section buttons on dividers (and goal refs) -> first slide of that section
+  function secTokens(s){var h=s.querySelector('header .sec');return h?(h.textContent.match(/\d+(?:\.\d+)+/g)||[]):[]}
+  function findSec(c,code){var g=groups[c]||[];for(var j=0;j<g.length;j++){var tk=secTokens(slides[g[j]]);for(var m=0;m<tk.length;m++){if(tk[m]===code||tk[m].indexOf(code+'.')===0)return g[j]}}return -1}
+  [].forEach.call(document.querySelectorAll('.divider .toc span, .goal .ref'),function(el){
+    var s=el.closest('.slide'),c=parseInt(s.dataset.ch,10);if(!c)return;
+    var to=-1,label='';
+    if(/\d장/.test(el.textContent)){label=c+'장 '+(el.textContent.indexOf('개요')>=0?'개요':'도입');(groups[c]||[]).some(function(j){var h=slides[j].querySelector('header .sec');if(h&&h.textContent.trim().indexOf(c+'장')===0){to=j;return true}})}
+    else{var m=el.textContent.match(/\d+(?:\.\d+)+/);if(!m)return;to=findSec(c,m[0]);label=m[0]+'절'}
+    if(to<0)return;
+    el.dataset.go=to;el.classList.add('golink');el.title=label+'로 이동';
+  });
   slides.forEach(function(s,i){
     if(s.classList.contains('cover'))return;
     var f=document.createElement('div');f.className='foot';
@@ -1246,9 +1473,14 @@ pre.code .c{color:#7D8B97}
     s.appendChild(f);
   });
   function fit(){var k=Math.min(innerWidth/1280,innerHeight/720);stage.style.transform='translate(-50%,-50%) scale('+k+')';}
+  // equalize example boxes in a row so their tops line up with the tallest
+  function eqEx(){var s=slides[cur];if(!s)return;[].forEach.call(s.querySelectorAll('[data-eqex]'),function(g){var bx=g.querySelectorAll('.ex');var mx=0;[].forEach.call(bx,function(e){e.style.minHeight='';mx=Math.max(mx,e.offsetHeight)});[].forEach.call(bx,function(e){e.style.minHeight=mx+'px'})})}
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){eqEx()});
+  addEventListener('resize',function(){eqEx()});
   function go(i){
     cur=Math.max(0,Math.min(N-1,i));
     slides.forEach(function(s,j){s.classList.toggle('active',j===cur)});
+    eqEx();
     bar.style.width=((cur+1)/N*100)+'%';
     if(location.hash!=='#'+(cur+1))history.replaceState(null,'','#'+(cur+1));
   }
