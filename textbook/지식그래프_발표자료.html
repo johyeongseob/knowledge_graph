@@ -235,6 +235,8 @@ pre.code .c{color:#7D8B97}
 .divider .toc span.star{border-color:#C9A24A}
 .divider .toc span.star::after{content:" ★";color:#E8C15C}
 
+.qcard .qa-ans{display:none}.qcard.show .qa-hint{display:none}.qcard.show .qa-ans{display:block}
+.qbtn{font:inherit;font-size:12.5px;font-weight:700;color:var(--accent-ink);background:#fff;border:1.5px solid var(--accent);border-radius:999px;padding:2px 12px;cursor:pointer}.qbtn:hover{background:var(--accent);color:#fff}
 .secb{font-size:12.5px;font-weight:800;color:var(--accent-ink);border:1.5px solid var(--accent);background:#fff;border-radius:999px;padding:2px 10px;white-space:nowrap}
 .secb.golink:hover{background:var(--accent);color:#fff}
 
@@ -1139,9 +1141,9 @@ pre.code .c{color:#7D8B97}
       <tr><td>식별자</td><td>전역 고유 <b>URI</b>로 표현 → 데이터 통합·공유가 쉬움</td><td>DB 내부 ID, 노드·관계에 속성을 직접 부착</td></tr>
       <tr><td>질의 언어</td><td><b>SPARQL</b> (W3C 표준)</td><td><b>Cypher</b>(Neo4j), Gremlin(TinkerPop), GQL(ISO 표준, 2024)</td></tr>
       <tr><td>강점</td><td>표준 기반 상호운용성, 온톨로지(RDFS/OWL) 추론</td><td>직관적 모델링, 빠른 관계 탐색</td></tr>
-      <tr><td>대표 시스템</td><td>Ontotext GraphDB, Stardog, Apache Jena, OpenLink Virtuoso</td><td><b>Neo4j</b>, FalkorDB, NebulaGraph</td></tr>
+      <tr><td rowspan="2" style="vertical-align:middle">대표 시스템<small style="display:block;margin-top:2px;font-size:12px;font-weight:500;color:var(--muted)">→ 다음 쪽(4.3.2)에서 자세히</small></td><td>Ontotext GraphDB, Stardog, Apache Jena, OpenLink Virtuoso</td><td><b>Neo4j</b>, FalkorDB, NebulaGraph</td></tr>
+      <tr><td colspan="2"><span style="display:inline-block;margin-right:8px;padding:1px 9px;border-radius:999px;background:var(--accent-ink);color:#fff;font-size:12.5px;font-weight:700">둘 다 지원</span><b>Amazon Neptune</b> — RDF(SPARQL) + 속성 그래프(Gremlin·openCypher)</td></tr>
     </table>
-    <div class="callout"><b>Amazon Neptune</b>은 두 모델을 모두 지원 — 하나만 골라야 하는 것은 아니다</div>
     <div class="g2">
       <div class="ex" style="padding:10px 16px;gap:3px"><span class="ex-l">RDF · Resource Description Framework</span>
         <div class="ex-b">모든 사실을 <b>주어–술어–목적어</b> 문장(트리플)으로 적는 방식</div>
@@ -1190,6 +1192,12 @@ pre.code .c{color:#7D8B97}
       -[:PERFORMS_IN]-&gt;(m:Musical)
 <span class="k">RETURN</span> m.title</pre>
         <div class="codeexp"><div><code>MATCH</code><span>이런 모양(패턴)을 그래프에서 찾아라</span></div><div><code>(a:Artist {name:"A"})</code><span>이름이 A인 Artist 노드 — 별명 <b>a</b></span></div><div><code>-[:PERFORMS_IN]-&gt;</code><span>‘출연한다’ 관계를 화살표 방향으로 따라가서</span></div><div><code>(m:Musical)</code><span>도착한 뮤지컬 노드 — 별명 <b>m</b></span></div><div><code>RETURN m.title</code><span>m의 제목을 돌려줘</span></div><div><code>( )  -[ ]-&gt;</code><span>노드는 동그라미 ( ), 관계는 화살표 -[ ]-&gt; — 그림 그리듯</span></div></div>
+        <div class="card accent qcard" style="margin-top:auto;padding:12px 18px">
+          <div class="trow"><span class="tag" style="margin:0">질문</span><button type="button" class="qbtn" onclick="this.closest('.qcard').classList.toggle('show');this.textContent=this.closest('.qcard').classList.contains('show')?'질문으로':'정답 보기'">정답 보기</button></div>
+          <p style="margin-top:6px;font-size:18px;font-weight:800;color:var(--accent-ink)">3장 실습에서는 둘 중 무엇을 썼을까?</p>
+          <p class="qa-hint" style="margin-top:4px;font-size:13.5px;color:var(--muted)">힌트 · 우리 온톨로지 파일(.owl)은 어떤 형식으로 저장될까?</p>
+          <p class="qa-ans" style="margin-top:4px;font-size:13.5px;line-height:1.5"><b style="color:var(--accent-ink)">정답: SPARQL</b> — .owl은 모든 사실을 <b>RDF 트리플</b>(주어–술어–목적어)로 저장 → RDF 표준 질의 언어 SPARQL 사용 · Cypher는 속성 그래프 DB(Neo4j)용</p>
+        </div>
       </div>
     </div>
     <div style="font-size:12.5px;color:var(--muted)">※ 이해를 돕기 위한 예시 쿼리 · 두 질의의 결과는 같다: 아티스트 A가 출연한 뮤지컬의 제목 목록</div>
@@ -1218,15 +1226,17 @@ pre.code .c{color:#7D8B97}
     <p class="sub">스키마는 데이터의 구조와 의미를 정의 — 일관성 보장, 상호운용성, 추론의 기반. 주로 <b>온톨로지</b>가 그 역할을 한다</p></header>
   <div class="body">
     <div class="g2 fill">
-      <div class="card">
-        <span class="tag">RDFS</span><h3>RDF Schema</h3>
+      <div class="card" style="display:flex;flex-direction:column">
+        <span class="tag" style="align-self:flex-start">RDFS</span><h3>RDF Schema</h3>
         <p>RDF의 기본 어휘 확장</p>
         <ul style="margin-top:10px"><li>클래스·속성의 <b>계층 구조</b></li><li>속성의 <b>정의역·치역</b> 명시</li><li>기본적인 스키마 정의 기능</li></ul><p class="eg1"><span class="ex-l">예</span>뮤지컬 ⊂ 공연 · 출연자: 공연 → 아티스트</p>
+        <div class="iri" style="margin-top:auto"><span class="iri-k">W3C 표준 연표 · 현재도 사용</span><p><b>2004</b> RDF Schema 1.0 권고 → <b>2014</b> RDF Schema 1.1 개정 (현행)</p></div>
       </div>
-      <div class="card">
-        <span class="tag">OWL</span><h3>Web Ontology Language</h3>
+      <div class="card" style="display:flex;flex-direction:column">
+        <span class="tag" style="align-self:flex-start">OWL</span><h3>Web Ontology Language</h3>
         <p>RDFS를 확장한 W3C 표준 — 더 풍부하고 정교한 표현</p>
         <ul style="margin-top:10px"><li>클래스 간 다양한 관계 (예: Disjoint)</li><li>속성의 특성 (예: Functional, 역관계)</li><li><b>카디널리티 제약</b></li></ul><p class="eg1"><span class="ex-l">예</span>공연 ≠ 장소 · 감독은 1명 · 출연자 ⇄ 출연 · 장소는 정확히 1곳</p>
+        <div class="iri" style="margin-top:auto"><span class="iri-k">W3C 표준 연표 · 현재도 사용</span><p><b>2004</b> OWL 권고 → <b>2009</b> OWL 2 개정 (현행, 2012 2판) · 우리 실습 파일도 OWL 2</p></div>
       </div>
     </div>
     <div class="callout">온톨로지 설계와 편집에는 3장의 <b>Protégé</b> 같은 도구를 사용한다</div>
